@@ -223,6 +223,85 @@
   color: var(--color-text);
 }
 
+/* Desktop: text, buttons and stats ×1.3, photo slightly larger. Mobile/tablet untouched. */
+@media (min-width: 1024px) {
+  .container {
+    max-width: 1560px;
+    grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+  }
+
+  .title {
+    margin-bottom: 30px;
+    font-size: clamp(2.6rem, 3.6vw, 3.4rem);
+  }
+
+  .subtitle {
+    margin-bottom: 40px;
+    font-size: 1.375rem;
+  }
+
+  .actions {
+    gap: 40px;
+  }
+
+  .ctaButton {
+    padding: 21px 52px;
+    font-size: 1.125rem;
+  }
+
+  .secondaryLink {
+    font-size: 1.125rem;
+  }
+
+  .stats {
+    margin-top: 46px;
+  }
+
+  .stat {
+    padding: 0 18px;
+  }
+
+  .stat + .stat::before {
+    height: 32px;
+  }
+
+  .statValue {
+    font-size: 1.7rem;
+  }
+
+  .statLabel {
+    font-size: 0.875rem;
+  }
+
+  .media {
+    width: clamp(338px, 40vw, 570px);
+  }
+
+  .caption {
+    max-width: 273px;
+    padding: 14px 21px;
+  }
+
+  .captionName {
+    font-size: 1.2rem;
+  }
+
+  .captionRole {
+    font-size: 0.95rem;
+  }
+}
+
+/* Narrow desktops: the ×1.3 stats row is ~50px wider than the text column at 1280 */
+@media (min-width: 1024px) and (max-width: 1439px) {
+  .stat {
+    padding: 0 12px;
+  }
+
+  .statLabel {
+    font-size: 0.8125rem;
+  }
+}
+
 @media (max-width: 1023px) {
   .hero {
     --header-h: 80px;
