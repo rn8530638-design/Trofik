@@ -65,7 +65,7 @@ export default function Hero() {
             width={1221}
             height={1400}
             priority
-            sizes="(max-width: 767px) 80vw, 570px"
+            sizes="(max-width: 767px) 80vw, 640px"
             className={styles.photo}
           />
           <figcaption className={styles.caption}>
