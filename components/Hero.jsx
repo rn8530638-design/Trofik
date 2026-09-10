@@ -32,9 +32,9 @@ export default function Hero() {
             <div className={styles.goldOutline} aria-hidden="true" />
             <div className={styles.marble} aria-hidden="true" />
             <Image
-              src="/images/ekaterina.png"
+              src="/images/ekaterina-hero.png"
               alt="Екатерина Трофимова, основатель и руководитель студии «ТрофиК»"
-              width={1209}
+              width={1221}
               height={1400}
               priority
               sizes="(max-width: 767px) 90vw, (max-width: 1023px) 380px, 500px"
