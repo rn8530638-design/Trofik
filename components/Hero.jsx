@@ -7,8 +7,8 @@ export default function Hero() {
       <div className={styles.container}>
         <div className={styles.content}>
           <h1 className={styles.title}>
-            <span className={styles.brandName}>Трофик</span>
-            <span className={styles.titleRest}>— студия красоты, где можно просто быть собой</span>
+            <span className={styles.brandName}>Трофик</span> — студия красоты, где можно
+            просто быть собой
           </h1>
           <p className={styles.subtitle}>
             Создаём красоту. Возвращаем уверенность. Вдохновляем жить.
@@ -36,7 +36,7 @@ export default function Hero() {
             width={1221}
             height={1400}
             priority
-            sizes="(max-width: 767px) 90vw, 50vw"
+            sizes="(max-width: 767px) 80vw, 520px"
             className={styles.photo}
           />
           <figcaption className={styles.caption}>
