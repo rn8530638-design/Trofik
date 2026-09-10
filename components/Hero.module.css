@@ -13,7 +13,8 @@
   margin: 0 auto;
   padding: calc(var(--header-h) + 56px) 48px 72px;
   display: grid;
-  grid-template-columns: 1.3fr 1fr;
+  /* minmax(0, …) so nowrap content (stats) can never widen the text column and squeeze the photo */
+  grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
   align-items: center;
   gap: 64px;
 }
@@ -93,6 +94,65 @@
 
 .secondaryLink:hover span {
   transform: translateX(4px);
+}
+
+/* Trust bar under the CTA row: quiet, smaller than the buttons */
+.stats {
+  display: flex;
+  align-items: center;
+  margin: 36px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.stat {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 0 14px;
+}
+
+.stat:first-child {
+  padding-left: 0;
+}
+
+.stat:last-child {
+  padding-right: 0;
+}
+
+/* 1px divider, shorter than the item and vertically centred */
+.stat + .stat::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 1px;
+  height: 24px;
+  transform: translateY(-50%);
+  background: #d9d3c4;
+}
+
+.statValue {
+  font-family: var(--font-heading), Georgia, serif;
+  font-size: 1.3125rem;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--color-navy);
+  white-space: nowrap;
+}
+
+.star {
+  font-size: 0.8em;
+  vertical-align: 0.08em;
+  color: var(--color-gold);
+}
+
+.statLabel {
+  font-size: 0.75rem;
+  line-height: 1.35;
+  color: #6b6b6b;
+  white-space: nowrap;
 }
 
 .media {
@@ -179,6 +239,25 @@
 }
 
 @media (max-width: 767px) {
+  .stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px 24px;
+    margin-top: 32px;
+  }
+
+  .stat {
+    padding: 0;
+  }
+
+  .stat + .stat::before {
+    display: none;
+  }
+
+  .statLabel {
+    white-space: normal;
+  }
+
   .container {
     grid-template-columns: 1fr;
     padding-top: calc(var(--header-h) + 32px);

@@ -1,6 +1,34 @@
 import Image from 'next/image';
 import styles from './Hero.module.css';
 
+function HeroStats() {
+  return (
+    <ul className={styles.stats}>
+      {/* Items 1–2: real figures from the studio's Yandex Maps listing */}
+      <li className={styles.stat}>
+        <span className={styles.statValue}>
+          <span className={styles.star} aria-hidden="true">★</span> 5.0
+        </span>
+        <span className={styles.statLabel}>85 оценок на Яндекс.Картах</span>
+      </li>
+      <li className={styles.stat}>
+        <span className={styles.statValue}>74</span>
+        <span className={styles.statLabel}>отзыва клиентов</span>
+      </li>
+      {/* TODO: confirm with client */}
+      <li className={styles.stat}>
+        <span className={styles.statValue}>6</span>
+        <span className={styles.statLabel}>опытных мастеров</span>
+      </li>
+      {/* TODO: confirm with client */}
+      <li className={styles.stat}>
+        <span className={styles.statValue}>1000+</span>
+        <span className={styles.statLabel}>довольных клиентов</span>
+      </li>
+    </ul>
+  );
+}
+
 export default function Hero() {
   return (
     <section className={styles.hero}>
@@ -21,6 +49,7 @@ export default function Hero() {
               Наши услуги <span aria-hidden="true">→</span>
             </a>
           </div>
+          <HeroStats />
         </div>
 
         <figure className={styles.media}>
