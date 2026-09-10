@@ -1,0 +1,162 @@
+.hero {
+  background: var(--color-bg);
+  padding: 80px 24px;
+  overflow: hidden;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  align-items: center;
+  gap: 64px;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.logo {
+  height: 60px;
+  width: auto;
+  margin-bottom: 40px;
+}
+
+.title {
+  margin: 0 0 24px;
+  font-family: var(--font-heading), Georgia, serif;
+  font-weight: 700;
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  line-height: 1.1;
+  color: var(--color-navy);
+}
+
+.subtitle {
+  margin: 0 0 36px;
+  max-width: 40ch;
+  font-size: 1.125rem;
+  line-height: 1.6;
+  color: var(--color-text);
+}
+
+/* Navy text on gold: white on #C9A45C fails WCAG AA (~2.3:1), navy gives ~7:1 */
+.ctaButton {
+  display: inline-block;
+  padding: 14px 32px;
+  border-radius: 8px;
+  background: var(--color-gold);
+  color: var(--color-navy);
+  font-family: var(--font-body), system-ui, sans-serif;
+  font-weight: 600;
+  font-size: 1rem;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.ctaButton:hover {
+  background: var(--color-gold-dark);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px rgba(201, 164, 92, 0.35);
+}
+
+.ctaButton:focus-visible {
+  outline: 3px solid var(--color-navy);
+  outline-offset: 3px;
+}
+
+.media {
+  margin: 0;
+  justify-self: end;
+  width: 100%;
+  max-width: 500px;
+}
+
+.photoWrap {
+  position: relative;
+  isolation: isolate;
+}
+
+.marble,
+.goldOutline {
+  position: absolute;
+  left: 7%;
+  right: 7%;
+  bottom: 0;
+  height: 80%;
+  border-radius: 999px 999px 20px 20px;
+}
+
+.marble {
+  z-index: -1;
+  background-color: #1a1d24;
+  background-image: url('/images/marble-texture.jpg'),
+    linear-gradient(160deg, #0b2545 0%, #1a1d24 55%, #6b5630 100%);
+  background-size: cover;
+  background-position: center;
+  opacity: 0.9;
+  box-shadow: 0 30px 60px rgba(11, 37, 69, 0.2);
+}
+
+/* Thin gold arch offset behind the marble for a jewellery-like frame */
+.goldOutline {
+  z-index: -2;
+  transform: translate(22px, -22px);
+  border: 1.5px solid var(--color-gold);
+}
+
+.photo {
+  position: relative;
+  width: 100%;
+  height: auto;
+}
+
+.caption {
+  margin-top: 24px;
+  font-style: italic;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: var(--color-text);
+  text-align: center;
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .container {
+    gap: 40px;
+  }
+
+  .media {
+    max-width: 380px;
+  }
+}
+
+@media (max-width: 767px) {
+  .hero {
+    padding: 48px 20px;
+  }
+
+  .container {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+
+  .logo {
+    margin-bottom: 28px;
+  }
+
+  .media {
+    justify-self: center;
+    max-width: 400px;
+  }
+
+  .goldOutline {
+    transform: translate(12px, -12px);
+  }
+
+  .caption {
+    margin-top: 20px;
+  }
+}

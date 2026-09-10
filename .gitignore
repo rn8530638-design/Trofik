@@ -1,0 +1,9 @@
+node_modules/
+.next/
+out/
+.env*
+*.log
+.DS_Store
+# исходники фото (в проекте используется public/images/)
+/photo_*.jpg
+.playwright-mcp/
