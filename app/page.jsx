@@ -1,6 +1,7 @@
 import Hero from '@/components/Hero';
 import AboutStudio from '@/components/AboutStudio';
 import ServicesOverview from '@/components/ServicesOverview';
+import Reviews from '@/components/Reviews';
 
 export const metadata = {
   title: { absolute: 'Трофик — студия красоты, где можно просто быть собой' },
@@ -19,6 +20,7 @@ export default function HomePage() {
       <Hero />
       <AboutStudio />
       <ServicesOverview />
+      <Reviews />
     </main>
   );
 }
