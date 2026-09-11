@@ -3,11 +3,12 @@ import Link from 'next/link';
 import ServiceCardsGrid from '@/components/ServiceCardsGrid';
 import styles from './ServicesOverview.module.css';
 
-const STAGGER_MS = 90;
+// Cards rise in right-to-left: the last card starts first
+const STAGGER_MS = 160;
 
 const iconProps = {
-  width: 28,
-  height: 28,
+  width: 36,
+  height: 36,
   viewBox: '0 0 24 24',
   fill: 'none',
   stroke: 'currentColor',
@@ -119,15 +120,15 @@ export default function ServicesOverview() {
             <li
               key={service.key}
               className={styles.card}
-              style={{ transitionDelay: `${index * STAGGER_MS}ms` }}
+              style={{ transitionDelay: `${(SERVICES.length - 1 - index) * STAGGER_MS}ms` }}
             >
               <span className={styles.icon}>{ICONS[service.key]}</span>
               <Image
                 className={styles.photo}
                 src={`/images/service-${service.key}.jpg`}
                 alt={`${service.name} в студии ТрофиК`}
-                width={130}
-                height={130}
+                width={170}
+                height={170}
               />
               <h3 className={styles.name}>{service.name}</h3>
               <p className={styles.description}>{service.description}</p>
