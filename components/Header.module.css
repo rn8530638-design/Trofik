@@ -1,10 +1,16 @@
-/* Overlays the full-screen hero instead of pushing it down */
+/* Stays available while scrolling up, but never takes layout space. */
 .header {
-  position: absolute;
+  position: fixed;
   inset: 0 0 auto 0;
   z-index: 10;
+  background: transparent;
   font-family: var(--font-body), system-ui, sans-serif;
+  transition: transform 0.24s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+  will-change: transform;
 }
+
+.headerHidden { transform: translateY(-100%); pointer-events: none; }
+.headerScrolled { background: rgba(var(--color-background-rgb), 0.96); box-shadow: 0 2px 14px rgba(var(--color-heading-rgb), 0.06); }
 
 .inner {
   max-width: 1320px;
@@ -107,6 +113,10 @@
 .menuButton { display: none; }
 
 @media (prefers-reduced-motion: reduce) {
+  .header {
+    transition-duration: 0.01ms;
+  }
+
   .link,
   .linkFlip {
     transition-duration: 0.01ms;

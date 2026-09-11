@@ -338,6 +338,6 @@
   .discount { font-size: 1.8rem; }
   .description { font-size: 12px; line-height: 1.5; }
   .selectionHint { margin-top: 11px; font-size: 11px; }
-  .expiry { font-size: 12px; overflow-wrap: anywhere; }
+  .expiry { font-size: 10px; line-height: 1.25; overflow-wrap: anywhere; }
   .emptyState { padding: 34px 20px; font-size: 1.15rem; }
 }

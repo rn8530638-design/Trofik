@@ -1,15 +1,48 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useLayoutEffect, useRef, useState } from 'react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import styles from './Promotions.module.css';
 
 const STAGE_DURATION = 350;
+const useIsomorphicLayoutEffect = typeof window !== 'undefined' ? useLayoutEffect : () => {};
+
+if (typeof window !== 'undefined') {
+  gsap.registerPlugin(ScrollTrigger);
+}
 
 export default function PromotionsList({ promotions }) {
   const [expanded, setExpanded] = useState(() => promotions.map(() => false));
   const [tearing, setTearing] = useState(() => promotions.map(() => null));
+  const listRef = useRef(null);
   const timers = useRef(new Set());
   const activeTickets = useRef(new Set());
+
+  useIsomorphicLayoutEffect(() => {
+    const ctx = gsap.context(() => {
+      const media = gsap.matchMedia();
+
+      media.add('(max-width: 767px) and (prefers-reduced-motion: no-preference)', () => {
+        const tickets = gsap.utils.toArray('[data-promotion-ticket]');
+
+        gsap.from(tickets, {
+          autoAlpha: 0,
+          y: 28,
+          duration: 0.8,
+          ease: 'power4.out',
+          stagger: 0.18,
+          scrollTrigger: {
+            trigger: listRef.current,
+            start: 'top 58%',
+            once: true,
+          },
+        });
+      });
+    }, listRef);
+
+    return () => ctx.revert();
+  }, []);
 
   useEffect(() => () => {
     timers.current.forEach(window.clearTimeout);
@@ -75,7 +108,7 @@ export default function PromotionsList({ promotions }) {
   const areAllPromotionsSelected = tearing.length > 0 && tearing.every((stage) => stage === 'done');
 
   return (
-    <div className={styles.list}>
+    <div ref={listRef} className={styles.list}>
       {areAllPromotionsSelected ? (
         <p className={styles.emptyState} role="status">Акций пока что больше нет</p>
       ) : promotions.map((promotion, index) => {
@@ -95,7 +128,7 @@ export default function PromotionsList({ promotions }) {
         ].filter(Boolean).join(' ');
 
         return (
-          <div key={promotion.title} className={ticketSlotClassName}>
+          <div key={promotion.title} className={ticketSlotClassName} data-promotion-ticket>
             <button
               className={ticketClassName}
               type="button"

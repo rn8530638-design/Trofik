@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import styles from './Header.module.css';
 
 // Section links return to the appropriate point on the homepage; catalog and contacts have dedicated pages.
@@ -15,6 +15,32 @@ const NAV = [
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isHeaderVisible, setIsHeaderVisible] = useState(true);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const lastScrollY = useRef(0);
+
+  useEffect(() => {
+    lastScrollY.current = window.scrollY;
+
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      const scrollDelta = currentScrollY - lastScrollY.current;
+
+      setIsScrolled(currentScrollY > 16);
+
+      if (currentScrollY <= 16 || scrollDelta < -8) {
+        setIsHeaderVisible(true);
+      } else if (scrollDelta > 8 && !isMenuOpen) {
+        setIsHeaderVisible(false);
+      }
+
+      lastScrollY.current = currentScrollY;
+    };
+
+    handleScroll();
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [isMenuOpen]);
 
   const handleSectionNavigation = (event, href) => {
     setIsMenuOpen(false);
@@ -31,7 +57,7 @@ export default function Header() {
   };
 
   return (
-    <header className={styles.header}>
+    <header className={`${styles.header} ${isHeaderVisible ? '' : styles.headerHidden} ${isScrolled ? styles.headerScrolled : ''}`}>
       <div className={styles.inner}>
         <Link href="/" className={styles.brand} aria-label="Трофик — на главную">
           Трофик
@@ -63,7 +89,10 @@ export default function Header() {
           aria-label={isMenuOpen ? 'Закрыть меню' : 'Открыть меню'}
           aria-expanded={isMenuOpen}
           aria-controls="main-navigation"
-          onClick={() => setIsMenuOpen((isOpen) => !isOpen)}
+          onClick={() => {
+            setIsHeaderVisible(true);
+            setIsMenuOpen((isOpen) => !isOpen);
+          }}
         >
           <span /><span /><span />
         </button>
