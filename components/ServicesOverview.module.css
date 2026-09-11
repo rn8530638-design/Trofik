@@ -1,6 +1,8 @@
 /* Off-white: AboutStudio above is pure white, so backgrounds alternate down the page */
 .services {
   background: var(--color-bg);
+  /* Cards start shifted right before their entrance — don't let that widen the page */
+  overflow-x: clip;
 }
 
 .container {
