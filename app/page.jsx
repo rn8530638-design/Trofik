@@ -1,4 +1,5 @@
 import Hero from '@/components/Hero';
+import AboutStudio from '@/components/AboutStudio';
 
 export const metadata = {
   title: { absolute: 'Трофик — студия красоты, где можно просто быть собой' },
@@ -15,6 +16,7 @@ export default function HomePage() {
   return (
     <main>
       <Hero />
+      <AboutStudio />
     </main>
   );
 }
