@@ -29,7 +29,7 @@ const REVIEWS = [
 
 export default function Reviews() {
   return (
-    <section className={styles.reviews} aria-labelledby="reviews-title">
+    <section id="reviews" className={styles.reviews} aria-labelledby="reviews-title">
       <div className={styles.container}>
         <span className={styles.marker} aria-hidden="true" />
         <h2 id="reviews-title" className={styles.title}>

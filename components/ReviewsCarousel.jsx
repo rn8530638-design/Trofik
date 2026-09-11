@@ -1,11 +1,14 @@
 'use client';
 
-import { Children, useState } from 'react';
+import { Children, useEffect, useRef, useState } from 'react';
 import styles from './Reviews.module.css';
+
+const EXIT_DURATION = 560;
+const ENTER_DURATION = 620;
 
 function Chevron({ direction }) {
   return (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
       <path d={direction === 'left' ? 'M15 5l-7 7 7 7' : 'M9 5l7 7-7 7'} />
     </svg>
   );
@@ -16,8 +19,31 @@ export default function ReviewsCarousel({ children }) {
   const slides = Children.toArray(children);
   const count = slides.length;
   const [active, setActive] = useState(0);
+  const [exiting, setExiting] = useState(null);
+  const [entering, setEntering] = useState(false);
+  const [direction, setDirection] = useState(1);
+  const transitionTimer = useRef(null);
+  const isTransitioning = useRef(false);
 
-  const go = (step) => setActive((i) => (i + step + count) % count);
+  useEffect(() => () => window.clearTimeout(transitionTimer.current), []);
+
+  const goTo = (nextIndex, nextDirection) => {
+    if (nextIndex === active || isTransitioning.current) return;
+    isTransitioning.current = true;
+    setExiting(active);
+    setDirection(nextDirection);
+    transitionTimer.current = window.setTimeout(() => {
+      setExiting(null);
+      setActive(nextIndex);
+      setEntering(true);
+      transitionTimer.current = window.setTimeout(() => {
+        setEntering(false);
+        isTransitioning.current = false;
+      }, ENTER_DURATION);
+    }, EXIT_DURATION);
+  };
+
+  const go = (step) => goTo((active + step + count) % count, step);
 
   return (
     <div className={styles.carousel}>
@@ -26,12 +52,18 @@ export default function ReviewsCarousel({ children }) {
           <Chevron direction="left" />
         </button>
 
-        {/* All slides share one grid cell, so the card is as tall as the longest review — no height jumps */}
+        {/* All slides share one grid cell, so the review area is as tall as the longest review. */}
         <div className={styles.card}>
           {slides.map((slide, i) => (
             <div
               key={i}
-              className={`${styles.slide} ${i === active ? styles.slideActive : ''}`}
+              className={[
+                styles.slide,
+                i === active && styles.slideActive,
+                i === active && entering && (direction > 0 ? styles.slideEnterForward : styles.slideEnterBackward),
+                i === exiting && styles.slideExiting,
+                i === exiting && (direction > 0 ? styles.slideExitForward : styles.slideExitBackward),
+              ].filter(Boolean).join(' ')}
               aria-hidden={i !== active}
             >
               {slide}
@@ -54,7 +86,7 @@ export default function ReviewsCarousel({ children }) {
             key={i}
             type="button"
             className={`${styles.dot} ${i === active ? styles.dotActive : ''}`}
-            onClick={() => setActive(i)}
+            onClick={() => goTo(i, i > active ? 1 : -1)}
             aria-label={`Показать отзыв ${i + 1} из ${count}`}
             aria-current={i === active ? 'true' : undefined}
           />

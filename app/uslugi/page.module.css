@@ -1,0 +1,6 @@
+.page { background: var(--color-background-alt); }
+.catalog { min-height: 100vh; padding: 144px 0 132px; }
+.container { width: min(1200px, calc(100% - 96px)); margin: 0 auto; }
+.marker { display: block; width: 48px; height: 1px; margin: 0 auto 22px; background: var(--color-accent-gold); }
+.title { margin: 0; color: var(--color-heading); font-family: var(--font-heading), Georgia, serif; font-size: clamp(3rem, 4.5vw, 4.6rem); font-weight: 700; line-height: 1.06; text-align: center; }
+.intro { max-width: 60ch; margin: 25px auto 0; color: var(--color-text-body); font-family: var(--font-body), Arial, sans-serif; font-size: 16px; line-height: 1.75; text-align: center; }

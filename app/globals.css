@@ -1,10 +1,28 @@
 :root {
-  --color-navy: #0b2545;
-  --color-gold: #c9a45c;
-  --color-gold-dark: #b8914a;
-  --color-bg: #f7f6f3;
-  --color-white: #ffffff;
-  --color-text: #2b2b2b;
+  --color-background: #ffffff;
+  --color-background-alt: #f7f5f1;
+  --color-text-body: #3d3d43;
+  --color-heading: #132b4c;
+  --color-heading-deep: #0e2038;
+  --color-heading-soft: #294565;
+  --color-accent-gold: #a67c3d;
+  --color-accent-gold-dark: #815c2b;
+  --color-accent-gold-deep: #694b25;
+  --color-muted: #8b8378;
+  --color-border: #e5ddd0;
+  --color-border-strong: #d7cdbd;
+  --color-danger: #a24a4a;
+  --color-heading-rgb: 19, 43, 76;
+  --color-accent-gold-rgb: 166, 124, 61;
+  --color-background-rgb: 255, 255, 255;
+
+  /* Legacy aliases keep existing component styles connected to the canonical palette. */
+  --color-navy: var(--color-heading);
+  --color-gold: var(--color-accent-gold);
+  --color-gold-dark: var(--color-accent-gold-dark);
+  --color-bg: var(--color-background-alt);
+  --color-white: var(--color-background);
+  --color-text: var(--color-text-body);
 }
 
 *,
@@ -20,8 +38,8 @@ body {
 }
 
 body {
-  background: var(--color-bg);
-  color: var(--color-text);
+  background: var(--color-background);
+  color: var(--color-text-body);
   font-family: var(--font-body), system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
 }

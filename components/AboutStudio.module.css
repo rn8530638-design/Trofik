@@ -3,58 +3,74 @@
   position: relative;
   overflow: hidden;
   background: var(--color-white);
-  min-height: 100dvh;
+  min-height: 100svh;
   display: flex;
   align-items: center;
 }
 
 .container {
-  max-width: 1200px;
+  max-width: 1440px;
   width: 100%;
   margin: 0 auto;
-  padding: 96px 48px;
+  padding: 88px 40px;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   align-items: center;
-  column-gap: 90px;
+  column-gap: 72px;
 }
 
 .photoCol {
   display: flex;
   justify-content: flex-start;
+  align-items: center;
 }
 
 .photoFrame {
   position: relative;
-  width: 100%;
-  max-width: clamp(460px, 46vw, 640px);
-  aspect-ratio: 0.98;
-  border-radius: 16px;
+  width: 135%;
+  max-width: 980px;
+  aspect-ratio: 3 / 4;
+  border-radius: 20px;
   overflow: hidden;
-  box-shadow: 0 30px 60px rgba(11, 37, 69, 0.18);
+  transform: translateX(-88px);
+  box-shadow: 0 30px 60px rgba(var(--color-heading-rgb), 0.18);
 }
 
-/* Placeholder until a real studio/interior photo arrives — brand gradient, no broken image */
+.photoStage {
+  position: absolute;
+  inset: 0;
+  background: var(--color-background-alt);
+}
+
+.photoSlide {
+  position: absolute;
+  inset: 0;
+  opacity: 1;
+  transform: scale(1);
+  will-change: opacity, transform;
+}
+
 .photo {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background:
-    radial-gradient(ellipse 70% 60% at 30% 20%, rgba(201, 164, 92, 0.35), transparent 60%),
-    linear-gradient(155deg, #0b2545 0%, #16233a 55%, #2a3550 100%);
+  object-fit: cover;
+  object-position: center;
+  transition: filter 500ms ease;
 }
 
-.photoMonogram {
-  font-family: var(--font-script), cursive;
-  font-size: 4.5rem;
-  color: rgba(247, 246, 243, 0.85);
+.photoSlide:nth-child(1) .photo {
+  filter: saturate(0.92) sepia(0.06);
+}
+
+.photoSlide:nth-child(2) .photo {
+  filter: saturate(1.18) sepia(0.2) hue-rotate(-7deg);
+}
+
+.photoSlide:nth-child(3) .photo {
+  filter: saturate(0.95) hue-rotate(12deg) contrast(1.04);
 }
 
 .textCol {
   height: 100%;
-  padding-left: 24px;
+  padding: 0 24px 0 0;
   display: flex;
   align-items: center;
 }
@@ -91,9 +107,9 @@
 .title {
   margin: 0 0 28px;
   max-width: 30ch;
-  font-family: var(--font-heading), Georgia, serif;
+  font-family: var(--font-script), cursive;
   font-weight: 400;
-  font-size: clamp(2rem, 3.4vw, 3rem);
+  font-size: clamp(2.6rem, 4vw, 3.7rem);
   line-height: 1.2;
   text-align: center;
   color: var(--color-navy);
@@ -106,11 +122,15 @@
   font-size: clamp(1.4rem, 2.3vw, 2.1rem);
   line-height: 1.5;
   text-align: center;
-  color: var(--color-navy);
+  color: var(--color-text-body);
 }
 
 /* Pre-hydration state for slides 2 & 3 so there's no flash of all three overlapping before JS runs */
 .slideHidden {
+  opacity: 0;
+}
+
+.photoHidden {
   opacity: 0;
 }
 

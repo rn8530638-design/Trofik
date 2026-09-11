@@ -1,0 +1,303 @@
+.promotions {
+  background: var(--color-background-alt);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 134px 58px;
+}
+
+.marker {
+  display: block;
+  width: 48px;
+  height: 1px;
+  margin: 0 auto 24px;
+  background: var(--color-gold);
+}
+
+.title {
+  margin: 0 0 67px;
+  font-family: var(--font-script), cursive;
+  font-size: clamp(3rem, 4.7vw, 4.2rem);
+  font-weight: 400;
+  line-height: 1.2;
+  text-align: center;
+  color: var(--color-navy);
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+}
+
+.ticketSlot {
+  display: grid;
+  grid-template-rows: 1fr;
+  min-height: 0;
+  transition: grid-template-rows var(--tear-stage-duration, 350ms) ease-out;
+}
+
+.ticketSlot.isCollapsing {
+  grid-template-rows: 0fr;
+  overflow: hidden;
+}
+
+.ticket {
+  position: relative;
+  display: block;
+  overflow: visible;
+  width: 100%;
+  min-height: 0;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: var(--color-navy);
+  cursor: pointer;
+  text-align: left;
+  transition:
+    transform 500ms cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 500ms ease,
+    opacity 450ms ease-in;
+}
+
+.ticketSlot > .ticket {
+  min-height: 0;
+}
+
+.ticket:hover,
+.ticket:focus-visible,
+.isExpanded {
+  box-shadow: 0 16px 30px rgba(var(--color-heading-rgb), 0.15);
+  transform: translateY(-5px);
+}
+
+.ticket:focus-visible {
+  outline: 2px solid var(--color-navy);
+  outline-offset: 4px;
+}
+
+.ticketTitle {
+  display: flex;
+  align-items: center;
+  padding: 30px 0;
+  font-family: var(--font-body), Arial, sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.ticketContent {
+  position: relative;
+  display: flex;
+}
+
+.mainBody {
+  position: relative;
+  box-sizing: border-box;
+  flex: 1 1 auto;
+  min-width: 0;
+  padding: 0 40px 0 56px;
+  border: 2px dashed var(--color-gold);
+  border-right: 0;
+  border-radius: 12px 0 0 12px;
+  background: var(--color-white);
+  transition: transform 180ms ease-out;
+}
+
+.stub {
+  position: relative;
+  box-sizing: border-box;
+  flex: 0 0 124px;
+  width: 124px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 16px 14px;
+  border: 2px dashed var(--color-gold);
+  border-radius: 0 10px 10px 0;
+  background: rgba(var(--color-accent-gold-rgb), 0.07);
+  text-align: center;
+}
+
+.stub::before,
+.stub::after {
+  position: absolute;
+  left: -10px;
+  z-index: 2;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--color-background-alt);
+  content: '';
+}
+
+.stub::before {
+  top: -10px;
+}
+
+.stub::after {
+  bottom: -10px;
+}
+
+.stubLabel {
+  margin-bottom: 6px;
+  font-family: var(--font-body), Arial, sans-serif;
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+
+.details {
+  display: grid;
+  grid-template-rows: 0fr;
+  opacity: 0;
+  transition:
+    grid-template-rows 650ms cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 420ms ease;
+}
+
+.detailsInner {
+  display: block;
+  min-height: 0;
+  overflow: hidden;
+  padding-bottom: 25px;
+}
+
+.ticket:hover .details,
+.ticket:focus-visible .details,
+.isExpanded .details {
+  grid-template-rows: 1fr;
+  opacity: 1;
+  transition:
+    grid-template-rows 650ms cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 440ms ease 160ms;
+}
+
+.discount {
+  display: block;
+  margin-bottom: 6px;
+  font-family: var(--font-heading), Georgia, serif;
+  font-size: 2.5rem;
+  font-weight: 700;
+  line-height: 1.08;
+  color: var(--color-gold);
+}
+
+.description {
+  display: block;
+  max-width: 850px;
+  margin-bottom: 12px;
+  font-family: var(--font-body), Arial, sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.55;
+  color: var(--color-text-body);
+}
+
+.expiry {
+  font-family: var(--font-body), Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--color-navy);
+}
+
+.notchLeft,
+.notchRight {
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--color-background-alt);
+  transform: translateY(-50%);
+}
+
+.notchLeft {
+  left: -11px;
+}
+
+.notchRight {
+  right: -11px;
+}
+
+.isTearing {
+  pointer-events: none;
+  box-shadow: none;
+}
+
+.stub {
+  transform-origin: left top;
+  transition:
+    transform var(--tear-stage-duration, 350ms) ease-in,
+    opacity var(--tear-stage-duration, 350ms) ease-in;
+}
+
+.isTearing .stub {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.isTearing .mainBody {
+  flex: 0 0 calc(100% - 124px);
+}
+
+.isStubDetaching {
+  pointer-events: none;
+  opacity: 0;
+  transform: translate(54px, 32px) rotate(28deg);
+}
+
+.isStubGone {
+  pointer-events: none;
+  opacity: 0;
+  transform: translate(54px, 32px) rotate(28deg);
+}
+
+.isStubStage .mainBody {
+  transform: translateX(-5px);
+}
+
+.ticket.isBodyFading {
+  opacity: 0;
+  transform: scale(0.96);
+  transition:
+    opacity var(--tear-stage-duration, 350ms) ease-out,
+    transform var(--tear-stage-duration, 350ms) ease-out;
+}
+
+.ticket.isExpanded.isBodyFading {
+  transform: translateY(-5px) scale(0.96);
+}
+
+.isGone {
+  visibility: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ticket,
+  .ticketSlot,
+  .details,
+  .ticket:hover .details,
+  .ticket:focus-visible .details,
+  .isExpanded .details,
+  .stub,
+  .mainBody,
+  .ticket.isBodyFading {
+    transition: none;
+  }
+
+  .isStubDetaching {
+    transform: none;
+  }
+}

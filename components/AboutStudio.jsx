@@ -8,6 +8,12 @@ const SLIDES = [
   'Можно остановиться на несколько часов, выдохнуть, выпить вкусный кофе, поговорить, посмеяться или побыть в тишине. И почувствовать себя красивой, уверенной и важной для самой себя.',
 ];
 
+const SLIDE_IMAGES = [
+  '/images/ekaterina.jpg',
+  '/images/service-manicure.jpg',
+  '/images/service-makeup.jpg',
+];
+
 export default function AboutStudio() {
-  return <AboutStudioScroll heading={HEADING} slides={SLIDES} />;
+  return <AboutStudioScroll heading={HEADING} slides={SLIDES} images={SLIDE_IMAGES} />;
 }

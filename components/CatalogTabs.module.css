@@ -1,0 +1,11 @@
+.catalogTabs { margin-top: 48px; }
+.tabList { display: flex; justify-content: center; gap: 12px; }
+.tab { min-width: 154px; padding: 13px 25px; border: 1px solid var(--color-accent-gold); border-radius: 999px; background: transparent; color: var(--color-accent-gold); cursor: pointer; font-family: var(--font-body), Arial, sans-serif; font-size: 14px; font-weight: 600; letter-spacing: 0.08em; transition: background-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease; }
+.tab:hover, .tab:focus-visible { box-shadow: 0 0 0 3px rgba(var(--color-accent-gold-rgb), 0.16); outline: none; }
+.tabActive { background: var(--color-accent-gold); color: var(--color-white); }
+.panels { display: grid; margin-top: 52px; }
+.panel { grid-area: 1 / 1; visibility: hidden; opacity: 0; pointer-events: none; transition: opacity 0.2s ease, visibility 0s linear 0.2s; }
+.panelActive { visibility: visible; opacity: 1; pointer-events: auto; transition-delay: 0s; }
+.grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px; }
+.eventGrid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 34px; }
+@media (prefers-reduced-motion: reduce) { .tab, .panel { transition-duration: 0.01ms; } }

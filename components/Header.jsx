@@ -1,13 +1,13 @@
 import Link from 'next/link';
 import styles from './Header.module.css';
 
-// Sections are not built yet — plain anchors on the homepage for now
+// Section links return to the appropriate point on the homepage; catalog and contacts have dedicated pages.
 const NAV = [
-  { href: '#about', label: 'О студии' },
-  { href: '#services', label: 'Услуги' },
-  { href: '#reviews', label: 'Отзывы' },
-  { href: '#promo', label: 'Акции' },
-  { href: '#contacts', label: 'Контакты' },
+  { href: '/#about', label: 'О студии' },
+  { href: '/uslugi', label: 'Услуги' },
+  { href: '/#reviews', label: 'Отзывы' },
+  { href: '/#promotions', label: 'Акции' },
+  { href: '/kontakty', label: 'Контакты' },
 ];
 
 export default function Header() {
@@ -22,15 +22,20 @@ export default function Header() {
           <ul className={styles.nav}>
             {NAV.map((item) => (
               <li key={item.href}>
-                <a href={item.href} className={styles.link}>
-                  {item.label}
-                </a>
+                <Link href={item.href} className={styles.link}>
+                  <span className={styles.linkFlip}>
+                    <span className={styles.linkFace}>{item.label}</span>
+                    <span className={styles.linkFaceBack} aria-hidden="true">
+                      {item.label}
+                    </span>
+                  </span>
+                </Link>
               </li>
             ))}
           </ul>
         </nav>
 
-        <a href="#booking" className={styles.cta}>
+        <a href="/#contacts" className={styles.cta}>
           Записаться
         </a>
       </div>

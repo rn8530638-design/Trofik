@@ -15,7 +15,7 @@
   align-items: center;
   justify-content: space-between;
   gap: 32px;
-  border-bottom: 1px solid rgba(11, 37, 69, 0.08);
+  border-bottom: 1px solid rgba(var(--color-heading-rgb), 0.08);
 }
 
 .brand {
@@ -28,7 +28,7 @@
 
 .nav {
   display: flex;
-  gap: 40px;
+  gap: 32px;
   margin: 0;
   padding: 0;
   list-style: none;
@@ -36,31 +36,52 @@
 
 .link {
   position: relative;
-  padding: 6px 0;
+  display: inline-block;
+  overflow: hidden;
+  margin: 6px 0;
+  height: 1.35em;
   font-size: 0.8125rem;
   font-weight: 500;
+  line-height: 1.35;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--color-navy);
   text-decoration: none;
+  transition: color 0.38s ease;
 }
 
-.link::after {
-  content: '';
+.linkFlip {
+  position: relative;
+  display: block;
+  transition: transform 0.38s ease;
+  will-change: transform;
+}
+
+.linkFace,
+.linkFaceBack {
+  display: block;
+  white-space: nowrap;
+}
+
+.linkFaceBack {
   position: absolute;
+  top: 100%;
   left: 0;
-  right: 0;
-  bottom: 0;
-  height: 1px;
-  background: var(--color-gold);
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.25s ease;
 }
 
-.link:hover::after,
-.link:focus-visible::after {
-  transform: scaleX(1);
+.link:hover,
+.link:focus-visible {
+  color: var(--color-gold);
+}
+
+.link:hover .linkFlip,
+.link:focus-visible .linkFlip {
+  transform: translateY(-100%);
+}
+
+.link:focus-visible {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 5px;
 }
 
 .cta {
@@ -81,6 +102,13 @@
 .cta:focus-visible {
   background: var(--color-navy);
   color: var(--color-white);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .link,
+  .linkFlip {
+    transition-duration: 0.01ms;
+  }
 }
 
 @media (max-width: 1023px) {

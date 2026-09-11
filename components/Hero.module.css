@@ -3,8 +3,8 @@
   --header-h: 96px;
   position: relative;
   background:
-    radial-gradient(ellipse 55% 70% at 75% 60%, rgba(201, 164, 92, 0.16), transparent 70%),
-    var(--color-bg);
+    radial-gradient(ellipse 55% 70% at 75% 60%, rgba(var(--color-accent-gold-rgb), 0.16), transparent 70%),
+    var(--color-background-alt);
   overflow: hidden;
 }
 
@@ -51,49 +51,152 @@
   gap: 32px;
 }
 
-/* Navy text on gold: white on #C9A45C fails WCAG AA (~2.3:1), navy gives ~7:1 */
+/* Primary CTA: warm gold, calendar marker and a restrained light sweep. */
 .ctaButton {
-  display: inline-block;
-  padding: 16px 40px;
+  position: relative;
+  isolation: isolate;
+  display: inline-flex;
+  min-height: 56px;
+  align-items: center;
+  gap: 12px;
+  overflow: hidden;
+  padding: 0 14px 0 18px;
+  border: 1px solid rgba(var(--color-heading-rgb), 0.16);
   border-radius: 999px;
-  background: var(--color-gold);
+  background: linear-gradient(135deg, #bd9453 0%, var(--color-gold) 46%, #c49a57 100%);
   color: var(--color-navy);
   font-weight: 600;
   font-size: 0.875rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   text-decoration: none;
-  transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 10px 22px rgba(var(--color-accent-gold-rgb), 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.34);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
 }
 
-.ctaButton:hover {
-  background: var(--color-gold-dark);
+.ctaButton::before {
+  position: absolute;
+  z-index: -1;
+  top: -70%;
+  left: -42%;
+  width: 34%;
+  height: 240%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: rotate(22deg);
+  transition: transform 0.55s ease;
+  content: '';
+}
+
+.ctaButton:hover,
+.ctaButton:focus-visible {
+  border-color: rgba(var(--color-heading-rgb), 0.28);
+  transform: translateY(-2px);
+  box-shadow: 0 15px 30px rgba(var(--color-accent-gold-rgb), 0.34), inset 0 1px 0 rgba(255, 255, 255, 0.38);
+}
+
+.ctaButton:hover::before,
+.ctaButton:focus-visible::before {
+  transform: translateX(450%) rotate(22deg);
+}
+
+.ctaIcon,
+.ctaArrow,
+.secondaryArrow {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+}
+
+/* The arrow glyph sits optically low in its line box, so lift it slightly inside the circle. */
+.arrowGlyph {
+  display: block;
   transform: translateY(-1px);
-  box-shadow: 0 10px 24px rgba(201, 164, 92, 0.35);
+}
+
+.ctaIcon {
+  width: 28px;
+  height: 28px;
+  border: 1px solid rgba(var(--color-heading-rgb), 0.2);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.ctaIcon svg {
+  width: 15px;
+  height: 15px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.8;
+}
+
+.ctaArrow {
+  width: 28px;
+  height: 28px;
+  border: 1px solid rgba(var(--color-heading-rgb), 0.22);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.28);
+  color: var(--color-navy);
+  font-size: 1rem;
+  line-height: 1;
+  transition: transform 0.25s ease, background-color 0.25s ease, border-color 0.25s ease;
+}
+
+.ctaButton:hover .ctaArrow,
+.ctaButton:focus-visible .ctaArrow {
+  border-color: rgba(var(--color-heading-rgb), 0.34);
+  background: rgba(255, 255, 255, 0.48);
+  transform: translateX(2px);
 }
 
 .ctaButton:focus-visible,
 .secondaryLink:focus-visible {
-  outline: 2px solid var(--color-navy);
+  outline: 2px solid var(--color-heading);
   outline-offset: 4px;
 }
 
 .secondaryLink {
+  display: inline-flex;
+  min-height: 62px;
+  align-items: center;
+  gap: 15px;
+  padding: 0 18px 0 25px;
+  border: 1px solid rgba(var(--color-accent-gold-rgb), 0.7);
+  border-radius: 999px;
+  background: transparent;
   font-weight: 500;
-  font-size: 0.875rem;
+  font-size: 1rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--color-navy);
+  color: var(--color-gold-dark);
   text-decoration: none;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
 }
 
-.secondaryLink span {
-  display: inline-block;
-  transition: transform 0.2s ease;
+.secondaryArrow {
+  width: 30px;
+  height: 30px;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--color-gold-dark);
+  font-size: 1rem;
+  line-height: 1;
+  transition: transform 0.25s ease;
 }
 
-.secondaryLink:hover span {
-  transform: translateX(4px);
+.secondaryLink:hover,
+.secondaryLink:focus-visible {
+  border-color: var(--color-gold-dark);
+  box-shadow: 0 8px 18px rgba(var(--color-accent-gold-rgb), 0.14);
+  transform: translateY(-2px);
+}
+
+.secondaryLink:hover .secondaryArrow,
+.secondaryLink:focus-visible .secondaryArrow {
+  transform: translateX(2px);
 }
 
 /* Trust bar under the CTA row: quiet, smaller than the buttons */
@@ -130,7 +233,7 @@
   width: 1px;
   height: 24px;
   transform: translateY(-50%);
-  background: #d9d3c4;
+  background: var(--color-border-strong);
 }
 
 .statValue {
@@ -151,7 +254,7 @@
 .statLabel {
   font-size: 0.75rem;
   line-height: 1.35;
-  color: #6b6b6b;
+  color: var(--color-muted);
   white-space: nowrap;
 }
 
@@ -182,9 +285,9 @@
 
 .marble {
   z-index: -1;
-  background-color: #1a1d24;
+  background-color: var(--color-heading);
   background-image: url('/images/marble-texture.jpg'),
-    linear-gradient(165deg, #0b2545 0%, #16233a 50%, #6b5630 100%);
+    linear-gradient(165deg, var(--color-heading) 0%, var(--color-heading-deep) 50%, var(--color-accent-gold-deep) 100%);
   background-size: cover;
   background-position: center;
 }
@@ -207,8 +310,8 @@
   max-width: 210px;
   padding: 11px 16px;
   border-left: 2px solid var(--color-gold);
-  background: rgba(255, 255, 255, 0.94);
-  box-shadow: 0 16px 40px rgba(11, 37, 69, 0.14);
+  background: rgba(var(--color-background-rgb), 0.94);
+  box-shadow: 0 16px 40px rgba(var(--color-heading-rgb), 0.14);
 }
 
 .captionName {
@@ -259,13 +362,32 @@
   }
 
   .ctaButton {
-    padding: 21px 52px;
+    min-height: 68px;
+    gap: 16px;
+    padding: 0 18px 0 23px;
     font-size: 1.125rem;
   }
 
   .secondaryLink {
+    min-height: 72px;
+    gap: 16px;
+    padding: 0 21px 0 30px;
     font-size: 1.125rem;
   }
+
+  .ctaIcon,
+  .ctaArrow,
+  .secondaryArrow {
+    width: 34px;
+    height: 34px;
+  }
+
+  .secondaryArrow {
+    width: 36px;
+    height: 36px;
+  }
+
+  .ctaIcon svg { width: 18px; height: 18px; }
 
   .stats {
     margin-top: 46px;
@@ -289,6 +411,7 @@
 
   .media {
     align-self: end;
+    margin-bottom: 140px;
     width: clamp(338px, 44vw, 640px);
   }
 
@@ -374,5 +497,15 @@
     left: -8px;
     bottom: 20px;
     max-width: 190px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ctaButton,
+  .ctaButton::before,
+  .ctaArrow,
+  .secondaryLink,
+  .secondaryArrow {
+    transition-duration: 0.01ms;
   }
 }

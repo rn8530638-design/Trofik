@@ -48,7 +48,7 @@ const SERVICES = [
 
 export default function ServicesOverview() {
   return (
-    <section className={styles.services} aria-labelledby="services-title">
+    <section id="services" className={styles.services} aria-labelledby="services-title">
       <div className={styles.container}>
         <span className={styles.marker} aria-hidden="true" />
         <h2 id="services-title" className={styles.title}>

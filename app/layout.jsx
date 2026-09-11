@@ -1,5 +1,7 @@
 import { Playfair_Display, Montserrat, Great_Vibes } from 'next/font/google';
 import Header from '@/components/Header';
+import Footer from '@/components/Footer';
+import CookieBanner from '@/components/CookieBanner';
 import './globals.css';
 
 const heading = Playfair_Display({
@@ -39,6 +41,8 @@ export default function RootLayout({ children }) {
       <body>
         <Header />
         {children}
+        <Footer />
+        <CookieBanner />
       </body>
     </html>
   );

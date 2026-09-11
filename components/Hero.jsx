@@ -29,6 +29,10 @@ function HeroStats() {
   );
 }
 
+function CalendarIcon() {
+  return <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5.5" width="17" height="15" rx="2" /><path d="M7.5 3.5v4M16.5 3.5v4M3.5 10h17" /></svg>;
+}
+
 export default function Hero() {
   return (
     <section className={styles.hero}>
@@ -42,11 +46,14 @@ export default function Hero() {
             Создаём красоту. Возвращаем уверенность. Вдохновляем жить.
           </p>
           <div className={styles.actions}>
-            <a href="#booking" className={styles.ctaButton}>
-              Записаться
+            <a href="#contacts" className={styles.ctaButton}>
+              <span className={styles.ctaIcon}><CalendarIcon /></span>
+              <span>Записаться</span>
+              <span className={styles.ctaArrow} aria-hidden="true"><span className={styles.arrowGlyph}>→</span></span>
             </a>
             <a href="#services" className={styles.secondaryLink}>
-              Наши услуги <span aria-hidden="true">→</span>
+              <span>Наши услуги</span>
+              <span className={styles.secondaryArrow} aria-hidden="true"><span className={styles.arrowGlyph}>→</span></span>
             </a>
           </div>
           <HeroStats />

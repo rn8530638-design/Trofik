@@ -1,0 +1,6 @@
+.banner { position: fixed; right: 0; bottom: 0; left: 0; z-index: 100; display: flex; align-items: center; justify-content: center; gap: 30px; min-height: 72px; padding: 12px 58px; border-top: 1px solid rgba(var(--color-accent-gold-rgb), 0.45); background: var(--color-heading); box-shadow: 0 -8px 24px rgba(var(--color-heading-rgb), 0.18); color: var(--color-white); opacity: 1; transform: translateY(0); transition: opacity 250ms ease, transform 250ms ease; }
+.banner.isLeaving { opacity: 0; transform: translateY(100%); }
+.banner p { margin: 0; font-family: var(--font-body), Arial, sans-serif; font-size: 13px; line-height: 1.5; }
+.banner a { color: var(--color-gold); text-decoration: underline; text-underline-offset: 2px; }
+.banner button { flex: 0 0 auto; padding: 10px 22px; border: 0; border-radius: 999px; background: var(--color-gold); color: var(--color-white); cursor: pointer; font-family: var(--font-body), Arial, sans-serif; font-size: 13px; font-weight: 600; transition: background-color 0.2s ease; }
+.banner button:hover { background: var(--color-gold-dark); }
