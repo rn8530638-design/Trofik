@@ -1,0 +1,156 @@
+/* Off-white: AboutStudio above is pure white, so backgrounds alternate down the page */
+.services {
+  background: var(--color-bg);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 112px 48px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.marker {
+  display: block;
+  width: 40px;
+  height: 1px;
+  margin-bottom: 20px;
+  background: var(--color-gold);
+}
+
+.title {
+  margin: 0 0 56px;
+  font-family: var(--font-heading), Georgia, serif;
+  font-weight: 400;
+  font-size: clamp(2rem, 3.4vw, 3rem);
+  line-height: 1.2;
+  text-align: center;
+  color: var(--color-navy);
+}
+
+.grid {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 24px;
+  align-items: stretch;
+}
+
+/* White cards lift off the off-white section */
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 28px 24px;
+  text-align: center;
+  background: var(--color-white);
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(11, 37, 69, 0.07);
+}
+
+.icon {
+  display: flex;
+  color: var(--color-gold);
+  margin-bottom: 18px;
+}
+
+.photo {
+  width: 130px;
+  height: 130px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 22px;
+}
+
+.name {
+  margin: 0 0 10px;
+  font-family: var(--font-heading), Georgia, serif;
+  font-weight: 600;
+  font-size: 1.3rem;
+  color: var(--color-navy);
+}
+
+/* Grows so the meta row sits on the card bottom regardless of text length */
+.description {
+  flex-grow: 1;
+  margin: 0 0 20px;
+  font-family: var(--font-body), sans-serif;
+  font-size: 14px;
+  line-height: 1.55;
+  color: #6b7280;
+}
+
+.meta {
+  margin: 0;
+  padding-top: 16px;
+  width: 100%;
+  border-top: 1px solid rgba(11, 37, 69, 0.08);
+  font-family: var(--font-body), sans-serif;
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+.duration {
+  color: #6b7280;
+}
+
+.dot {
+  margin: 0 6px;
+  color: #b8bcc4;
+}
+
+.price {
+  font-weight: 600;
+  color: var(--color-gold);
+}
+
+.allButton {
+  margin-top: 56px;
+  padding: 14px 40px;
+  border: 1px solid var(--color-navy);
+  border-radius: 999px;
+  font-family: var(--font-body), sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: var(--color-navy);
+  text-decoration: none;
+  background: transparent;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.allButton:hover,
+.allButton:focus-visible {
+  background: var(--color-navy);
+  color: var(--color-white);
+}
+
+/* Motion only when allowed; otherwise cards are simply visible */
+@media (prefers-reduced-motion: no-preference) {
+  .card {
+    opacity: 0;
+    transform: translateY(24px);
+    transition:
+      opacity 0.6s ease,
+      transform 0.6s ease,
+      box-shadow 0.2s ease;
+  }
+
+  .card.isVisible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Hover lift after the entrance; delay reset so hover responds instantly */
+  .card.isVisible:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 36px rgba(11, 37, 69, 0.13);
+    transition-delay: 0s !important;
+    transition-duration: 0.2s;
+  }
+}
