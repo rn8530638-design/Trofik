@@ -6,66 +6,6 @@ import styles from './ServicesOverview.module.css';
 // Cards rise in right-to-left: the last card starts first
 const STAGGER_MS = 160;
 
-const iconProps = {
-  width: 26,
-  height: 26,
-  viewBox: '0 0 24 24',
-  fill: 'none',
-  stroke: 'currentColor',
-  strokeWidth: 1.4,
-  strokeLinecap: 'round',
-  strokeLinejoin: 'round',
-  'aria-hidden': true,
-};
-
-const ICONS = {
-  // Nail polish bottle
-  manicure: (
-    <svg {...iconProps}>
-      <path d="M10 2h4v5h-4z" />
-      <path d="M8.5 7h7l1 3v9a3 3 0 0 1-3 3h-3a3 3 0 0 1-3-3v-9z" />
-      <path d="M9.5 14h5" />
-    </svg>
-  ),
-  // Footprint
-  pedicure: (
-    <svg {...iconProps}>
-      <path d="M8 21c-2.2 0-3.5-1.8-3.2-4.2.3-2.2 1-4.3 1-6.8C5.8 7.5 7.2 6 9 6s3 1.6 2.8 4.2c-.2 2.8-1 4.6-.6 6.8.4 2.3-.9 4-3.2 4z" />
-      <circle cx="13.5" cy="4.5" r="1.2" />
-      <circle cx="16.3" cy="6.3" r="1" />
-      <circle cx="18.2" cy="8.8" r="0.9" />
-      <circle cx="19.2" cy="11.8" r="0.8" />
-    </svg>
-  ),
-  // Brow arch over an eye
-  brows: (
-    <svg {...iconProps}>
-      <path d="M3 9c3-3.5 9-4.5 15-2l3 1.5" />
-      <path d="M4 16c2.5-2.6 5.2-3.8 8-3.8s5.5 1.2 8 3.8c-2.5 2.6-5.2 3.8-8 3.8S6.5 18.6 4 16z" />
-      <circle cx="12" cy="16" r="1.8" />
-    </svg>
-  ),
-  // Closed eye with lashes
-  lashes: (
-    <svg {...iconProps}>
-      <path d="M3 10c2.6 3.2 5.6 4.8 9 4.8s6.4-1.6 9-4.8" />
-      <path d="M12 14.8V19" />
-      <path d="M7.5 13.6 6 17.5" />
-      <path d="M16.5 13.6 18 17.5" />
-      <path d="M4.6 12 2.8 15" />
-      <path d="M19.4 12l1.8 3" />
-    </svg>
-  ),
-  // Makeup brush
-  makeup: (
-    <svg {...iconProps}>
-      <path d="M14.5 9.5 20 4" />
-      <path d="M13 8l3 3" />
-      <path d="M13 8c-2 0-4.5 1.2-6 3.5-1.6 2.5-2 5.6-3 8.5 2.9-1 6-1.4 8.5-3 2.3-1.5 3.5-4 3.5-6z" />
-    </svg>
-  ),
-};
-
 {/* TODO: все цены и время исполнения — плейсхолдеры, требуют подтверждения от клиента перед публикацией */}
 // TODO: фото service-*.jpg — плейсхолдеры, заменить на реальные фото работ от клиента
 const SERVICES = [
@@ -128,9 +68,8 @@ export default function ServicesOverview() {
                   src={`/images/service-${service.key}.jpg`}
                   alt={`${service.name} в студии ТрофиК`}
                   fill
-                  sizes="(min-width: 1480px) 270px, 18vw"
+                  sizes="(min-width: 1600px) 300px, 19vw"
                 />
-                <span className={styles.icon}>{ICONS[service.key]}</span>
               </div>
               <div className={styles.content}>
                 <h3 className={styles.name}>{service.name}</h3>
