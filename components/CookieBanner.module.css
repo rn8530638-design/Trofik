@@ -4,3 +4,8 @@
 .banner a { color: var(--color-gold); text-decoration: underline; text-underline-offset: 2px; }
 .banner button { flex: 0 0 auto; padding: 10px 22px; border: 0; border-radius: 999px; background: var(--color-gold); color: var(--color-white); cursor: pointer; font-family: var(--font-body), Arial, sans-serif; font-size: 13px; font-weight: 600; transition: background-color 0.2s ease; }
 .banner button:hover { background: var(--color-gold-dark); }
+
+@media (max-width: 767px) {
+  .banner { align-items: flex-start; flex-direction: column; gap: 12px; padding: 16px 20px; }
+  .banner button { min-height: 44px; }
+}

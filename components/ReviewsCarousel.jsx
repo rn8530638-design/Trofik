@@ -48,7 +48,7 @@ export default function ReviewsCarousel({ children }) {
   return (
     <div className={styles.carousel}>
       <div className={styles.stage}>
-        <button type="button" className={`${styles.arrow} ${styles.arrowLeft}`} onClick={() => go(-1)} aria-label="Предыдущий отзыв">
+        <button type="button" className={`${styles.arrow} ${styles.stageArrow} ${styles.arrowLeft}`} onClick={() => go(-1)} aria-label="Предыдущий отзыв">
           <Chevron direction="left" />
         </button>
 
@@ -71,7 +71,7 @@ export default function ReviewsCarousel({ children }) {
           ))}
         </div>
 
-        <button type="button" className={`${styles.arrow} ${styles.arrowRight}`} onClick={() => go(1)} aria-label="Следующий отзыв">
+        <button type="button" className={`${styles.arrow} ${styles.stageArrow} ${styles.arrowRight}`} onClick={() => go(1)} aria-label="Следующий отзыв">
           <Chevron direction="right" />
         </button>
       </div>
@@ -80,17 +80,25 @@ export default function ReviewsCarousel({ children }) {
         {`Отзыв ${active + 1} из ${count}`}
       </p>
 
-      <div className={styles.dots}>
-        {slides.map((_, i) => (
-          <button
-            key={i}
-            type="button"
-            className={`${styles.dot} ${i === active ? styles.dotActive : ''}`}
-            onClick={() => goTo(i, i > active ? 1 : -1)}
-            aria-label={`Показать отзыв ${i + 1} из ${count}`}
-            aria-current={i === active ? 'true' : undefined}
-          />
-        ))}
+      <div className={styles.controls}>
+        <button type="button" className={`${styles.mobileArrow} ${styles.mobileArrowLeft}`} onClick={() => go(-1)} aria-label="Предыдущий отзыв">
+          <Chevron direction="left" />
+        </button>
+        <div className={styles.dots}>
+          {slides.map((_, i) => (
+            <button
+              key={i}
+              type="button"
+              className={`${styles.dot} ${i === active ? styles.dotActive : ''}`}
+              onClick={() => goTo(i, i > active ? 1 : -1)}
+              aria-label={`Показать отзыв ${i + 1} из ${count}`}
+              aria-current={i === active ? 'true' : undefined}
+            />
+          ))}
+        </div>
+        <button type="button" className={`${styles.mobileArrow} ${styles.mobileArrowRight}`} onClick={() => go(1)} aria-label="Следующий отзыв">
+          <Chevron direction="right" />
+        </button>
       </div>
     </div>
   );

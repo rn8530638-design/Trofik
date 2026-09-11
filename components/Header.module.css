@@ -104,6 +104,8 @@
   color: var(--color-white);
 }
 
+.menuButton { display: none; }
+
 @media (prefers-reduced-motion: reduce) {
   .link,
   .linkFlip {
@@ -127,7 +129,53 @@
 }
 
 @media (max-width: 767px) {
-  .nav {
-    display: none;
+  .inner {
+    width: 100%;
+    max-width: 100%;
+    gap: 12px;
   }
+
+  .brand { font-size: 2.2rem; }
+
+  .nav {
+    position: fixed;
+    top: 80px;
+    right: 16px;
+    left: 16px;
+    display: none;
+    flex-direction: column;
+    gap: 0;
+    padding: 12px;
+    border: 1px solid rgba(var(--color-accent-gold-rgb), 0.42);
+    border-radius: 16px;
+    background: rgba(var(--color-background-rgb), 0.98);
+    box-shadow: 0 18px 38px rgba(var(--color-heading-rgb), 0.18);
+  }
+
+  .navOpen { display: flex; }
+
+  .link { width: 100%; height: auto; margin: 0; padding: 14px 12px; font-size: 13px; }
+  .linkFaceBack { display: none; }
+
+  .cta { flex: 0 0 auto; margin-left: auto; }
+
+  .menuButton {
+    display: inline-flex;
+    width: 44px;
+    height: 44px;
+    flex: 0 0 auto;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    padding: 0;
+    border: 1px solid rgba(var(--color-heading-rgb), 0.28);
+    border-radius: 50%;
+    background: var(--color-white);
+    color: var(--color-heading);
+    cursor: pointer;
+  }
+
+  .menuButton span { display: block; width: 18px; height: 1.5px; border-radius: 99px; background: currentColor; }
+  .menuButton:focus-visible { outline: 2px solid var(--color-gold); outline-offset: 3px; }
 }

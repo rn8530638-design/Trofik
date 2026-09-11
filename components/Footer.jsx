@@ -11,7 +11,7 @@ export default function Footer() {
           <a className={styles.logo} href="/" aria-label="ТрофиК — на главную">ТрофиК</a>
           <nav aria-label="Меню в подвале">
             <ul className={styles.nav}>
-              <li><a href="#about">О студии</a></li><li><a href="/uslugi">Услуги</a></li><li><a href="#reviews">Отзывы</a></li><li><a href="#promotions">Акции</a></li><li><a href="#contacts">Контакты</a></li>
+              <li><a href="/#about">О студии</a></li><li><a href="/uslugi">Услуги</a></li><li><a href="/#reviews">Отзывы</a></li><li><a href="/#promotions">Акции</a></li><li><a href="/kontakty">Контакты</a></li>
             </ul>
           </nav>
           <div className={styles.socials}>

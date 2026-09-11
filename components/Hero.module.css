@@ -458,6 +458,32 @@
 }
 
 @media (max-width: 767px) {
+  .container { width: 100%; min-width: 0; }
+  .content, .media { min-width: 0; }
+  .media { order: 1; width: min(78vw, 340px); margin: 0 auto; }
+  .content { order: 2; }
+  .caption { display: none; }
+
+  .title {
+    font-size: clamp(2.15rem, 10vw, 2.65rem);
+    overflow-wrap: anywhere;
+  }
+
+  .subtitle { font-size: 1rem; }
+
+  .actions {
+    width: 100%;
+    align-items: stretch;
+    gap: 14px;
+  }
+
+  .ctaButton,
+  .secondaryLink {
+    justify-content: space-between;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
   .stats {
     display: grid;
     grid-template-columns: 1fr 1fr;

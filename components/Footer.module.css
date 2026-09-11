@@ -10,3 +10,12 @@
 .socials svg { width: 21px; height: 21px; fill: currentColor; }
 .legal { display: flex; justify-content: center; gap: 18px; margin-top: 42px; padding-top: 24px; border-top: 1px solid rgba(255, 255, 255, 0.2); color: rgba(255, 255, 255, 0.62); font-family: var(--font-body), Arial, sans-serif; font-size: 12px; }
 .legal a { color: rgba(255, 255, 255, 0.78); text-decoration: none; transition: color 0.2s ease; }
+
+@media (max-width: 767px) {
+  .container { padding: 42px 24px 30px; }
+  .topRow { grid-template-columns: 1fr; justify-items: center; gap: 26px; }
+  .nav { flex-wrap: wrap; justify-content: center; gap: 14px 20px; }
+  .nav a { font-size: 12px; }
+  .socials { justify-content: center; }
+  .legal { flex-wrap: wrap; margin-top: 32px; padding-top: 20px; text-align: center; }
+}

@@ -25,6 +25,10 @@ export default function ContactsPage() {
           <span className={styles.marker} aria-hidden="true" />
           <h1 id="contacts-title" className={styles.title}>Контакты</h1>
 
+          <div className={styles.formWrap}>
+            <ContactsPageForm phoneHref={contactDetails.phoneHref} />
+          </div>
+
           <div className={styles.mapWrap}>
             <iframe title="Студия красоты ТрофиК на Яндекс.Картах" src="https://yandex.ru/map-widget/v1/?ll=37.178781%2C56.742877&z=17&pt=37.178781,56.742877,pm2rdm" width="100%" height="420" frameBorder="0" />
           </div>
@@ -44,7 +48,6 @@ export default function ContactsPage() {
               <div className={styles.detail}><span className={styles.icon}><ClockIcon /></span><div><h2>Часы работы</h2><p>{contactDetails.hours.map((hour) => <span key={hour}>{hour}</span>)}</p></div></div>
               <a className={styles.callButton} href={contactDetails.phoneHref}><PhoneIcon />Позвонить</a>
             </section>
-            <ContactsPageForm phoneHref={contactDetails.phoneHref} />
           </div>
         </div>
       </section>

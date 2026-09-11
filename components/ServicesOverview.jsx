@@ -68,7 +68,7 @@ export default function ServicesOverview() {
                   src={`/images/service-${service.key}.jpg`}
                   alt={`${service.name} в студии ТрофиК`}
                   fill
-                  sizes="(min-width: 1600px) 300px, 19vw"
+                  sizes="(max-width: 767px) 64vw, (min-width: 1600px) 300px, 19vw"
                 />
               </div>
               <div className={styles.content}>

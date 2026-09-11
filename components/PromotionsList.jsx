@@ -30,6 +30,10 @@ export default function PromotionsList({ promotions }) {
 
   const handleClick = (index) => {
     if (activeTickets.current.has(index)) return;
+    if (!expanded[index]) {
+      setExpandedAt(index, true);
+      return;
+    }
     activeTickets.current.add(index);
     setStage(index, 'stub');
   };
@@ -68,9 +72,13 @@ export default function PromotionsList({ promotions }) {
     });
   }, [promotions, tearing]);
 
+  const areAllPromotionsSelected = tearing.length > 0 && tearing.every((stage) => stage === 'done');
+
   return (
     <div className={styles.list}>
-      {promotions.map((promotion, index) => {
+      {areAllPromotionsSelected ? (
+        <p className={styles.emptyState} role="status">Акций пока что больше нет</p>
+      ) : promotions.map((promotion, index) => {
         const isExpanded = expanded[index];
         const isTearing = tearing[index];
         const ticketClassName = [
@@ -93,12 +101,9 @@ export default function PromotionsList({ promotions }) {
               type="button"
               style={{ '--tear-stage-duration': `${STAGE_DURATION}ms` }}
               aria-disabled={Boolean(isTearing)}
+              aria-expanded={isExpanded}
               tabIndex={isTearing ? -1 : undefined}
               aria-label={promotion.ariaLabel}
-              onMouseEnter={() => setExpandedAt(index, true)}
-              onMouseLeave={() => setExpandedAt(index, false)}
-              onFocus={() => setExpandedAt(index, true)}
-              onBlur={() => setExpandedAt(index, false)}
               onClick={() => handleClick(index)}
             >
               <span className={styles.notchLeft} aria-hidden="true" />
@@ -110,6 +115,7 @@ export default function PromotionsList({ promotions }) {
                     <span className={styles.detailsInner}>
                       <strong className={styles.discount}>{promotion.discount}</strong>
                       <span className={styles.description}>{promotion.description}</span>
+                      <span className={styles.selectionHint}>Нажмите ещё раз, чтобы выбрать</span>
                     </span>
                   </span>
                 </span>

@@ -37,6 +37,12 @@ body {
   padding: 0;
 }
 
+/* A final guard against decorative elements widening the visual viewport. */
+html,
+body {
+  overflow-x: clip;
+}
+
 body {
   background: var(--color-background);
   color: var(--color-text-body);

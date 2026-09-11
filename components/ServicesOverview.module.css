@@ -134,7 +134,7 @@
 @media (prefers-reduced-motion: no-preference) {
   .card {
     opacity: 0;
-    transform: translate(28px, 48px);
+    transform: translateX(28px);
     transition:
       opacity 1.1s cubic-bezier(0.22, 1, 0.36, 1),
       transform 1.1s cubic-bezier(0.22, 1, 0.36, 1),
@@ -153,4 +153,19 @@
     transition-delay: 0s !important;
     transition-duration: 0.2s;
   }
+}
+
+@media (max-width: 767px) {
+  .container { padding: 76px 24px; }
+  .title { margin-bottom: 36px; font-size: clamp(2.5rem, 12vw, 3.2rem); }
+  .grid { display: flex; width: calc(100% + 24px); gap: 14px; margin-right: -24px; padding: 0 24px 12px 0; overflow-x: auto; overscroll-behavior: contain; scroll-padding-left: 0; scroll-snap-type: x mandatory; scrollbar-width: none; touch-action: pan-x; }
+  .grid::-webkit-scrollbar { display: none; }
+  .card { flex: 0 0 64%; scroll-snap-align: start; }
+  .photoWrap { aspect-ratio: 4 / 3; }
+  .content { padding: 20px 17px; }
+  .name { font-size: 1.3rem; }
+  .description { display: block; min-height: 4.65em; margin-bottom: 16px; font-size: 14px; line-height: 1.55; }
+  .duration { font-size: 14px; }
+  .price { font-size: 18px; }
+  .allButton { width: 100%; box-sizing: border-box; margin-top: 32px; text-align: center; }
 }
