@@ -7,8 +7,8 @@ import styles from './ServicesOverview.module.css';
 const STAGGER_MS = 160;
 
 const iconProps = {
-  width: 36,
-  height: 36,
+  width: 26,
+  height: 26,
   viewBox: '0 0 24 24',
   fill: 'none',
   stroke: 'currentColor',
@@ -122,21 +122,22 @@ export default function ServicesOverview() {
               className={styles.card}
               style={{ transitionDelay: `${(SERVICES.length - 1 - index) * STAGGER_MS}ms` }}
             >
-              <span className={styles.icon}>{ICONS[service.key]}</span>
-              <Image
-                className={styles.photo}
-                src={`/images/service-${service.key}.jpg`}
-                alt={`${service.name} в студии ТрофиК`}
-                width={170}
-                height={170}
-              />
-              <h3 className={styles.name}>{service.name}</h3>
-              <p className={styles.description}>{service.description}</p>
-              <p className={styles.meta}>
-                <span className={styles.duration}>{service.duration}</span>
-                <span className={styles.dot} aria-hidden="true">·</span>
-                <span className={styles.price}>{service.price}</span>
-              </p>
+              <div className={styles.photoWrap}>
+                <Image
+                  className={styles.photo}
+                  src={`/images/service-${service.key}.jpg`}
+                  alt={`${service.name} в студии ТрофиК`}
+                  fill
+                  sizes="(min-width: 1480px) 270px, 18vw"
+                />
+                <span className={styles.icon}>{ICONS[service.key]}</span>
+              </div>
+              <div className={styles.content}>
+                <h3 className={styles.name}>{service.name}</h3>
+                <p className={styles.description}>{service.description}</p>
+                <p className={styles.duration}>{service.duration}</p>
+                <p className={styles.price}>{service.price}</p>
+              </div>
             </li>
           ))}
         </ServiceCardsGrid>

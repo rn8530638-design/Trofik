@@ -46,28 +46,48 @@
 .card {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  padding: 36px 30px;
+  overflow: hidden;
   text-align: center;
   background: var(--color-white);
   border-radius: 20px;
   box-shadow: 0 8px 24px rgba(11, 37, 69, 0.07);
 }
 
-.icon {
-  display: flex;
-  color: var(--color-gold);
-  margin-bottom: 22px;
+/* Edge-to-edge photo; 4/5 keeps it ≈ half the card against the tallest description */
+.photoWrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  border-radius: 20px 20px 0 0;
 }
 
 .photo {
-  width: 170px;
-  max-width: 100%;
-  height: auto;
-  aspect-ratio: 1;
   object-fit: cover;
-  border-radius: 16px;
-  margin-bottom: 28px;
+  border-radius: 20px 20px 0 0;
+}
+
+/* Icon as a small badge overlapping the photo's bottom-left corner */
+.icon {
+  position: absolute;
+  left: 18px;
+  bottom: -22px;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--color-white);
+  color: var(--color-gold);
+  box-shadow: 0 6px 16px rgba(11, 37, 69, 0.12);
+}
+
+.content {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 36px 22px 26px;
 }
 
 .name {
@@ -78,36 +98,28 @@
   color: var(--color-navy);
 }
 
-/* Grows so the meta row sits on the card bottom regardless of text length */
 .description {
-  flex-grow: 1;
-  margin: 0 0 26px;
+  margin: 0 0 20px;
   font-family: var(--font-body), sans-serif;
   font-size: 18px;
   line-height: 1.55;
   color: #6b7280;
 }
 
-.meta {
-  margin: 0;
-  padding-top: 20px;
-  width: 100%;
+/* margin-top: auto pins duration + price to the card bottom so prices align across the row */
+.duration {
+  margin: auto 0 6px;
+  padding-top: 16px;
   border-top: 1px solid rgba(11, 37, 69, 0.08);
   font-family: var(--font-body), sans-serif;
-  font-size: 17px;
-  line-height: 1.5;
-}
-
-.duration {
+  font-size: 16px;
   color: #6b7280;
 }
 
-.dot {
-  margin: 0 6px;
-  color: #b8bcc4;
-}
-
 .price {
+  margin: 0;
+  font-family: var(--font-body), sans-serif;
+  font-size: 20px;
   font-weight: 600;
   color: var(--color-gold);
 }
@@ -131,6 +143,22 @@
 .allButton:focus-visible {
   background: var(--color-navy);
   color: var(--color-white);
+}
+
+/* Narrow desktops: cards are ~215px wide, so the longest description wraps far more —
+   a taller photo and tighter text keep the photo near half the card */
+@media (max-width: 1360px) {
+  .photoWrap {
+    aspect-ratio: 3 / 4;
+  }
+
+  .content {
+    padding: 34px 16px 22px;
+  }
+
+  .description {
+    font-size: 16px;
+  }
 }
 
 /* Motion only when allowed; otherwise cards are simply visible */
