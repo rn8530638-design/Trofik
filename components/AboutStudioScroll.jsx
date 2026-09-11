@@ -1,7 +1,6 @@
 'use client';
 
 import { useLayoutEffect, useRef } from 'react';
-import Image from 'next/image';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import styles from './AboutStudio.module.css';
@@ -60,16 +59,10 @@ export default function AboutStudioScroll({ heading, slides }) {
       <div ref={rootRef} className={styles.container}>
         <div className={styles.photoCol}>
           <div className={styles.photoFrame}>
-            {/* TODO: заменить на реальное фото студии/интерьера от клиента */}
-            <Image
-              src="/images/about-studio.jpg"
-              alt="Студия красоты ТрофиК"
-              width={960}
-              height={1170}
-              sizes="(min-width: 1024px) 560px, 60vw"
-              className={styles.photo}
-              onLoad={() => ScrollTrigger.refresh()}
-            />
+            {/* TODO: заменить на реальное фото студии/интерьера от клиента (next/image) */}
+            <div className={styles.photo} role="img" aria-label="Студия красоты ТрофиК">
+              <span className={styles.photoMonogram} aria-hidden="true">Т</span>
+            </div>
           </div>
         </div>
 
