@@ -14,20 +14,20 @@
   margin: 0 auto;
   padding: 96px 48px;
   display: grid;
-  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1fr);
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
   align-items: center;
-  column-gap: 100px;
+  column-gap: 90px;
 }
 
 .photoCol {
   display: flex;
-  justify-content: flex-end;
+  justify-content: flex-start;
 }
 
 .photoFrame {
   position: relative;
   width: 100%;
-  max-width: clamp(360px, 34vw, 480px);
+  max-width: clamp(400px, 40vw, 560px);
   aspect-ratio: 0.82;
   border-radius: 16px;
   overflow: hidden;
@@ -81,7 +81,7 @@
   max-width: 30ch;
   font-family: var(--font-heading), Georgia, serif;
   font-weight: 400;
-  font-size: clamp(1.75rem, 3vw, 2.75rem);
+  font-size: clamp(2rem, 3.4vw, 3rem);
   line-height: 1.2;
   text-align: center;
   color: var(--color-navy);
@@ -91,7 +91,7 @@
   margin: 0;
   max-width: 32ch;
   font-family: var(--font-heading), Georgia, serif;
-  font-size: clamp(1.25rem, 2vw, 1.9rem);
+  font-size: clamp(1.4rem, 2.3vw, 2.1rem);
   line-height: 1.5;
   text-align: center;
   color: var(--color-navy);

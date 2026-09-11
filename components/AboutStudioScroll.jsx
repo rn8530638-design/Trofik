@@ -2,7 +2,13 @@
 
 import { useLayoutEffect, useRef } from 'react';
 import Image from 'next/image';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import styles from './AboutStudio.module.css';
+
+if (typeof window !== 'undefined') {
+  gsap.registerPlugin(ScrollTrigger);
+}
 
 // Total scroll distance the pin lasts for, as extra viewport height. Tune pacing here.
 const PIN_END = '+=250%';
@@ -17,49 +23,36 @@ export default function AboutStudioScroll({ heading, slides }) {
   const slide3Ref = useRef(null);
 
   useIsomorphicLayoutEffect(() => {
-    let mm;
-
-    (async () => {
-      const gsap = (await import('gsap')).default;
-      const { ScrollTrigger } = await import('gsap/ScrollTrigger');
-      gsap.registerPlugin(ScrollTrigger);
-
-      mm = gsap.matchMedia();
+    const ctx = gsap.context(() => {
+      const mm = gsap.matchMedia();
 
       mm.add('(prefers-reduced-motion: no-preference)', () => {
-        const ctx = gsap.context(() => {
-          gsap.set([slide2Ref.current, slide3Ref.current], { opacity: 0, y: 36 });
-          gsap.set(slide1GroupRef.current, { opacity: 1, y: 0 });
+        gsap.set([slide2Ref.current, slide3Ref.current], { opacity: 0, y: 36 });
+        gsap.set(slide1GroupRef.current, { opacity: 1, y: 0 });
 
-          const tl = gsap.timeline({
-            scrollTrigger: {
-              trigger: sectionRef.current,
-              start: 'top top',
-              end: PIN_END,
-              pin: true,
-              scrub: 1,
-              anticipatePin: 1,
-            },
-          });
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: 'top top',
+            end: PIN_END,
+            pin: true,
+            scrub: 1,
+            anticipatePin: 1,
+          },
+        });
 
-          tl.addLabel('slide1')
-            .to(slide1GroupRef.current, { opacity: 0, y: -36, duration: 1 }, 'phase2')
-            .to(slide2Ref.current, { opacity: 1, y: 0, duration: 1 }, 'phase2+=0.35')
-            .addLabel('slide2')
-            .to(slide2Ref.current, { opacity: 0, y: -36, duration: 1 }, 'phase3')
-            .to(slide3Ref.current, { opacity: 1, y: 0, duration: 1 }, 'phase3+=0.35')
-            .addLabel('slide3')
-            .to({}, { duration: 0.6 });
-
-        }, rootRef);
-
-        return () => ctx.revert();
+        tl.addLabel('slide1')
+          .to(slide1GroupRef.current, { opacity: 0, y: -36, duration: 1 }, 'phase2')
+          .to(slide2Ref.current, { opacity: 1, y: 0, duration: 1 }, 'phase2+=0.35')
+          .addLabel('slide2')
+          .to(slide2Ref.current, { opacity: 0, y: -36, duration: 1 }, 'phase3')
+          .to(slide3Ref.current, { opacity: 1, y: 0, duration: 1 }, 'phase3+=0.35')
+          .addLabel('slide3')
+          .to({}, { duration: 0.6 });
       });
-    })();
+    }, rootRef);
 
-    return () => {
-      mm?.revert();
-    };
+    return () => ctx.revert();
   }, []);
 
   return (
@@ -73,11 +66,9 @@ export default function AboutStudioScroll({ heading, slides }) {
               alt="Студия красоты ТрофиК"
               width={960}
               height={1170}
-              sizes="(min-width: 1024px) 480px, 60vw"
+              sizes="(min-width: 1024px) 560px, 60vw"
               className={styles.photo}
-              onLoad={() => {
-                import('gsap/ScrollTrigger').then(({ ScrollTrigger }) => ScrollTrigger.refresh());
-              }}
+              onLoad={() => ScrollTrigger.refresh()}
             />
           </div>
         </div>
