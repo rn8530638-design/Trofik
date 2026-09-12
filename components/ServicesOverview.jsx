@@ -12,11 +12,18 @@ export default function ServicesOverview() {
     <section id="services" className={styles.services} aria-labelledby="services-title">
       <div className={styles.container}>
         <span className={styles.marker} aria-hidden="true" />
-        <h2 id="services-title" className={styles.title}>
+        <h2 id="services-title" className={styles.title} data-services-title>
           Что мы делаем
         </h2>
 
-        <ServiceCardsGrid>
+        <ServiceCardsGrid
+          action={(
+            <Link href="/uslugi" className={styles.allButton}>
+              Все услуги
+              <span className={styles.arrow} aria-hidden="true">→</span>
+            </Link>
+          )}
+        >
           {services.map((service, index) => (
             <li
               key={service.id}
@@ -29,7 +36,7 @@ export default function ServicesOverview() {
                   src={service.image_path || '/images/service-manicure.jpg'}
                   alt={`${service.name} в студии ТрофиК`}
                   fill
-                  sizes="(max-width: 767px) 64vw, (min-width: 1600px) 300px, 19vw"
+                  sizes="(max-width: 767px) 80vw, (min-width: 1600px) 460px, 30vw"
                 />
               </div>
               <div className={styles.content}>
@@ -42,9 +49,6 @@ export default function ServicesOverview() {
           ))}
         </ServiceCardsGrid>
 
-        <Link href="/uslugi" className={styles.allButton}>
-          Все услуги
-        </Link>
       </div>
     </section>
   );
