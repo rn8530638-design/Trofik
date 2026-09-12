@@ -5,6 +5,8 @@ import Reviews from '@/components/Reviews';
 import Promotions from '@/components/Promotions';
 import ContactsBrief from '@/components/ContactsBrief';
 
+export const dynamic = 'force-dynamic';
+
 export const metadata = {
   title: { absolute: 'Трофик — студия красоты, где можно просто быть собой' },
   description: 'Студия красоты Трофик: создаём красоту, возвращаем уверенность, вдохновляем жить.',

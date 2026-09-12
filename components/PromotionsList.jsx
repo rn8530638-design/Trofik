@@ -61,8 +61,23 @@ export default function PromotionsList({ promotions }) {
     )));
   };
 
+  const hasFineHover = () => (
+    typeof window !== 'undefined'
+    && window.matchMedia('(hover: hover) and (pointer: fine)').matches
+  );
+
   const handleClick = (index) => {
     if (activeTickets.current.has(index)) return;
+
+    // На устройствах с мышью карточка уже раскрыта наведением: клик выбирает акцию.
+    if (hasFineHover()) {
+      activeTickets.current.add(index);
+      setStage(index, 'stub');
+      return;
+    }
+
+    // На сенсорных устройствах сохраняем привычный сценарий: первое касание
+    // раскрывает подробности, повторное — выбирает акцию.
     if (!expanded[index]) {
       setExpandedAt(index, true);
       return;
@@ -138,6 +153,12 @@ export default function PromotionsList({ promotions }) {
               tabIndex={isTearing ? -1 : undefined}
               aria-label={promotion.ariaLabel}
               onClick={() => handleClick(index)}
+              onPointerEnter={(event) => {
+                if (event.pointerType === 'mouse' && hasFineHover()) setExpandedAt(index, true);
+              }}
+              onPointerLeave={(event) => {
+                if (event.pointerType === 'mouse' && hasFineHover()) setExpandedAt(index, false);
+              }}
             >
               <span className={styles.notchLeft} aria-hidden="true" />
               <span className={styles.notchRight} aria-hidden="true" />
@@ -148,7 +169,8 @@ export default function PromotionsList({ promotions }) {
                     <span className={styles.detailsInner}>
                       <strong className={styles.discount}>{promotion.discount}</strong>
                       <span className={styles.description}>{promotion.description}</span>
-                      <span className={styles.selectionHint}>Нажмите ещё раз, чтобы выбрать</span>
+                      <span className={`${styles.selectionHint} ${styles.desktopSelectionHint}`}>Нажмите, чтобы выбрать</span>
+                      <span className={`${styles.selectionHint} ${styles.mobileSelectionHint}`}>Нажмите ещё раз, чтобы выбрать</span>
                     </span>
                   </span>
                 </span>

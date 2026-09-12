@@ -17,7 +17,7 @@ export default function CatalogCard({ item, type }) {
   return (
     <article className={`${styles.card} ${type === 'events' ? styles.eventCard : ''}`} tabIndex="0" aria-label={`${item.name}, ${typeLabel}`}>
       <div className={styles.photoWrap}>
-        <Image className={styles.photo} src={`/images/catalog-${item.slug}.jpg`} alt={`${item.name} в студии ТрофиК`} fill sizes="(min-width: 1024px) 370px, 100vw" />
+        <Image className={styles.photo} src={item.image_path || `/images/catalog-${item.slug}.jpg`} alt={`${item.name} в студии ТрофиК`} fill sizes="(min-width: 1024px) 370px, 100vw" />
       </div>
       <div className={styles.content}>
         <h2 className={styles.name}>{item.name}</h2>

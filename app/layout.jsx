@@ -1,7 +1,5 @@
 import { Playfair_Display, Montserrat, Great_Vibes } from 'next/font/google';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
-import CookieBanner from '@/components/CookieBanner';
+import SiteChrome from '@/components/SiteChrome';
 import './globals.css';
 
 const heading = Playfair_Display({
@@ -44,10 +42,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="ru" className={`${heading.variable} ${body.variable} ${script.variable}`}>
       <body>
-        <Header />
-        {children}
-        <Footer />
-        <CookieBanner />
+        <SiteChrome>{children}</SiteChrome>
       </body>
     </html>
   );

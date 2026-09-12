@@ -226,6 +226,24 @@
   line-height: 1.4;
 }
 
+.mobileSelectionHint {
+  display: block;
+}
+
+.desktopSelectionHint {
+  display: none;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .desktopSelectionHint {
+    display: block;
+  }
+
+  .mobileSelectionHint {
+    display: none;
+  }
+}
+
 .expiry {
   font-family: var(--font-body), Arial, sans-serif;
   font-size: 14px;
