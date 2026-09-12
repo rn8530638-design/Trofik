@@ -12,10 +12,10 @@
 .legal a { color: rgba(255, 255, 255, 0.78); text-decoration: none; transition: color 0.2s ease; }
 
 @media (max-width: 767px) {
-  .container { padding: 42px 24px 30px; }
-  .topRow { grid-template-columns: 1fr; justify-items: center; gap: 26px; }
+  .container { padding: var(--phone-10-5) var(--phone-gutter) var(--phone-7-5); }
+  .topRow { grid-template-columns: 1fr; justify-items: center; gap: var(--phone-6-5); }
   .nav { flex-wrap: wrap; justify-content: center; gap: 14px 20px; }
   .nav a { font-size: 12px; }
   .socials { justify-content: center; }
-  .legal { flex-wrap: wrap; margin-top: 32px; padding-top: 20px; text-align: center; }
+  .legal { flex-wrap: wrap; margin-top: var(--phone-8); padding-top: var(--phone-card-pad); text-align: center; }
 }

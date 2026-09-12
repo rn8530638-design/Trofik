@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import { CONTACT_DRAFT_EVENT, readContactDraft, writeContactDraft } from '@/lib/contactDraft';
 import styles from './ContactsBrief.module.css';
 
 export default function ContactsBriefForm({ copy, phoneHref }) {
@@ -8,23 +9,31 @@ export default function ContactsBriefForm({ copy, phoneHref }) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [requestError, setRequestError] = useState(false);
-  const [comment, setComment] = useState('');
-  const [service, setService] = useState('');
+  const [draft, setDraft] = useState({ name: '', phone: '', comment: '', service: '' });
   const [isServiceListOpen, setIsServiceListOpen] = useState(false);
   const servicePickerRef = useRef(null);
+
+  const updateDraft = (field, value) => {
+    setDraft((current) => {
+      const next = { ...current, [field]: value };
+      writeContactDraft(next);
+      return next;
+    });
+  };
 
   useEffect(() => {
     const fillPromotionComment = (promotion) => {
       if (!promotion?.title) return;
       const description = promotion.description ? ` ${promotion.description}` : '';
-      setComment(`${copy.promotionCommentPrefix} «${promotion.title}».${description}`);
+      updateDraft('comment', `${copy.promotionCommentPrefix} «${promotion.title}».${description}`);
     };
 
     const fillSelectedService = (selectedService) => {
-      if (selectedService) setService(selectedService);
+      if (selectedService) updateDraft('service', selectedService);
     };
 
     try {
+      setDraft(readContactDraft());
       const savedPromotion = window.sessionStorage.getItem('selected-promotion');
       if (savedPromotion) {
         fillPromotionComment(JSON.parse(savedPromotion));
@@ -45,12 +54,15 @@ export default function ContactsBriefForm({ copy, phoneHref }) {
     };
 
     const handleServiceSelected = (event) => fillSelectedService(event.detail);
+    const handleDraftChanged = (event) => setDraft(event.detail);
 
     window.addEventListener('promotion-selected', handlePromotionSelected);
     window.addEventListener('catalog-service-selected', handleServiceSelected);
+    window.addEventListener(CONTACT_DRAFT_EVENT, handleDraftChanged);
     return () => {
       window.removeEventListener('promotion-selected', handlePromotionSelected);
       window.removeEventListener('catalog-service-selected', handleServiceSelected);
+      window.removeEventListener(CONTACT_DRAFT_EVENT, handleDraftChanged);
     };
   }, [copy.promotionCommentPrefix]);
 
@@ -75,8 +87,8 @@ export default function ContactsBriefForm({ copy, phoneHref }) {
     const formData = new FormData(event.currentTarget);
     const name = formData.get('name').trim();
     const phone = formData.get('phone').trim();
-    const comment = formData.get('comment').trim();
-    const selectedService = formData.get('service') || '';
+    const comment = draft.comment.trim();
+    const selectedService = draft.service;
     const digits = phone.replace(/\D/g, '');
     const nextErrors = {};
 
@@ -114,21 +126,21 @@ export default function ContactsBriefForm({ copy, phoneHref }) {
       <h3 className={styles.formHeading}>{copy.heading}</h3>
       <label className={styles.field}>
         <span>{copy.nameLabel}</span>
-        <input name="name" type="text" required placeholder={copy.namePlaceholder} aria-invalid={Boolean(errors.name)} aria-describedby={errors.name ? 'name-error' : undefined} />
+        <input name="name" type="text" required placeholder={copy.namePlaceholder} value={draft.name} onChange={(event) => updateDraft('name', event.target.value)} aria-invalid={Boolean(errors.name)} aria-describedby={errors.name ? 'name-error' : undefined} />
         {errors.name && <small id="name-error" className={styles.fieldError}>{errors.name}</small>}
       </label>
       <label className={styles.field}>
         <span>{copy.phoneLabel}</span>
-        <input name="phone" type="tel" required placeholder={copy.phonePlaceholder} aria-invalid={Boolean(errors.phone)} aria-describedby={errors.phone ? 'phone-error' : undefined} />
+        <input name="phone" type="tel" required placeholder={copy.phonePlaceholder} value={draft.phone} onChange={(event) => updateDraft('phone', event.target.value)} aria-invalid={Boolean(errors.phone)} aria-describedby={errors.phone ? 'phone-error' : undefined} />
         {errors.phone && <small id="phone-error" className={styles.fieldError}>{errors.phone}</small>}
       </label>
       <label className={styles.field}>
         <span>{copy.commentLabel}</span>
-        <textarea name="comment" rows="4" placeholder={copy.commentPlaceholder} value={comment} onChange={(event) => setComment(event.target.value)} />
+        <textarea name="comment" rows="4" placeholder={copy.commentPlaceholder} value={draft.comment} onChange={(event) => updateDraft('comment', event.target.value)} />
       </label>
       <div className={styles.field} ref={servicePickerRef}>
         <span>{copy.serviceLabel}</span>
-        <input type="hidden" name="service" value={service} />
+        <input type="hidden" name="service" value={draft.service} />
         <button
           className={styles.serviceTrigger}
           type="button"
@@ -136,13 +148,13 @@ export default function ContactsBriefForm({ copy, phoneHref }) {
           aria-expanded={isServiceListOpen}
           onClick={() => setIsServiceListOpen((isOpen) => !isOpen)}
         >
-          <span className={service ? styles.serviceValue : styles.servicePlaceholder}>{service || copy.servicePlaceholder}</span>
+          <span className={draft.service ? styles.serviceValue : styles.servicePlaceholder}>{draft.service || copy.servicePlaceholder}</span>
           <span className={`${styles.serviceChevron} ${isServiceListOpen ? styles.serviceChevronOpen : ''}`} aria-hidden="true" />
         </button>
         {isServiceListOpen && (
           <div className={styles.serviceMenu} role="listbox" aria-label={copy.serviceLabel}>
             {copy.services.map((item) => {
-              const isSelected = item === service;
+              const isSelected = item === draft.service;
               return (
                 <button
                   key={item}
@@ -151,7 +163,7 @@ export default function ContactsBriefForm({ copy, phoneHref }) {
                   role="option"
                   aria-selected={isSelected}
                   onClick={() => {
-                    setService(item);
+                    updateDraft('service', item);
                     setIsServiceListOpen(false);
                   }}
                 >

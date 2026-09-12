@@ -156,16 +156,16 @@
 }
 
 @media (max-width: 767px) {
-  .container { padding: 76px 24px; }
+  .container { padding: var(--phone-section) var(--phone-gutter); }
   .title { margin-bottom: 36px; font-size: clamp(2.5rem, 12vw, 3.2rem); }
-  .grid { display: flex; width: calc(100% + 24px); gap: 14px; margin-right: -24px; padding: 0 24px 12px 0; overflow-x: auto; overscroll-behavior: contain; scroll-padding-left: 0; scroll-snap-type: x mandatory; scrollbar-width: none; touch-action: pan-x; }
+  .grid { display: flex; width: calc(100% + var(--phone-gutter)); gap: var(--phone-3-5); margin-right: calc(var(--phone-gutter) * -1); padding: 0 var(--phone-gutter) var(--phone-3) 0; overflow-x: auto; overscroll-behavior: contain; scroll-padding-left: 0; scroll-snap-type: x mandatory; scrollbar-width: none; touch-action: pan-x; }
   .grid::-webkit-scrollbar { display: none; }
   .card { flex: 0 0 64%; scroll-snap-align: start; }
   .photoWrap { aspect-ratio: 4 / 3; }
-  .content { padding: 20px 17px; }
+  .content { padding: var(--phone-card-pad) var(--phone-4-25); }
   .name { font-size: 1.3rem; }
   .description { display: block; min-height: 4.65em; margin-bottom: 16px; font-size: 14px; line-height: 1.55; }
   .duration { font-size: 14px; }
   .price { font-size: 18px; }
-  .allButton { width: 100%; box-sizing: border-box; margin-top: 32px; text-align: center; }
+  .allButton { width: 100%; box-sizing: border-box; margin-top: var(--phone-8); text-align: center; }
 }

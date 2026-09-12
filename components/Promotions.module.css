@@ -328,13 +328,13 @@
 }
 
 @media (max-width: 767px) {
-  .container { padding: 76px 24px; }
+  .container { padding: var(--phone-section) var(--phone-gutter); }
   .title { margin-bottom: 38px; font-size: clamp(2.5rem, 12vw, 3.2rem); }
   .ticketTitle { padding: 18px 0; font-size: 15px; overflow-wrap: anywhere; }
-  .mainBody { padding: 0 22px 0 28px; }
-  .stub { flex-basis: 88px; width: 88px; padding: 12px 8px; }
+  .mainBody { padding: 0 var(--phone-5-5) 0 var(--phone-7); }
+  .stub { flex-basis: var(--phone-22); width: var(--phone-22); padding: var(--phone-3) var(--phone-2); }
   .stubLabel { font-size: 9px; }
-  .isTearing .mainBody { flex-basis: calc(100% - 88px); }
+  .isTearing .mainBody { flex-basis: calc(100% - var(--phone-22)); }
   .discount { font-size: 1.8rem; }
   .description { font-size: 12px; line-height: 1.5; }
   .selectionHint { margin-top: 11px; font-size: 11px; }

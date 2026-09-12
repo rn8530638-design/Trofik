@@ -170,8 +170,8 @@
 
 @media (max-width: 767px) {
   .about { min-height: 100svh; }
-  .container { grid-template-columns: 1fr; grid-template-rows: auto auto auto; gap: 24px; padding: 42px 24px; }
-  .story { display: grid; grid-template-columns: 1fr; gap: 54px; order: 2; padding: clamp(84px, 13svh, 118px) 0 68px; }
+  .container { grid-template-columns: 1fr; grid-template-rows: auto auto auto; gap: var(--phone-gutter); padding: var(--phone-10-5) var(--phone-gutter); }
+  .story { display: grid; grid-template-columns: 1fr; gap: var(--phone-13-5); order: 2; padding: clamp(65px, 13svh, 118px) 0 var(--phone-17); }
   .mobileHeading { display: flex; flex-direction: column; align-items: center; order: 1; }
   .mobileHeading .title { margin-bottom: 0; }
   .photoCol { justify-content: center; }

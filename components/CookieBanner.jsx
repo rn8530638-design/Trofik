@@ -9,12 +9,12 @@ export default function CookieBanner() {
   const dismissTimer = useRef();
 
   useEffect(() => {
-    if (window.localStorage.getItem('cookie-consent') !== 'accepted') setIsVisible(true);
+    if (!window.localStorage.getItem('cookie-consent')) setIsVisible(true);
     return () => window.clearTimeout(dismissTimer.current);
   }, []);
 
-  function acceptCookies() {
-    window.localStorage.setItem('cookie-consent', 'accepted');
+  function acceptCookies(consent) {
+    window.localStorage.setItem('cookie-consent', consent);
     setIsLeaving(true);
     dismissTimer.current = window.setTimeout(() => setIsVisible(false), 250);
   }
@@ -25,7 +25,10 @@ export default function CookieBanner() {
     <aside className={`${styles.banner} ${isLeaving ? styles.isLeaving : ''}`} aria-label="Уведомление об использовании cookie">
       {/* TODO: создать отдельную страницу политики конфиденциальности по ТЗ, раздел 3.7 */}
       <p>Мы используем файлы cookie, чтобы сайт работал корректно и был удобным для вас. <a href="/privacy-policy">Подробнее</a></p>
-      <button type="button" onClick={acceptCookies}>Понятно</button>
+      <div className={styles.actions}>
+        <button className={styles.essential} type="button" onClick={() => acceptCookies('essential')}>Принять обязательные</button>
+        <button className={styles.all} type="button" onClick={() => acceptCookies('all')}>Принять все</button>
+      </div>
     </aside>
   );
 }

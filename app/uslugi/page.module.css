@@ -6,8 +6,8 @@
 .intro { max-width: 60ch; margin: 25px auto 0; color: var(--color-text-body); font-family: var(--font-body), Arial, sans-serif; font-size: 16px; line-height: 1.75; text-align: center; }
 
 @media (max-width: 767px) {
-  .catalog { padding: 112px 0 32px; }
-  .container { width: min(calc(100% - 24px), 560px); min-width: 0; }
+  .catalog { padding: var(--phone-page-top) 0 var(--phone-8); }
+  .container { width: min(calc(100% - calc(var(--phone-gutter) * 2)), 560px); min-width: 0; }
   .title { font-size: clamp(2.55rem, 13vw, 3.4rem); }
   .intro { margin-top: 18px; font-size: 15px; line-height: 1.6; }
 }

@@ -21,13 +21,13 @@
 
 @media (max-width: 767px) {
   .card:not(.eventCard) .photoWrap { aspect-ratio: 9 / 8; }
-  .content { height: 208px; padding: 17px 15px; }
-  .name { font-size: 1.05rem; }
-  .price { margin-top: 7px; font-size: 15px; }
-  .secondary { font-size: 11px; }
-  .description { display: -webkit-box; overflow: hidden; margin: 12px 0; font-size: 11px; line-height: 1.45; -webkit-box-orient: vertical; -webkit-line-clamp: 2; }
+  .content { height: clamp(160px, 50.24vw, 208px); padding: var(--phone-4-25) var(--phone-3-5); }
+  .name { font-size: clamp(0.9rem, 3.38vw, 1.05rem); }
+  .price { margin-top: var(--phone-2); font-size: clamp(13px, 3.62vw, 15px); }
+  .secondary { font-size: clamp(10px, 2.66vw, 11px); }
+  .description { display: -webkit-box; overflow: hidden; margin: var(--phone-3) 0; font-size: clamp(10px, 2.66vw, 11px); line-height: 1.45; -webkit-box-orient: vertical; -webkit-line-clamp: 2; }
   .bookingLink { min-height: 44px; font-size: 13px; }
-  .eventCard .content { height: 300px; padding: 22px; }
+  .eventCard .content { height: clamp(231px, 72.46vw, 300px); padding: var(--phone-5-5); }
   .eventCard .name { font-size: 1.25rem; }
   .eventCard .description { display: -webkit-box; font-size: 12px; }
 }

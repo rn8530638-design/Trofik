@@ -458,6 +458,7 @@
 }
 
 @media (max-width: 767px) {
+  .hero { --header-h: clamp(68px, 19.32vw, 80px); }
   .container { width: 100%; min-width: 0; }
   .content, .media { min-width: 0; }
   .media { order: 1; width: min(78vw, 340px); margin: 0 auto; }
@@ -465,9 +466,15 @@
   .caption { display: none; }
 
   .title {
-    font-size: clamp(2.15rem, 10vw, 2.65rem);
+    font-size: clamp(1.5rem, 7vw, 1.9rem);
+    letter-spacing: -0.015em;
+    width: 100%;
+    max-width: 100%;
+    word-break: break-all;
     overflow-wrap: anywhere;
   }
+
+  .brandName { font-size: 1.4em; }
 
   .subtitle { font-size: 1rem; }
 
@@ -505,9 +512,9 @@
 
   .container {
     grid-template-columns: 1fr;
-    padding-top: calc(var(--header-h) + 32px);
-    padding-bottom: 48px;
-    gap: 48px;
+    padding-top: calc(var(--header-h) + var(--phone-8));
+    padding-bottom: var(--phone-12);
+    gap: var(--phone-12);
   }
 
   /* bigger share of the screen than on desktop so the photo doesn't look tiny */

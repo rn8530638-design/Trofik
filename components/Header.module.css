@@ -125,6 +125,7 @@
 
 @media (max-width: 1023px) {
   .inner {
+    position: relative;
     padding: 0 24px;
     height: 80px;
   }
@@ -142,16 +143,22 @@
   .inner {
     width: 100%;
     max-width: 100%;
+    padding-right: var(--phone-gutter);
+    padding-left: var(--phone-gutter);
     gap: 12px;
   }
 
   .brand { font-size: 2.2rem; }
 
+  /* The hero keeps the booking CTA prominent; the header reserves its narrow
+     layout for a readable logo and a 44px menu target. */
+  .cta { display: none; }
+
   .nav {
     position: fixed;
-    top: 80px;
-    right: 16px;
-    left: 16px;
+    top: clamp(68px, 19.32vw, 80px);
+    right: var(--phone-4);
+    left: var(--phone-4);
     display: none;
     flex-direction: column;
     gap: 0;
@@ -170,7 +177,10 @@
   .cta { flex: 0 0 auto; margin-left: auto; }
 
   .menuButton {
-    display: inline-flex;
+    display: inline-flex !important;
+    position: absolute;
+    right: var(--phone-gutter);
+    margin-left: auto;
     width: 44px;
     height: 44px;
     flex: 0 0 auto;

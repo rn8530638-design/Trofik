@@ -11,10 +11,10 @@
 @media (prefers-reduced-motion: reduce) { .tab { transition-duration: 0.01ms; } }
 
 @media (max-width: 767px) {
-  .catalogTabs { margin-top: 34px; }
-  .tabList { gap: 8px; }
-  .tab { min-width: 0; flex: 1 1 0; padding: 13px 10px; font-size: 12px; }
-  .panels { margin-top: 32px; }
-  .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
-  .eventGrid { grid-template-columns: 1fr; gap: 18px; }
+  .catalogTabs { margin-top: var(--phone-8); }
+  .tabList { gap: var(--phone-2); }
+  .tab { min-width: 0; flex: 1 1 0; padding: var(--phone-3) var(--phone-2); font-size: clamp(11px, 2.9vw, 12px); }
+  .panels { margin-top: var(--phone-8); }
+  .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--phone-2); }
+  .eventGrid { grid-template-columns: 1fr; gap: var(--phone-4-5); }
 }

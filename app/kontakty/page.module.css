@@ -29,7 +29,30 @@
 .callButton svg { margin-top: 0; }
 .callButton:hover, .callButton:focus-visible { background: var(--color-heading-deep); box-shadow: 0 10px 22px rgba(var(--color-heading-rgb), 0.2); outline: none; transform: translateY(-1px); }
 
+/* Desktop: map first, then the company details and request form side by side. */
+@media (min-width: 768px) {
+  .container {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-areas:
+      'marker marker'
+      'title title'
+      'map map'
+      'link link'
+      'zones form';
+    column-gap: 70px;
+  }
+
+  .marker { grid-area: marker; }
+  .title { grid-area: title; }
+  .mapWrap { grid-area: map; }
+  .mapLink { grid-area: link; justify-self: start; }
+  .zones { grid-area: zones; width: 100%; margin: 42px 0 0; }
+  .formWrap { grid-area: form; width: 100%; margin: 42px 0 0; }
+}
+
 @media (max-width: 767px) {
+  .container { display: block; }
   .contacts { padding: 112px 0 76px; }
   .container { width: min(calc(100% - 48px), 560px); min-width: 0; }
   .title { margin-bottom: 36px; font-size: clamp(2.55rem, 13vw, 3.4rem); }

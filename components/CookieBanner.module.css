@@ -2,10 +2,15 @@
 .banner.isLeaving { opacity: 0; transform: translateY(100%); }
 .banner p { margin: 0; font-family: var(--font-body), Arial, sans-serif; font-size: 13px; line-height: 1.5; }
 .banner a { color: var(--color-gold); text-decoration: underline; text-underline-offset: 2px; }
-.banner button { flex: 0 0 auto; padding: 10px 22px; border: 0; border-radius: 999px; background: var(--color-gold); color: var(--color-white); cursor: pointer; font-family: var(--font-body), Arial, sans-serif; font-size: 13px; font-weight: 600; transition: background-color 0.2s ease; }
-.banner button:hover { background: var(--color-gold-dark); }
+.actions { display: flex; flex: 0 0 auto; flex-wrap: wrap; justify-content: center; gap: 10px; }
+.banner button { min-height: 44px; padding: 10px 18px; border: 1px solid var(--color-gold); border-radius: 999px; cursor: pointer; font-family: var(--font-body), Arial, sans-serif; font-size: 13px; font-weight: 600; transition: background-color 0.2s ease, color 0.2s ease; }
+.essential { background: transparent; color: var(--color-white); }
+.all { background: var(--color-gold); color: var(--color-white); }
+.essential:hover, .essential:focus-visible { background: rgba(var(--color-accent-gold-rgb), 0.18); }
+.all:hover, .all:focus-visible { background: var(--color-gold-dark); }
+.banner button:focus-visible { outline: 2px solid var(--color-white); outline-offset: 3px; }
 
 @media (max-width: 767px) {
   .banner { align-items: flex-start; flex-direction: column; gap: 12px; padding: 16px 20px; }
-  .banner button { min-height: 44px; }
+  .actions { width: 100%; justify-content: flex-start; }
 }

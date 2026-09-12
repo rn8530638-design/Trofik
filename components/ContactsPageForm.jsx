@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { serviceOptions } from '@/lib/contactData';
+import { CONTACT_DRAFT_EVENT, readContactDraft, writeContactDraft } from '@/lib/contactDraft';
 import styles from './ContactsPageForm.module.css';
 
 export default function ContactsPageForm({ phoneHref }) {
@@ -9,20 +10,34 @@ export default function ContactsPageForm({ phoneHref }) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [requestError, setRequestError] = useState(false);
-  const [comment, setComment] = useState('');
-  const [serviceType, setServiceType] = useState('');
+  const [draft, setDraft] = useState({ name: '', phone: '', comment: '', service: '' });
   const [isServiceListOpen, setIsServiceListOpen] = useState(false);
   const servicePickerRef = useRef(null);
 
+  const updateDraft = (field, value) => {
+    setDraft((current) => {
+      const next = { ...current, [field]: value };
+      writeContactDraft(next);
+      return next;
+    });
+  };
+
   useEffect(() => {
+    setDraft(readContactDraft());
     try {
       const selectedService = window.sessionStorage.getItem('selected-service');
       if (!selectedService) return;
-      if (serviceOptions.includes(selectedService)) setServiceType(selectedService);
+      if (serviceOptions.includes(selectedService)) updateDraft('service', selectedService);
       window.sessionStorage.removeItem('selected-service');
     } catch {
       // The form works even if browser storage is unavailable.
     }
+  }, []);
+
+  useEffect(() => {
+    const handleDraftChanged = (event) => setDraft(event.detail);
+    window.addEventListener(CONTACT_DRAFT_EVENT, handleDraftChanged);
+    return () => window.removeEventListener(CONTACT_DRAFT_EVENT, handleDraftChanged);
   }, []);
 
   useEffect(() => {
@@ -56,7 +71,7 @@ export default function ContactsPageForm({ phoneHref }) {
 
     setIsSubmitting(true);
     try {
-      const response = await fetch('/api/lead', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ name, phone, comment: formData.get('comment').trim(), serviceType: formData.get('serviceType') }) });
+      const response = await fetch('/api/lead', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ name, phone, comment: draft.comment.trim(), serviceType: draft.service }) });
       const result = await response.json();
       if (!response.ok || !result.success) throw new Error('Lead request failed');
       setIsSubmitted(true);
@@ -72,12 +87,12 @@ export default function ContactsPageForm({ phoneHref }) {
   return (
     <form className={styles.formCard} onSubmit={handleSubmit} noValidate>
       <h2 className={styles.heading}>Оставьте заявку</h2>
-      <label className={styles.field}><span>Имя</span><input name="name" type="text" required placeholder="Ваше имя" aria-invalid={Boolean(errors.name)} aria-describedby={errors.name ? 'contacts-name-error' : undefined} />{errors.name && <small id="contacts-name-error">{errors.name}</small>}</label>
-      <label className={styles.field}><span>Телефон</span><input name="phone" type="tel" required placeholder="+7 (___) ___-__-__" aria-invalid={Boolean(errors.phone)} aria-describedby={errors.phone ? 'contacts-phone-error' : undefined} />{errors.phone && <small id="contacts-phone-error">{errors.phone}</small>}</label>
-      <label className={styles.field}><span>Комментарий</span><textarea name="comment" rows="4" placeholder="Расскажите, что вас интересует" value={comment} onChange={(event) => setComment(event.target.value)} /></label>
+      <label className={styles.field}><span>Имя</span><input name="name" type="text" required placeholder="Ваше имя" value={draft.name} onChange={(event) => updateDraft('name', event.target.value)} aria-invalid={Boolean(errors.name)} aria-describedby={errors.name ? 'contacts-name-error' : undefined} />{errors.name && <small id="contacts-name-error">{errors.name}</small>}</label>
+      <label className={styles.field}><span>Телефон</span><input name="phone" type="tel" required placeholder="+7 (___) ___-__-__" value={draft.phone} onChange={(event) => updateDraft('phone', event.target.value)} aria-invalid={Boolean(errors.phone)} aria-describedby={errors.phone ? 'contacts-phone-error' : undefined} />{errors.phone && <small id="contacts-phone-error">{errors.phone}</small>}</label>
+      <label className={styles.field}><span>Комментарий</span><textarea name="comment" rows="4" placeholder="Расскажите, что вас интересует" value={draft.comment} onChange={(event) => updateDraft('comment', event.target.value)} /></label>
       <div className={styles.field} ref={servicePickerRef}>
         <span>Тип услуги</span>
-        <input type="hidden" name="serviceType" value={serviceType} />
+        <input type="hidden" name="serviceType" value={draft.service} />
         <button
           className={styles.serviceTrigger}
           type="button"
@@ -85,13 +100,13 @@ export default function ContactsPageForm({ phoneHref }) {
           aria-expanded={isServiceListOpen}
           onClick={() => setIsServiceListOpen((isOpen) => !isOpen)}
         >
-          <span className={serviceType ? styles.serviceValue : styles.servicePlaceholder}>{serviceType || 'Выберите услугу'}</span>
+          <span className={draft.service ? styles.serviceValue : styles.servicePlaceholder}>{draft.service || 'Выберите услугу'}</span>
           <span className={`${styles.serviceChevron} ${isServiceListOpen ? styles.serviceChevronOpen : ''}`} aria-hidden="true" />
         </button>
         {isServiceListOpen && (
           <div className={styles.serviceMenu} role="listbox" aria-label="Тип услуги">
             {serviceOptions.map((service) => {
-              const isSelected = service === serviceType;
+              const isSelected = service === draft.service;
               return (
                 <button
                   key={service}
@@ -100,7 +115,7 @@ export default function ContactsPageForm({ phoneHref }) {
                   role="option"
                   aria-selected={isSelected}
                   onClick={() => {
-                    setServiceType(service);
+                    updateDraft('service', service);
                     setIsServiceListOpen(false);
                   }}
                 >

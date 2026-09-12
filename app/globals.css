@@ -50,6 +50,44 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+/*
+ * Phone scale: 320px (iPhone SE) is the compact baseline and 414px is the
+ * large-phone baseline.  One unit grows from ~3.1px to 4px, so spacing and
+ * decorative dimensions below can grow by roughly 1.3× without a jump at a
+ * device breakpoint.  Keep text and tap targets independently readable.
+ */
+@media (max-width: 767px) {
+  :root {
+    --phone-2: clamp(6.16px, 1.932vw, 8px);
+    --phone-3: clamp(9.24px, 2.898vw, 12px);
+    --phone-3-5: clamp(10.78px, 3.381vw, 14px);
+    --phone-4: clamp(12.32px, 3.864vw, 16px);
+    --phone-4-25: clamp(13.09px, 4.106vw, 17px);
+    --phone-4-5: clamp(13.86px, 4.347vw, 18px);
+    --phone-5: clamp(15.4px, 4.83vw, 20px);
+    --phone-5-5: clamp(16.94px, 5.313vw, 22px);
+    --phone-6: clamp(18.48px, 5.796vw, 24px);
+    --phone-6-25: clamp(19.25px, 6.038vw, 25px);
+    --phone-6-5: clamp(20.02px, 6.279vw, 26px);
+    --phone-7: clamp(21.56px, 6.762vw, 28px);
+    --phone-7-5: clamp(23.1px, 7.245vw, 30px);
+    --phone-8: clamp(24.64px, 7.728vw, 32px);
+    --phone-10: clamp(30.8px, 9.66vw, 40px);
+    --phone-10-5: clamp(32.34px, 10.143vw, 42px);
+    --phone-12: clamp(36.96px, 11.592vw, 48px);
+    --phone-13-5: clamp(41.58px, 13.041vw, 54px);
+    --phone-17: clamp(52.36px, 16.422vw, 68px);
+    --phone-19: clamp(58.52px, 18.354vw, 76px);
+    --phone-22: clamp(67.76px, 21.252vw, 88px);
+    --phone-28: clamp(86.24px, 27.048vw, 112px);
+    --phone-gutter: var(--phone-6);
+    --phone-section: var(--phone-19);
+    --phone-page-top: var(--phone-28);
+    --phone-card-pad: var(--phone-5);
+    --phone-stack: var(--phone-10);
+  }
+}
+
 h1,
 h2,
 h3 {

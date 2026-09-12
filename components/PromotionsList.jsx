@@ -23,15 +23,15 @@ export default function PromotionsList({ promotions }) {
     const ctx = gsap.context(() => {
       const media = gsap.matchMedia();
 
-      media.add('(max-width: 767px) and (prefers-reduced-motion: no-preference)', () => {
+      media.add('(prefers-reduced-motion: no-preference)', () => {
         const tickets = gsap.utils.toArray('[data-promotion-ticket]');
 
         gsap.from(tickets, {
           autoAlpha: 0,
-          y: 28,
-          duration: 0.8,
-          ease: 'power4.out',
-          stagger: 0.18,
+          y: 14,
+          duration: 0.45,
+          ease: 'power1.out',
+          stagger: 0.08,
           scrollTrigger: {
             trigger: listRef.current,
             start: 'top 58%',
