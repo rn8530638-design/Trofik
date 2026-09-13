@@ -4,6 +4,7 @@ import ServicesOverview from '@/components/ServicesOverview';
 import Reviews from '@/components/Reviews';
 import Promotions from '@/components/Promotions';
 import ContactsBrief from '@/components/ContactsBrief';
+import SectionTransitions from '@/components/SectionTransitions';
 
 export const dynamic = 'force-dynamic';
 
@@ -24,9 +25,11 @@ export default function HomePage() {
       <Hero />
       <AboutStudio />
       <ServicesOverview />
-      <Reviews />
-      <Promotions />
-      <ContactsBrief />
+      <SectionTransitions>
+        <Reviews />
+        <Promotions />
+        <ContactsBrief />
+      </SectionTransitions>
     </main>
   );
 }
