@@ -54,7 +54,8 @@
   flex: 0 0 auto;
   flex-direction: column;
   padding-bottom: 80px;
-  overflow: clip;
+  overflow-x: clip;
+  overflow-y: visible;
 }
 
 .card {

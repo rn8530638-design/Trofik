@@ -19,18 +19,32 @@ export default function ServiceCardsGrid({ children, action, heading }) {
   const count = Children.count(children);
 
   useIsomorphicLayoutEffect(() => {
-    const homepageRoot = document.querySelector('.homepage-gradient');
-    const holdBackground = (trigger) => {
-      const offset = Math.max(0, Math.min(trigger.scroll() - trigger.start, trigger.end - trigger.start));
-      homepageRoot?.style.setProperty('--homepage-gradient-scroll-offset', `${Math.round(offset)}px`);
-    };
+    const pinnedBackground = document.querySelector('.homepage-pinned-background');
     const ctx = gsap.context(() => {
       const media = gsap.matchMedia();
+      const holdDuringGallery = (tween) => {
+        if (!pinnedBackground) return;
+        const pin = tween.scrollTrigger;
+        const fadeInLength = 500;
+        const fadeOutLength = 650;
+        const updateOpacity = (self) => {
+          const scroll = self.scroll();
+          const fadeIn = Math.min(1, Math.max(0, (scroll - pin.start + fadeInLength) / fadeInLength));
+          const fadeOut = Math.min(1, Math.max(0, (pin.end + fadeOutLength - scroll) / fadeOutLength));
+          pinnedBackground.style.opacity = String(Math.min(fadeIn, fadeOut));
+        };
+        ScrollTrigger.create({
+          start: () => pin.start - fadeInLength,
+          end: () => pin.end + fadeOutLength,
+          onUpdate: updateOpacity,
+          onRefresh: updateOpacity,
+        });
+      };
 
       media.add('(min-width: 768px) and (prefers-reduced-motion: no-preference)', () => {
         const getDistance = () => Math.max(0, gridRef.current.scrollWidth - gridRef.current.clientWidth);
 
-        gsap.to(gridRef.current, {
+        const tween = gsap.to(gridRef.current, {
           x: () => -getDistance(),
           ease: 'none',
           force3D: true,
@@ -47,9 +61,9 @@ export default function ServiceCardsGrid({ children, action, heading }) {
             anticipatePin: 1,
             fastScrollEnd: true,
             invalidateOnRefresh: true,
-            onUpdate: holdBackground,
           },
         });
+        holdDuringGallery(tween);
 
         const refreshId = window.requestAnimationFrame(() => ScrollTrigger.refresh());
         return () => window.cancelAnimationFrame(refreshId);
@@ -64,7 +78,7 @@ export default function ServiceCardsGrid({ children, action, heading }) {
           // not consistently include trailing padding in scrollWidth.
           return lastCard ? Math.max(0, lastCard.offsetLeft + lastCard.offsetWidth + endInset - rootRef.current.clientWidth) : 0;
         };
-        gsap.to(gridRef.current, {
+        const tween = gsap.to(gridRef.current, {
           x: () => -getDistance(),
           ease: 'none',
           force3D: true,
@@ -79,7 +93,6 @@ export default function ServiceCardsGrid({ children, action, heading }) {
             fastScrollEnd: true,
             invalidateOnRefresh: true,
             onUpdate: (self) => {
-              holdBackground(self);
               const nextIndex = Math.round(self.progress * (count - 1)) + 1;
               if (counterRef.current && nextIndex !== currentIndexRef.current) {
                 currentIndexRef.current = nextIndex;
@@ -88,6 +101,7 @@ export default function ServiceCardsGrid({ children, action, heading }) {
             },
           },
         });
+        holdDuringGallery(tween);
 
         const refreshId = window.requestAnimationFrame(() => ScrollTrigger.refresh());
         return () => window.cancelAnimationFrame(refreshId);
@@ -95,7 +109,7 @@ export default function ServiceCardsGrid({ children, action, heading }) {
     }, rootRef);
 
     return () => {
-      homepageRoot?.style.removeProperty('--homepage-gradient-scroll-offset');
+      if (pinnedBackground) pinnedBackground.style.opacity = '';
       ctx.revert();
     };
   }, [count]);

@@ -86,6 +86,7 @@ body {
 /* Paint once behind all sections, their scroll spacing, and the footer.
    Transparent section surfaces keep the gradient continuous during animation. */
 .homepage-gradient {
+  isolation: isolate;
   --homepage-background-one: transparent;
   --homepage-hero-background: transparent;
   --homepage-hero-decoration: none;
@@ -94,23 +95,39 @@ body {
   /* A seamless blue / charcoal / blue cycle, independent of section heights. */
   --homepage-gradient-cycle: clamp(1400px, 150vw, 2000px);
   background:
-    radial-gradient(ellipse 65% 24% at 85% 22%, rgba(89, 115, 177, 0.3), transparent 100%),
-    radial-gradient(ellipse 75% 20% at 5% 80%, rgba(32, 71, 160, 0.34), transparent 100%),
-    radial-gradient(ellipse 60% 18% at 72% 55%, rgba(113, 117, 132, 0.2), transparent 100%),
-    linear-gradient(180deg, #1b2d4e 0%, #183064 14%, #313c52 28%, #404040 39%, #494949 49%, #233d70 62%, #37404c 74%, #404040 82%, #111216 86%, #1d3565 93%, #1b2d4e 100%);
+    radial-gradient(ellipse 70% 18% at 82% 17%, rgba(69, 104, 169, .18), transparent 100%),
+    radial-gradient(ellipse 82% 22% at 10% 78%, rgba(43, 82, 153, .16), transparent 100%),
+    radial-gradient(ellipse 75% 20% at 74% 60%, rgba(10, 12, 17, .1), transparent 100%),
+    linear-gradient(180deg, #1b2d4e 0%, #223b67 13%, #303d53 27%, #303743 36%, #2b3039 44%, #252a32 52%, #1f232b 60%, #191c23 67%, #171a20 72%, #1d2531 79%, #243653 88%, #25406a 94%, #1b2d4e 100%);
   background-size: 100% var(--homepage-gradient-cycle);
-  background-position: center var(--homepage-gradient-scroll-offset, 0px);
   background-repeat: repeat-y;
 }
+
+/* This fixed layer fades over scroll distance around the pinned services gallery.
+   Only its opacity changes; the full-page gradient is never repainted by JS. */
+.homepage-pinned-background {
+  position: fixed;
+  z-index: 0;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 82% 75% at 74% 8%, rgba(58, 87, 141, .28), transparent 75%),
+    linear-gradient(180deg, #24395e 0%, #273852 52%, #1c3159 100%);
+  opacity: 0;
+  pointer-events: none;
+  will-change: opacity;
+}
+
+.homepage-gradient > main,
+.homepage-gradient > footer { position: relative; z-index: 1; }
 
 @media (min-width: 768px) {
   .homepage-gradient {
     --homepage-gradient-cycle: 2600px;
     background-image:
-      radial-gradient(ellipse 65% 24% at 85% 22%, rgba(89, 115, 177, 0.24), transparent 100%),
-      radial-gradient(ellipse 75% 20% at 5% 80%, rgba(32, 71, 160, 0.27), transparent 100%),
-      radial-gradient(ellipse 60% 18% at 72% 55%, rgba(113, 117, 132, 0.16), transparent 100%),
-      linear-gradient(180deg, #1b2d4e 0%, #193064 14%, #283952 27%, #343b46 38%, #404040 47%, #494949 55%, #3b414b 64%, #263e6c 74%, #313b49 83%, #404040 89%, #111216 92%, #1d3565 96%, #1b2d4e 100%);
+      radial-gradient(ellipse 70% 18% at 82% 17%, rgba(69, 104, 169, .15), transparent 100%),
+      radial-gradient(ellipse 82% 22% at 10% 78%, rgba(43, 82, 153, .12), transparent 100%),
+      radial-gradient(ellipse 75% 20% at 74% 60%, rgba(10, 12, 17, .1), transparent 100%),
+      linear-gradient(180deg, #1b2d4e 0%, #213864 12%, #283e63 22%, #303a4d 31%, #303743 38%, #2b3039 45%, #252a32 52%, #1f232b 59%, #191c23 66%, #171a20 72%, #1b222d 78%, #21324c 85%, #253e68 93%, #1b2d4e 100%);
   }
 }
 
