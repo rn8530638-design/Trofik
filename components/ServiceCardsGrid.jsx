@@ -19,9 +19,9 @@ export default function ServiceCardsGrid({ children, action, heading }) {
   const count = Children.count(children);
 
   useIsomorphicLayoutEffect(() => {
+    const homepageRoot = document.querySelector('.homepage-gradient');
     const ctx = gsap.context(() => {
       const media = gsap.matchMedia();
-      const homepageRoot = document.querySelector('.homepage-gradient');
       const setPinnedBackground = (isPinned) => homepageRoot?.classList.toggle('is-services-pinned', isPinned);
 
       media.add('(min-width: 768px) and (prefers-reduced-motion: no-preference)', () => {
