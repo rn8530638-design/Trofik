@@ -102,6 +102,12 @@ body {
   background-repeat: repeat-y;
 }
 
+/* The services gallery is pinned while its cards scroll horizontally. Keep the
+   backdrop locked to the viewport for that interval. */
+.homepage-gradient.is-services-pinned {
+  background-attachment: fixed;
+}
+
 @media (min-width: 768px) {
   .homepage-gradient {
     --homepage-gradient-cycle: 2600px;
