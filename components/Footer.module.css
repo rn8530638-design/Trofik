@@ -1,10 +1,10 @@
 .footer {
   position: relative;
   overflow: hidden;
-  border-top: 1px solid rgba(245, 230, 220, 0.1);
-  background:
+  border-top: 1px solid var(--homepage-footer-border, rgba(245, 230, 220, 0.1));
+  background: var(--homepage-footer-background,
     radial-gradient(ellipse 55% 90% at 86% 0%, rgba(59, 88, 130, 0.26), transparent 72%),
-    linear-gradient(135deg, #0a121f 0%, #111d2f 54%, #0b111b 100%);
+    linear-gradient(135deg, #0a121f 0%, #111d2f 54%, #0b111b 100%));
   color: var(--color-text-body);
 }
 

@@ -10,7 +10,7 @@ export default function SiteChrome({ children }) {
   if (pathname.startsWith('/admin')) return children;
   const usesPremiumTheme = pathname === '/' || pathname.startsWith('/uslugi') || pathname.startsWith('/kontakty') || pathname.startsWith('/blog');
   return (
-    <div className={usesPremiumTheme ? 'homepage-theme' : undefined}>
+    <div className={usesPremiumTheme ? `homepage-theme${pathname === '/' ? ' homepage-gradient' : ''}` : undefined}>
       <Header />
       {children}
       <Footer />

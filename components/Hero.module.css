@@ -2,13 +2,14 @@
   --header-h: 96px;
   position: relative;
   overflow: hidden;
-  background:
+  background: var(--homepage-hero-background,
     radial-gradient(ellipse 58% 65% at 91% 12%, rgba(100, 158, 215, .38), transparent 72%),
     radial-gradient(ellipse 42% 58% at 67% 35%, rgba(29, 78, 143, .32), transparent 72%),
-    linear-gradient(110deg, #080b10 0%, #252a32 38%, #182e4b 50%, #173f70 75%, #38648a 100%);
+    linear-gradient(110deg, #080b10 0%, #252a32 38%, #182e4b 50%, #173f70 75%, #38648a 100%));
 }
 .hero::before, .hero::after { position: absolute; pointer-events: none; content: ''; }
 .hero::before {
+  display: var(--homepage-hero-decoration, block);
   inset: 0;
   opacity: .46;
   background:
