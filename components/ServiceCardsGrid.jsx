@@ -21,10 +21,6 @@ export default function ServiceCardsGrid({ children, action, heading }) {
   useIsomorphicLayoutEffect(() => {
     const ctx = gsap.context(() => {
       const media = gsap.matchMedia();
-      const homepageRoot = document.querySelector('.homepage-gradient');
-      const setGradientOffset = (progress, distance) => {
-        homepageRoot?.style.setProperty('--homepage-gradient-gsap-offset', `${Math.round(-progress * distance)}px`);
-      };
 
       media.add('(min-width: 768px) and (prefers-reduced-motion: no-preference)', () => {
         const getDistance = () => Math.max(0, gridRef.current.scrollWidth - gridRef.current.clientWidth);
@@ -46,10 +42,6 @@ export default function ServiceCardsGrid({ children, action, heading }) {
             anticipatePin: 1,
             fastScrollEnd: true,
             invalidateOnRefresh: true,
-            // The gallery stays pinned while its cards travel sideways. Move
-            // the single page background with that same progress so it keeps
-            // evolving instead of appearing frozen behind the gallery.
-            onUpdate: (self) => setGradientOffset(self.progress, 720),
           },
         });
 
@@ -81,7 +73,6 @@ export default function ServiceCardsGrid({ children, action, heading }) {
             fastScrollEnd: true,
             invalidateOnRefresh: true,
             onUpdate: (self) => {
-              setGradientOffset(self.progress, 360);
               const nextIndex = Math.round(self.progress * (count - 1)) + 1;
               if (counterRef.current && nextIndex !== currentIndexRef.current) {
                 currentIndexRef.current = nextIndex;
@@ -96,10 +87,7 @@ export default function ServiceCardsGrid({ children, action, heading }) {
       });
     }, rootRef);
 
-    return () => {
-      document.querySelector('.homepage-gradient')?.style.removeProperty('--homepage-gradient-gsap-offset');
-      ctx.revert();
-    };
+    return () => ctx.revert();
   }, [count]);
 
   return (

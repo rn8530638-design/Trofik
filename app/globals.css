@@ -99,7 +99,6 @@ body {
     radial-gradient(ellipse 60% 18% at 72% 55%, rgba(113, 117, 132, 0.2), transparent 100%),
     linear-gradient(180deg, #1b2d4e 0%, #183064 14%, #313c52 28%, #404040 39%, #494949 49%, #233d70 62%, #37404c 74%, #404040 82%, #111216 86%, #1d3565 93%, #1b2d4e 100%);
   background-size: 100% var(--homepage-gradient-cycle);
-  background-position: center var(--homepage-gradient-gsap-offset, 0px);
   background-repeat: repeat-y;
 }
 
