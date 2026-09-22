@@ -20,9 +20,12 @@ export default function ServiceCardsGrid({ children, action, heading }) {
 
   useIsomorphicLayoutEffect(() => {
     const homepageRoot = document.querySelector('.homepage-gradient');
+    const holdBackground = (trigger) => {
+      const offset = Math.max(0, Math.min(trigger.scroll() - trigger.start, trigger.end - trigger.start));
+      homepageRoot?.style.setProperty('--homepage-gradient-scroll-offset', `${Math.round(offset)}px`);
+    };
     const ctx = gsap.context(() => {
       const media = gsap.matchMedia();
-      const setPinnedBackground = (isPinned) => homepageRoot?.classList.toggle('is-services-pinned', isPinned);
 
       media.add('(min-width: 768px) and (prefers-reduced-motion: no-preference)', () => {
         const getDistance = () => Math.max(0, gridRef.current.scrollWidth - gridRef.current.clientWidth);
@@ -44,7 +47,7 @@ export default function ServiceCardsGrid({ children, action, heading }) {
             anticipatePin: 1,
             fastScrollEnd: true,
             invalidateOnRefresh: true,
-            onToggle: (self) => setPinnedBackground(self.isActive),
+            onUpdate: holdBackground,
           },
         });
 
@@ -75,8 +78,8 @@ export default function ServiceCardsGrid({ children, action, heading }) {
             anticipatePin: 1,
             fastScrollEnd: true,
             invalidateOnRefresh: true,
-            onToggle: (self) => setPinnedBackground(self.isActive),
             onUpdate: (self) => {
+              holdBackground(self);
               const nextIndex = Math.round(self.progress * (count - 1)) + 1;
               if (counterRef.current && nextIndex !== currentIndexRef.current) {
                 currentIndexRef.current = nextIndex;
@@ -92,7 +95,7 @@ export default function ServiceCardsGrid({ children, action, heading }) {
     }, rootRef);
 
     return () => {
-      homepageRoot?.classList.remove('is-services-pinned');
+      homepageRoot?.style.removeProperty('--homepage-gradient-scroll-offset');
       ctx.revert();
     };
   }, [count]);

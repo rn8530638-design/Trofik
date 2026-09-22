@@ -44,7 +44,12 @@ export default function ServicesOverview() {
           {services.map((service) => (
             <li key={service.id} className={styles.card}>
               <div className={styles.photoWrap}>
-                {service.cover && <Image
+                {service.slug === 'training' ? (
+                  <div className={styles.trainingPlaceholder} aria-hidden="true">
+                    <span className={styles.trainingMonogram}>Т</span>
+                    <span className={styles.trainingCaption}>Академия красоты</span>
+                  </div>
+                ) : service.cover && <Image
                   className={styles.photo}
                   src={service.cover}
                   alt={`${service.name} в студии ТрофиК`}
