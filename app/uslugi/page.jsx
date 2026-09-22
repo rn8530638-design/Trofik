@@ -20,7 +20,10 @@ export default function ServicesPage() {
         <div className={styles.container}>
           <span className={styles.marker} aria-hidden="true" />
           <h1 id="catalog-title" className={styles.title}>Наши услуги</h1>
-          <p className={styles.intro}>Мы подберём уход и процедуры под ваши задачи. Все мастера — опытные специалисты, которые любят своё дело.</p>
+          <div className={styles.intro}>
+            <p>Мы собрали команду опытных мастеров, которым можно доверить свою красоту.</p>
+            <p>Для нас важны не только профессионализм и аккуратность, но и то, как вы чувствуете себя у нас. Внимательно слушаем ваши пожелания, бережно относимся к вам и делаем всё, чтобы вы могли расслабиться и довериться результату.</p>
+          </div>
           <CatalogTabs services={services} events={events} />
         </div>
       </section>

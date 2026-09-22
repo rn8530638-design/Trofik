@@ -10,6 +10,7 @@ const NAV = [
   { href: '/uslugi', label: 'Услуги' },
   { href: '/#reviews', label: 'Отзывы' },
   { href: '/#promotions', label: 'Акции' },
+  { href: '/blog', label: 'Блог' },
   { href: '/kontakty', label: 'Контакты' },
 ];
 
@@ -59,10 +60,9 @@ export default function Header() {
   return (
     <header className={`${styles.header} ${isHeaderVisible ? '' : styles.headerHidden} ${isScrolled ? styles.headerScrolled : ''}`}>
       <div className={styles.inner}>
-        <Link href="/" className={styles.brand} aria-label="Трофик — на главную">
-          Трофик
+        <Link href="/" className={styles.brand} aria-label="ТрофиК — на главную">
+          ТрофиК
         </Link>
-
         <nav aria-label="Основное меню">
           <ul id="main-navigation" className={`${styles.nav} ${isMenuOpen ? styles.navOpen : ''}`}>
             {NAV.map((item) => (

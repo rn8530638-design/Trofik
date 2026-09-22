@@ -33,7 +33,7 @@ export default function ContactsBriefForm({ copy, phoneHref }) {
     };
 
     try {
-      setDraft(readContactDraft());
+      setDraft((current) => ({ ...current, ...readContactDraft() }));
       const savedPromotion = window.sessionStorage.getItem('selected-promotion');
       if (savedPromotion) {
         fillPromotionComment(JSON.parse(savedPromotion));
@@ -50,7 +50,11 @@ export default function ContactsBriefForm({ copy, phoneHref }) {
 
     const handlePromotionSelected = (event) => {
       fillPromotionComment(event.detail);
-      window.sessionStorage.removeItem('selected-promotion');
+      try {
+        window.sessionStorage.removeItem('selected-promotion');
+      } catch {
+        // The selected promotion has already been applied to the form.
+      }
     };
 
     const handleServiceSelected = (event) => fillSelectedService(event.detail);

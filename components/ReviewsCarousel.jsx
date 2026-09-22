@@ -3,8 +3,8 @@
 import { Children, useEffect, useRef, useState } from 'react';
 import styles from './Reviews.module.css';
 
-const EXIT_DURATION = 560;
-const ENTER_DURATION = 620;
+const EXIT_DURATION = 200;
+const ENTER_DURATION = 260;
 
 function Chevron({ direction }) {
   return (
@@ -52,7 +52,7 @@ export default function ReviewsCarousel({ children }) {
           <Chevron direction="left" />
         </button>
 
-        {/* All slides share one grid cell, so the review area is as tall as the longest review. */}
+        {/* Hidden slides stay available in server HTML without reserving height. */}
         <div className={styles.card}>
           {slides.map((slide, i) => (
             <div
@@ -65,6 +65,7 @@ export default function ReviewsCarousel({ children }) {
                 i === exiting && (direction > 0 ? styles.slideExitForward : styles.slideExitBackward),
               ].filter(Boolean).join(' ')}
               aria-hidden={i !== active}
+              inert={i !== active}
             >
               {slide}
             </div>

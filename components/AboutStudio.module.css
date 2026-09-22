@@ -1,193 +1,115 @@
-/* Pure white (not Hero's off-white) — clean separation from the Hero section below it */
 .about {
   position: relative;
   overflow: hidden;
-  background: var(--color-white);
-  min-height: 100svh;
-  display: flex;
-  align-items: center;
+  background: var(--homepage-background-one, var(--color-background));
 }
 
 .container {
-  max-width: 1440px;
-  width: 100%;
-  margin: 0 auto;
-  padding: 88px 40px;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
   align-items: center;
-  column-gap: 72px;
-}
-
-.mobileHeading { display: none; }
-.story { display: contents; }
-
-.photoCol {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
+  gap: clamp(32px, 5vw, 72px);
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: clamp(72px, 8vw, 112px) 40px;
 }
 
 .photoFrame {
   position: relative;
-  width: 135%;
-  max-width: 980px;
-  aspect-ratio: 3 / 4;
-  border-radius: 20px;
+  width: 100%;
+  transform: none;
+  aspect-ratio: 1;
   overflow: hidden;
-  transform: translateX(-88px);
-  box-shadow: 0 30px 60px rgba(var(--color-heading-rgb), 0.18);
-}
-
-.photoStage {
-  position: absolute;
-  inset: 0;
-  background: var(--color-background-alt);
-}
-
-.photoSlide {
-  position: absolute;
-  inset: 0;
-  opacity: 1;
-  transform: scale(1);
-  will-change: opacity, transform;
+  border: 1px solid rgba(var(--color-accent-gold-rgb), 0.32);
+  border-radius: 22px;
+  background: var(--color-surface);
+  box-shadow: 0 28px 60px rgba(0, 0, 0, 0.28);
 }
 
 .photo {
   object-fit: cover;
   object-position: center;
-  transition: filter 500ms ease;
+  filter: saturate(0.82) contrast(0.98);
 }
 
-.photoSlide:nth-child(1) .photo {
-  filter: saturate(0.92) sepia(0.06);
+.content {
+  max-width: 680px;
 }
-
-.photoSlide:nth-child(2) .photo {
-  filter: saturate(1.18) sepia(0.2) hue-rotate(-7deg);
-}
-
-.photoSlide:nth-child(3) .photo {
-  filter: saturate(0.95) hue-rotate(12deg) contrast(1.04);
-}
-
-.textCol {
-  height: 100%;
-  padding: 0 24px 0 0;
-  display: flex;
-  align-items: center;
-}
-
-/* Fixed so the pinned section's height never jumps between slides */
-.stage {
-  position: relative;
-  width: 100%;
-  min-height: clamp(320px, 36vw, 420px);
-}
-
-.slideWrap {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.slide1Inner {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.desktopHeading { display: flex; flex-direction: column; align-items: center; }
 
 .marker {
   display: block;
-  width: 40px;
+  width: 46px;
   height: 1px;
-  margin-bottom: 20px;
+  margin-bottom: 22px;
   background: var(--color-gold);
 }
 
+.eyebrow {
+  margin: 0 0 14px;
+  color: var(--color-muted);
+  font-family: var(--font-body), sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
 .title {
-  margin: 0 0 28px;
-  max-width: 30ch;
-  font-family: var(--font-script), cursive;
+  margin: 0 0 24px;
+  color: var(--color-gold);
+  font-family: "Gloria Script", var(--font-script), cursive;
+  font-size: clamp(3rem, 4.8vw, 4.45rem);
   font-weight: 400;
-  font-size: clamp(2.6rem, 4vw, 3.7rem);
-  line-height: 1.2;
-  text-align: center;
-  color: var(--color-navy);
+  line-height: 1.08;
 }
 
-.slideText {
+.titleLine {
+  display: block;
+  white-space: nowrap;
+}
+
+.copy {
+  display: grid;
+  gap: 14px;
+}
+
+.copy p {
   margin: 0;
-  max-width: 32ch;
-  font-family: var(--font-heading), Georgia, serif;
-  font-size: clamp(1.4rem, 2.3vw, 2.1rem);
-  line-height: 1.5;
-  text-align: center;
   color: var(--color-text-body);
+  font-family: var(--font-body), sans-serif;
+  font-size: clamp(1.08rem, 1.5vw, 1.26rem);
+  line-height: 1.68;
 }
 
-/* Pre-hydration state for slides 2 & 3 so there's no flash of all three overlapping before JS runs */
-.slideHidden {
-  opacity: 0;
-}
-
-.photoHidden {
-  opacity: 0;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .about {
-    min-height: auto;
-    padding: 0;
-  }
-
+@media (max-width: 1023px) {
   .container {
-    padding: 96px 48px;
-    align-items: start;
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+    gap: 52px;
+    padding-right: 32px;
+    padding-left: 32px;
   }
-
-  .textCol {
-    height: auto;
-  }
-
-  .stage {
-    min-height: auto;
-    display: flex;
-    flex-direction: column;
-    gap: 56px;
-  }
-
-  .slideWrap {
-    position: static;
-    inset: auto;
-    opacity: 1;
-  }
+  .photoFrame { width: 100%; }
+  .title { font-size: clamp(2.75rem, 5vw, 3.7rem); }
 }
 
 @media (max-width: 767px) {
-  .about { min-height: 100svh; }
-  .container { grid-template-columns: 1fr; grid-template-rows: auto auto auto; gap: var(--phone-gutter); padding: var(--phone-10-5) var(--phone-gutter); }
-  .story { display: grid; grid-template-columns: 1fr; gap: var(--phone-13-5); order: 2; padding: clamp(65px, 13svh, 118px) 0 var(--phone-17); }
-  .mobileHeading { display: flex; flex-direction: column; align-items: center; order: 1; }
-  .mobileHeading .title { margin-bottom: 0; }
-  .photoCol { justify-content: center; }
-  .photoFrame { width: min(84vw, 332px); max-width: none; transform: none; }
-  .textCol { height: auto; padding: 0; }
-  .stage { min-height: 150px; }
-  .slideWrap { position: absolute; inset: 0; }
-  .slideHidden { opacity: 0; }
-  .desktopHeading { display: none; }
-  .title { font-size: clamp(2.45rem, 12vw, 3.15rem); }
-  .slideText { font-size: clamp(1.1rem, 4.8vw, 1.3rem); }
+  .container {
+    grid-template-columns: 1fr;
+    gap: 42px;
+    padding: var(--phone-section) var(--phone-gutter);
+  }
+
+  .photoFrame {
+    width: min(100%, 480px);
+    justify-self: center;
+    transform: none;
+  }
+  .content { max-width: none; }
+  .title { margin-bottom: 22px; font-size: clamp(2.35rem, 10vw, 3rem); }
+  .titleLine { white-space: nowrap; }
+  .copy p { font-size: 1.05rem; }
 }
 
-@media (max-width: 767px) and (prefers-reduced-motion: reduce) {
-  .about { min-height: auto; }
-  .stage { min-height: auto; display: flex; flex-direction: column; gap: 28px; }
-  .slideWrap { position: static; inset: auto; opacity: 1; }
-  .slideHidden { opacity: 1; }
+@media (prefers-reduced-motion: reduce) {
+  .content [data-about-reveal] { opacity: 1; transform: none; }
 }

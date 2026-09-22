@@ -16,7 +16,8 @@ const body = Montserrat({
   display: 'swap',
 });
 
-// Parisienne (from the brief) has no Cyrillic glyphs; Great Vibes is the closest calligraphic face that does
+// Gloria Script does not ship Cyrillic glyphs. This close script alternative does,
+// so Russian accent headings stay elegant and legible.
 const script = Great_Vibes({
   subsets: ['latin', 'cyrillic'],
   weight: '400',
@@ -28,8 +29,8 @@ export const metadata = {
   // TODO: заменить на реальный домен
   metadataBase: new URL('https://trofik.ru'),
   title: {
-    default: 'Студия красоты Трофик',
-    template: '%s — Студия красоты Трофик',
+    default: 'Студия красоты ТрофиК',
+    template: '%s — Студия красоты ТрофиК',
   },
 };
 

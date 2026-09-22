@@ -1,13 +1,22 @@
-.page { background: var(--color-background-alt); }
-.catalog { padding: 144px 0 48px; }
-.container { width: min(1200px, calc(100% - 96px)); margin: 0 auto; }
-.marker { display: block; width: 48px; height: 1px; margin: 0 auto 22px; background: var(--color-accent-gold); }
-.title { margin: 0; color: var(--color-heading); font-family: var(--font-script), cursive; font-size: clamp(3.3rem, 5vw, 5rem); font-weight: 400; line-height: 1.06; text-align: center; }
-.intro { max-width: 60ch; margin: 25px auto 0; color: var(--color-text-body); font-family: var(--font-body), Arial, sans-serif; font-size: 16px; line-height: 1.75; text-align: center; }
+.page {
+  min-height: 100svh;
+  background:
+    radial-gradient(ellipse 58% 62% at 90% 2%, rgba(74, 108, 153, 0.2), transparent 70%),
+    linear-gradient(135deg, #142238 0%, #1f2d43 55%, #16243a 100%);
+}
+
+.catalog { padding: 158px 0 104px; }
+.container { width: min(1380px, calc(100% - 96px)); margin: 0 auto; }
+.marker { display: block; width: 48px; height: 1px; margin: 0 auto 22px; background: var(--color-gold); }
+.title { margin: 0; color: var(--color-gold); font-family: "Gloria Script", var(--font-script), cursive; font-size: clamp(3.5rem, 5.3vw, 5.3rem); font-weight: 400; line-height: 1.06; text-align: center; }
+.intro { max-width: 66ch; margin: 30px auto 0; color: var(--color-text-body); font-family: var(--font-body), Arial, sans-serif; font-size: 1rem; line-height: 1.75; text-align: center; }
+.intro p { margin: 0; }
+.intro p + p { margin-top: 16px; }
 
 @media (max-width: 767px) {
-  .catalog { padding: var(--phone-page-top) 0 var(--phone-8); }
-  .container { width: min(calc(100% - calc(var(--phone-gutter) * 2)), 560px); min-width: 0; }
-  .title { font-size: clamp(2.55rem, 13vw, 3.4rem); }
-  .intro { margin-top: 18px; font-size: 15px; line-height: 1.6; }
+  .catalog { padding: calc(var(--phone-page-top) + var(--phone-4)) 0 var(--phone-10); }
+  .container { width: min(calc(100% - 24px), 600px); min-width: 0; }
+  .title { font-size: clamp(2.8rem, 13vw, 3.75rem); }
+  .intro { margin-top: 20px; font-size: 0.9375rem; line-height: 1.65; }
+  .intro p + p { margin-top: 14px; }
 }

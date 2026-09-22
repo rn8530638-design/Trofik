@@ -1,6 +1,6 @@
 'use client';
 
-import { useLayoutEffect, useRef } from 'react';
+import { Children, useLayoutEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import styles from './ServicesOverview.module.css';
@@ -11,35 +11,36 @@ if (typeof window !== 'undefined') {
 
 const useIsomorphicLayoutEffect = typeof window !== 'undefined' ? useLayoutEffect : () => {};
 
-export default function ServiceCardsGrid({ children, action }) {
+export default function ServiceCardsGrid({ children, action, heading }) {
   const rootRef = useRef(null);
   const gridRef = useRef(null);
+  const counterRef = useRef(null);
+  const currentIndexRef = useRef(1);
+  const count = Children.count(children);
 
   useIsomorphicLayoutEffect(() => {
     const ctx = gsap.context(() => {
       const media = gsap.matchMedia();
 
       media.add('(min-width: 768px) and (prefers-reduced-motion: no-preference)', () => {
-        const getDistance = () => {
-          const rightInset = Number.parseFloat(getComputedStyle(gridRef.current).paddingRight) || 0;
-          return Math.max(0, gridRef.current.scrollWidth - rootRef.current.clientWidth + rightInset);
-        };
+        const getDistance = () => Math.max(0, gridRef.current.scrollWidth - gridRef.current.clientWidth);
 
         gsap.to(gridRef.current, {
           x: () => -getDistance(),
           ease: 'none',
+          force3D: true,
           scrollTrigger: {
             trigger: rootRef.current,
-            // Keep the horizontally pinned gallery in the visual centre of the
-            // viewport instead of directly beneath the fixed header.
-            start: 'center center',
+            // Pin the heading with the cards below the fixed site header.
+            start: 'top 148px',
             end: () => `+=${getDistance() + window.innerHeight * 0.45}`,
             pin: true,
             // The stage is a child of a flex column. Margin spacing keeps the
             // following section below the pinned gallery until it finishes.
             pinSpacing: 'margin',
-            scrub: 0.8,
+            scrub: 0.2,
             anticipatePin: 1,
+            fastScrollEnd: true,
             invalidateOnRefresh: true,
           },
         });
@@ -49,37 +50,35 @@ export default function ServiceCardsGrid({ children, action }) {
       });
 
       media.add('(max-width: 767px) and (prefers-reduced-motion: no-preference)', () => {
-        const title = rootRef.current.parentElement?.querySelector('[data-services-title]');
         const getDistance = () => {
-          const rightInset = Number.parseFloat(getComputedStyle(gridRef.current).paddingRight) || 0;
-          return Math.max(0, gridRef.current.scrollWidth - rootRef.current.clientWidth + rightInset);
+          const grid = gridRef.current;
+          const lastCard = grid.lastElementChild;
+          const endInset = Number.parseFloat(getComputedStyle(grid).paddingRight) || 0;
+          // Measure the final card explicitly: overflowing flex content does
+          // not consistently include trailing padding in scrollWidth.
+          return lastCard ? Math.max(0, lastCard.offsetLeft + lastCard.offsetWidth + endInset - rootRef.current.clientWidth) : 0;
         };
-        const showTitle = () => {
-          if (title) gsap.to(title, { autoAlpha: 1, y: 0, duration: 0.18, overwrite: 'auto' });
-        };
-        const hideTitle = () => {
-          if (title) gsap.to(title, { autoAlpha: 0, y: -12, duration: 0.18, overwrite: 'auto' });
-        };
-
-        // Keep the phone experience identical to the desktop gallery: the
-        // section pins while the vertical scroll moves the cards horizontally.
-        // The heading remains during this sequence, then leaves with it.
         gsap.to(gridRef.current, {
           x: () => -getDistance(),
           ease: 'none',
+          force3D: true,
           scrollTrigger: {
             trigger: rootRef.current,
-            start: 'center center',
-            end: () => `+=${getDistance() + window.innerHeight * 0.45}`,
+            start: 'top 116px',
+            end: () => `+=${Math.max(window.innerHeight, getDistance() * 0.68)}`,
             pin: true,
             pinSpacing: 'margin',
-            scrub: 0.8,
+            scrub: 0.2,
             anticipatePin: 1,
+            fastScrollEnd: true,
             invalidateOnRefresh: true,
-            onEnter: showTitle,
-            onEnterBack: showTitle,
-            onLeaveBack: showTitle,
-            onLeave: hideTitle,
+            onUpdate: (self) => {
+              const nextIndex = Math.round(self.progress * (count - 1)) + 1;
+              if (counterRef.current && nextIndex !== currentIndexRef.current) {
+                currentIndexRef.current = nextIndex;
+                counterRef.current.textContent = String(nextIndex).padStart(2, '0');
+              }
+            },
           },
         });
 
@@ -89,14 +88,16 @@ export default function ServiceCardsGrid({ children, action }) {
     }, rootRef);
 
     return () => ctx.revert();
-  }, []);
+  }, [count]);
 
   return (
     <div ref={rootRef} className={styles.scrollStage}>
+      {heading}
       <ul ref={gridRef} className={styles.grid}>
         {children}
       </ul>
       {action}
+      <span className={styles.progress} aria-label={`Всего услуг: ${count}`}><span ref={counterRef}>01</span> / {String(count).padStart(2, '0')}</span>
     </div>
   );
 }

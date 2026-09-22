@@ -8,5 +8,13 @@ import CookieBanner from './CookieBanner';
 export default function SiteChrome({ children }) {
   const pathname = usePathname();
   if (pathname.startsWith('/admin')) return children;
-  return <><Header />{children}<Footer /><CookieBanner /></>;
+  const usesPremiumTheme = pathname === '/' || pathname.startsWith('/uslugi') || pathname.startsWith('/kontakty') || pathname.startsWith('/blog');
+  return (
+    <div className={usesPremiumTheme ? 'homepage-theme' : undefined}>
+      <Header />
+      {children}
+      <Footer />
+      <CookieBanner />
+    </div>
+  );
 }

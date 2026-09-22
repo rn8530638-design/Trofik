@@ -10,26 +10,32 @@
 }
 
 .headerHidden { transform: translateY(-100%); pointer-events: none; }
-.headerScrolled { background: rgba(var(--color-background-rgb), 0.96); box-shadow: 0 2px 14px rgba(var(--color-heading-rgb), 0.06); }
+.headerScrolled {
+  background: rgba(30, 43, 62, 0.96);
+  box-shadow: 0 2px 14px rgba(4, 8, 17, 0.18);
+  backdrop-filter: blur(14px);
+}
 
 .inner {
   max-width: 1320px;
   margin: 0 auto;
-  padding: 0 48px;
+  padding: 0 40px;
   height: 96px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 32px;
-  border-bottom: 1px solid rgba(var(--color-heading-rgb), 0.08);
+  border-bottom: 0;
 }
 
 .brand {
-  font-family: var(--font-script), cursive;
-  font-size: 2.5rem;
+  flex: 0 0 auto;
+  color: var(--color-gold);
+  font-family: "Gloria Script", var(--font-script), cursive;
+  font-size: clamp(2.15rem, 3vw, 2.75rem);
   line-height: 1;
-  color: var(--color-navy);
   text-decoration: none;
+  text-shadow: 0 5px 24px rgba(var(--color-accent-gold-rgb), 0.16);
 }
 
 .nav {
@@ -148,7 +154,7 @@
     gap: 12px;
   }
 
-  .brand { font-size: 2.2rem; }
+  .brand { font-size: clamp(2.2rem, 10vw, 2.6rem); }
 
   /* The hero keeps the booking CTA prominent; the header reserves its narrow
      layout for a readable logo and a 44px menu target. */
@@ -181,18 +187,20 @@
     position: absolute;
     right: var(--phone-gutter);
     margin-left: auto;
-    width: 44px;
-    height: 44px;
+    width: var(--phone-control);
+    height: var(--phone-control);
     flex: 0 0 auto;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 5px;
     padding: 0;
-    border: 1px solid rgba(var(--color-heading-rgb), 0.28);
+    border: 1px solid rgba(var(--color-accent-gold-rgb), 0.5);
     border-radius: 50%;
-    background: var(--color-white);
-    color: var(--color-heading);
+    background: rgba(18, 30, 48, 0.82);
+    color: var(--color-gold);
+    box-shadow: 0 8px 20px rgba(4, 9, 18, 0.2), inset 0 1px 0 rgba(255, 247, 248, 0.08);
+    backdrop-filter: blur(12px);
     cursor: pointer;
   }
 

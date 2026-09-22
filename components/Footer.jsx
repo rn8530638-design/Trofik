@@ -8,7 +8,10 @@ export default function Footer() {
     <footer className={styles.footer}>
       <div className={styles.container}>
         <div className={styles.topRow}>
-          <a className={styles.logo} href="/" aria-label="ТрофиК — на главную">ТрофиК</a>
+          <div className={styles.brandBlock}>
+            <a className={styles.logo} href="/" aria-label="ТрофиК — на главную">ТрофиК</a>
+            <p>Студия красоты в Дубне</p>
+          </div>
           <nav aria-label="Меню в подвале">
             <ul className={styles.nav}>
               <li><a href="/#about">О студии</a></li><li><a href="/uslugi">Услуги</a></li><li><a href="/#reviews">Отзывы</a></li><li><a href="/#promotions">Акции</a></li><li><a href="/kontakty">Контакты</a></li>

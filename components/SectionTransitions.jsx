@@ -22,10 +22,10 @@ export default function SectionTransitions({ children }) {
         const panels = gsap.utils.toArray('[data-section-transition]');
 
         panels.forEach((panel) => {
-          gsap.fromTo(panel,
-            { yPercent: 16 },
+          gsap.fromTo(panel.firstElementChild,
+            { y: () => Math.min(100, window.innerHeight * 0.12) },
             {
-              yPercent: 0,
+              y: 0,
               ease: 'none',
               scrollTrigger: {
                 trigger: panel,
@@ -39,7 +39,19 @@ export default function SectionTransitions({ children }) {
       });
     }, rootRef);
 
-    return () => ctx.revert();
+    // Review switching and form feedback change section heights after mount.
+    let refreshFrame;
+    const observer = new ResizeObserver(() => {
+      window.cancelAnimationFrame(refreshFrame);
+      refreshFrame = window.requestAnimationFrame(() => ScrollTrigger.refresh());
+    });
+    observer.observe(rootRef.current);
+
+    return () => {
+      observer.disconnect();
+      window.cancelAnimationFrame(refreshFrame);
+      ctx.revert();
+    };
   }, []);
 
   return (

@@ -50,6 +50,7 @@ export default function ContactsBrief() {
         <span className={styles.marker} aria-hidden="true" />
         <h2 id="contacts-title" className={styles.title}>Ждём вас в гости</h2>
         <div className={styles.grid}>
+          <ContactsBriefForm copy={formCopy} phoneHref={contactDetails.phoneHref} />
           <div className={styles.info}>
             <div className={styles.item}>
               <span className={styles.infoIcon}><MapPinIcon /></span>
@@ -75,7 +76,6 @@ export default function ContactsBrief() {
             </div>
             <a className={styles.callButton} href={contactDetails.phoneHref}><PhoneIcon />Позвонить</a>
           </div>
-          <ContactsBriefForm copy={formCopy} phoneHref={contactDetails.phoneHref} />
         </div>
       </div>
     </section>

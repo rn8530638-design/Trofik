@@ -9,12 +9,12 @@ import SectionTransitions from '@/components/SectionTransitions';
 export const dynamic = 'force-dynamic';
 
 export const metadata = {
-  title: { absolute: 'Трофик — студия красоты, где можно просто быть собой' },
-  description: 'Студия красоты Трофик: создаём красоту, возвращаем уверенность, вдохновляем жить.',
+  title: { absolute: 'ТрофиК — студия красоты, где можно просто быть собой' },
+  description: 'Студия красоты ТрофиК: создаём красоту, возвращаем уверенность, вдохновляем жить.',
   alternates: { canonical: '/' },
   openGraph: {
     url: '/',
-    title: 'Трофик — студия красоты',
+    title: 'ТрофиК — студия красоты',
     images: ['/images/ekaterina.jpg'],
   },
 };

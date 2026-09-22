@@ -39,8 +39,9 @@ export default function Hero() {
       <div className={styles.container}>
         <div className={styles.content}>
           <h1 className={styles.title}>
-            <span className={styles.brandName}>Трофик</span> — студия красоты, где можно
-            просто быть собой
+            <span className={styles.titleLine}><span className={styles.brandName}>ТрофиК</span> — студия</span>
+            <span className={styles.titleLine}>красоты, где можно</span>
+            <span className={styles.titleLine}>просто быть собой</span>
           </h1>
           <p className={styles.subtitle}>
             Создаём красоту. Возвращаем уверенность. Вдохновляем жить.
@@ -60,15 +61,11 @@ export default function Hero() {
         </div>
 
         <figure className={styles.media}>
-          {/* Marble arch behind the cut-out: shorter than the photo so the head
-              rises above it; bottoms aligned so the cropped dress sits on the arch
-              base at the bottom edge of the screen. CSS background — a missing
-              texture file degrades to a gradient instead of a broken image. */}
           <div className={styles.goldOutline} aria-hidden="true" />
           <div className={styles.marble} aria-hidden="true" />
           <Image
             src="/images/ekaterina-hero.png"
-            alt="Екатерина Трофимова, основатель и руководитель студии «Трофик»"
+            alt="Екатерина Трофимова, основатель и руководитель студии «ТрофиК»"
             width={1221}
             height={1400}
             priority
@@ -77,7 +74,7 @@ export default function Hero() {
           />
           <figcaption className={styles.caption}>
             <span className={styles.captionName}>Екатерина Трофимова</span>
-            <span className={styles.captionRole}>основатель и руководитель студии «Трофик»</span>
+            <span className={styles.captionRole}>основатель и руководитель студии «ТрофиК»</span>
           </figcaption>
         </figure>
       </div>
