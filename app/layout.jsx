@@ -1,5 +1,6 @@
 import { Playfair_Display, Montserrat, Great_Vibes } from 'next/font/google';
 import SiteChrome from '@/components/SiteChrome';
+import { siteUrl } from '@/lib/siteUrl';
 import './globals.css';
 
 const heading = Playfair_Display({
@@ -26,8 +27,7 @@ const script = Great_Vibes({
 });
 
 export const metadata = {
-  // TODO: заменить на реальный домен
-  metadataBase: new URL('https://trofik.ru'),
+  metadataBase: new URL(siteUrl),
   title: {
     default: 'Студия красоты ТрофиК',
     template: '%s — Студия красоты ТрофиК',

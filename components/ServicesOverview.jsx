@@ -5,24 +5,11 @@ import { getServices } from '@/lib/content';
 import { homepageImage } from '@/lib/homepageImage';
 import styles from './ServicesOverview.module.css';
 
-const SERVICE_ORDER = [
-  { slug: 'makeup', label: 'Макияж' },
-  { slug: 'hairstyles', label: 'Прически' },
-  { slug: 'manicure', label: 'Маникюр' },
-  { slug: 'pedicure', label: 'Педикюр' },
-  { slug: 'lashes', label: 'Ресницы' },
-  { slug: 'brows', label: 'Брови' },
-  { slug: 'training', label: 'Обучение / Мастер-классы' },
-];
-
+// Состав и порядок блока задаются в админке: галочка «Показывать в блоке
+// „Что мы делаем“» и стрелки сортировки в разделах «Услуги» и «Мероприятия».
 export default function ServicesOverview() {
-  const servicesBySlug = new Map(getServices().map((service) => [service.slug, service]));
-  const services = SERVICE_ORDER
-    .map(({ slug, label }) => {
-      const service = servicesBySlug.get(slug);
-      return service ? { ...service, label, cover: homepageImage(service.image_path) } : null;
-    })
-    .filter(Boolean);
+  const services = getServices({ homeOnly: true })
+    .map((service) => ({ ...service, cover: homepageImage(service.image_path) }));
 
   return (
     <section id="services" className={styles.services} aria-labelledby="services-title">
@@ -44,12 +31,12 @@ export default function ServicesOverview() {
           {services.map((service) => (
             <li key={service.id} className={styles.card}>
               <div className={styles.photoWrap}>
-                {service.slug === 'training' ? (
+                {!service.cover ? (
                   <div className={styles.trainingPlaceholder} aria-hidden="true">
                     <span className={styles.trainingMonogram}>Т</span>
-                    <span className={styles.trainingCaption}>Академия красоты</span>
+                    {service.slug === 'training' && <span className={styles.trainingCaption}>Академия красоты</span>}
                   </div>
-                ) : service.cover && <Image
+                ) : <Image
                   className={styles.photo}
                   src={service.cover}
                   alt={`${service.name} в студии ТрофиК`}
@@ -58,7 +45,7 @@ export default function ServicesOverview() {
                 />}
               </div>
               <div className={styles.content}>
-                <h3 className={styles.name}>{service.label}</h3>
+                <h3 className={styles.name}>{service.name}</h3>
                 <p className={styles.description}>{service.description}</p>
                 <p className={styles.duration}>{service.duration}</p>
                 <p className={styles.price}>{service.price}</p>
