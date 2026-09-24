@@ -95,6 +95,9 @@
   text-decoration: none;
 }
 
+.groupPicker { display: inline-flex; align-items: center; gap: 10px; margin-top: 14px; color: var(--color-text-body); font: 600 12px var(--font-body), sans-serif; letter-spacing: 0.04em; text-transform: uppercase; }
+.groupPicker select { min-height: 38px; padding: 6px 10px; border: 1px solid #bca66b; border-radius: 7px; background: #fff; color: #6b5627; font: 600 13px var(--font-body), sans-serif; letter-spacing: 0; text-transform: none; }
+
 .editor .fullWidth { grid-column: 1 / -1; }
 .editor small { color: var(--color-text-body); font: 400 11px/1.4 var(--font-body), sans-serif; }
 

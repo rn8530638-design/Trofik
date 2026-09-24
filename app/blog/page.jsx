@@ -6,7 +6,7 @@ import styles from './page.module.css';
 export const dynamic = 'force-dynamic';
 
 export const metadata = {
-  title: 'Блог — Студия красоты ТрофиК',
+  title: 'Блог',
   description: 'Заметки мастеров студии ТрофиК о красоте, уходе и подготовке к важным событиям.',
   alternates: { canonical: '/blog' },
 };

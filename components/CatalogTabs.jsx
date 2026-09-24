@@ -9,9 +9,11 @@ const TABS = [
   { id: 'events', label: 'Мероприятия' },
 ];
 
-export default function CatalogTabs({ services, events }) {
+// Прайс приходит готовой серверной разметкой, поэтому PriceList остаётся серверным компонентом.
+export default function CatalogTabs({ services, events, servicesPrice, eventsPrice }) {
   const [activeTab, setActiveTab] = useState('services');
   const panels = { services, events };
+  const priceBlocks = { services: servicesPrice, events: eventsPrice };
 
   return (
     <div className={styles.catalogTabs}>
@@ -30,6 +32,7 @@ export default function CatalogTabs({ services, events }) {
               <div className={`${styles.grid} ${tab.id === 'events' ? styles.eventGrid : ''}`}>
                 {panels[tab.id].map((item) => <CatalogCard key={item.slug} item={item} type={tab.id} />)}
               </div>
+              {priceBlocks[tab.id]}
             </section>
           );
         })}

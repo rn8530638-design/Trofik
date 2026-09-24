@@ -11,7 +11,7 @@ function ClockIcon() { return <svg viewBox="0 0 24 24" aria-hidden="true"><circl
 function TelegramIcon() { return <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m21 4-3.1 15.1c-.23 1.06-.84 1.32-1.7.82l-4.7-3.46-2.27 2.18c-.25.25-.46.46-.94.46l.34-4.78 8.7-7.86c.38-.34-.08-.53-.59-.19L6.02 13.02 1.4 11.58c-1-.31-1.02-1-.17-1.33L19.3 3.3C20.13 3 20.86 3.5 21 4Z" /></svg>; }
 
 export const metadata = {
-  title: 'Контакты — Студия красоты ТрофиК',
+  title: 'Контакты',
   description: 'Контакты студии красоты ТрофиК: Дубна, Дачная улица, 1 стр. 2. Маникюр, педикюр, брови, ресницы, макияж и запись.',
   alternates: { canonical: '/kontakty' },
 };

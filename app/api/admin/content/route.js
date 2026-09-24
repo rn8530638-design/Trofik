@@ -1,11 +1,16 @@
 import { NextResponse } from 'next/server';
 import { db, normalizeRow } from '@/lib/db';
 import { requireAdmin } from '@/lib/auth';
+import { priceGroupSlugs } from '@/lib/priceGroups';
 
 const tables = {
   services: {
     fields: ['slug', 'name', 'description', 'duration', 'price', 'category', 'show_home', 'sort_order', 'image_path'],
     required: ['name', 'description', 'price', 'category'],
+  },
+  price_items: {
+    fields: ['group_slug', 'name', 'description', 'duration', 'price', 'is_extra', 'sort_order'],
+    required: ['group_slug', 'name', 'price'],
   },
   reviews: {
     fields: ['text', 'author', 'review_date', 'rating', 'source_url', 'is_visible', 'sort_order'],
@@ -27,7 +32,7 @@ function tableFrom(url) {
 }
 
 function cleanValue(field, value) {
-  if (field === 'show_home' || field === 'is_visible' || field === 'is_published') return value ? 1 : 0;
+  if (field === 'show_home' || field === 'is_visible' || field === 'is_published' || field === 'is_extra') return value ? 1 : 0;
   if (field === 'sort_order') return Number.isFinite(Number(value)) ? Number(value) : 0;
   if (field === 'rating') return Math.min(5, Math.max(1, Number(value) || 5));
   return typeof value === 'string' ? value.trim() : '';
@@ -67,6 +72,9 @@ function cleanPayload(table, input) {
   if (table === 'services') {
     payload.category = payload.category === 'events' ? 'events' : 'services';
     payload.slug = payload.slug || `${payload.name.toLowerCase().replace(/[^a-zа-яё0-9]+/gi, '-').replace(/^-|-$/g, '')}-${Date.now()}`;
+  }
+  if (table === 'price_items' && !priceGroupSlugs.includes(payload.group_slug)) {
+    throw new Error('Выберите группу прайса.');
   }
   if (table === 'blog_posts') {
     payload.slug = uniquePostSlug(input.slug, payload.title, input.id);
