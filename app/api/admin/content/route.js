@@ -9,7 +9,7 @@ const tables = {
     required: ['name', 'description', 'price', 'category'],
   },
   price_items: {
-    fields: ['group_slug', 'name', 'description', 'duration', 'price', 'is_extra', 'sort_order'],
+    fields: ['group_slug', 'name', 'description', 'duration', 'price', 'is_extra', 'sort_order', 'image_path'],
     required: ['group_slug', 'name', 'price'],
   },
   reviews: {

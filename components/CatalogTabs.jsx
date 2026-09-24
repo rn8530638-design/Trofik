@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import CatalogCard from './CatalogCard';
 import styles from './CatalogTabs.module.css';
 
 const TABS = [
@@ -9,11 +8,11 @@ const TABS = [
   { id: 'events', label: 'Мероприятия' },
 ];
 
-// Прайс приходит готовой серверной разметкой, поэтому PriceList остаётся серверным компонентом.
-export default function CatalogTabs({ services, events, servicesPrice, eventsPrice }) {
+// Содержимое вкладок приходит готовой серверной разметкой, поэтому PriceList
+// остаётся серверным компонентом и весь каталог попадает в HTML.
+export default function CatalogTabs({ servicesPrice, eventsPrice }) {
   const [activeTab, setActiveTab] = useState('services');
-  const panels = { services, events };
-  const priceBlocks = { services: servicesPrice, events: eventsPrice };
+  const panels = { services: servicesPrice, events: eventsPrice };
 
   return (
     <div className={styles.catalogTabs}>
@@ -29,10 +28,7 @@ export default function CatalogTabs({ services, events, servicesPrice, eventsPri
           const isActive = activeTab === tab.id;
           return (
             <section key={tab.id} className={`${styles.panel} ${isActive ? styles.panelActive : ''}`} id={`${tab.id}-catalog`} role="tabpanel" aria-labelledby={`${tab.id}-tab`} aria-hidden={!isActive}>
-              <div className={`${styles.grid} ${tab.id === 'events' ? styles.eventGrid : ''}`}>
-                {panels[tab.id].map((item) => <CatalogCard key={item.slug} item={item} type={tab.id} />)}
-              </div>
-              {priceBlocks[tab.id]}
+              {panels[tab.id]}
             </section>
           );
         })}

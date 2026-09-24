@@ -1,6 +1,6 @@
 import CatalogTabs from '@/components/CatalogTabs';
 import PriceList from '@/components/PriceList';
-import { getPriceGroups, getServices } from '@/lib/content';
+import { getPriceGroups } from '@/lib/content';
 import styles from './page.module.css';
 
 export const dynamic = 'force-dynamic';
@@ -38,8 +38,6 @@ function offerCatalog(groups) {
 }
 
 export default function ServicesPage() {
-  const services = getServices({ category: 'services' });
-  const events = getServices({ category: 'events' }).map((item) => ({ ...item, participants: item.duration }));
   const servicePrice = getPriceGroups({ category: 'services' });
   const eventPrice = getPriceGroups({ category: 'events' });
 
@@ -54,10 +52,8 @@ export default function ServicesPage() {
             <p>Для нас важны не только профессионализм и аккуратность, но и то, как вы чувствуете себя у нас. Внимательно слушаем ваши пожелания, бережно относимся к вам и делаем всё, чтобы вы могли расслабиться и довериться результату.</p>
           </div>
           <CatalogTabs
-            services={services}
-            events={events}
-            servicesPrice={<PriceList groups={servicePrice} title="Прайс-лист" note="Актуальные цены студии. Точную стоимость мастер подтвердит на консультации." id="price-services-title" />}
-            eventsPrice={<PriceList groups={eventPrice} title="Стоимость мероприятий" note="Мастер-классы для компаний бронируются заранее через администратора студии." id="price-events-title" />}
+            servicesPrice={<PriceList groups={servicePrice} label="Услуги и цены" note="Актуальные цены студии. Точную стоимость мастер подтвердит на консультации." />}
+            eventsPrice={<PriceList groups={eventPrice} label="Мероприятия и цены" note="Мастер-классы для компаний бронируются заранее через администратора студии." />}
           />
         </div>
       </section>
