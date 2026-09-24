@@ -9,9 +9,9 @@ export const dynamic = 'force-dynamic';
 export async function generateMetadata({ params }) {
   const { slug } = await params;
   const article = getBlogPostBySlug(slug);
-  if (!article) return { title: 'Статья не найдена — ТрофиК' };
+  if (!article) return { title: 'Статья не найдена' };
   return {
-    title: `${article.title} — Блог ТрофиК`,
+    title: article.title,
     description: article.excerpt,
     alternates: { canonical: `/blog/${article.slug}` },
   };
