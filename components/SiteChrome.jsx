@@ -4,6 +4,7 @@ import { usePathname } from 'next/navigation';
 import Header from './Header';
 import Footer from './Footer';
 import CookieBanner from './CookieBanner';
+import BookingInvite from './BookingInvite';
 
 export default function SiteChrome({ children }) {
   const pathname = usePathname();
@@ -16,6 +17,7 @@ export default function SiteChrome({ children }) {
       {children}
       <Footer />
       <CookieBanner />
+      <BookingInvite />
     </div>
   );
 }
