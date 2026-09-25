@@ -23,15 +23,7 @@ export default function ContactsPageForm({ phoneHref }) {
   };
 
   useEffect(() => {
-    setDraft(readContactDraft());
-    try {
-      const selectedService = window.sessionStorage.getItem('selected-service');
-      if (!selectedService) return;
-      if (serviceOptions.includes(selectedService)) updateDraft('service', selectedService);
-      window.sessionStorage.removeItem('selected-service');
-    } catch {
-      // The form works even if browser storage is unavailable.
-    }
+    setDraft((current) => ({ ...current, ...readContactDraft() }));
   }, []);
 
   useEffect(() => {
@@ -55,6 +47,20 @@ export default function ContactsPageForm({ phoneHref }) {
       document.removeEventListener('keydown', closeOnEscape);
     };
   }, []);
+
+  // Ошибку показываем, когда поле уже трогали и ушли из него.
+  function validateField(field, value) {
+    const trimmed = value.trim();
+    if (field === 'name') return trimmed ? '' : 'Укажите, пожалуйста, имя.';
+    if (!trimmed) return 'Укажите, пожалуйста, телефон.';
+    return trimmed.replace(/\D/g, '').length < 10 ? 'Введите номер телефона не менее чем из 10 цифр.' : '';
+  }
+
+  function handleBlur(field) {
+    setErrors((current) => ({ ...current, [field]: validateField(field, draft[field]) }));
+  }
+
+  const isReady = Boolean(draft.name.trim()) && draft.phone.replace(/\D/g, '').length >= 10;
 
   async function handleSubmit(event) {
     event.preventDefault();
@@ -87,9 +93,9 @@ export default function ContactsPageForm({ phoneHref }) {
   return (
     <form className={styles.formCard} onSubmit={handleSubmit} noValidate>
       <h2 className={styles.heading}>Оставьте заявку</h2>
-      <label className={styles.field}><span>Имя</span><input name="name" type="text" required placeholder="Ваше имя" value={draft.name} onChange={(event) => updateDraft('name', event.target.value)} aria-invalid={Boolean(errors.name)} aria-describedby={errors.name ? 'contacts-name-error' : undefined} />{errors.name && <small id="contacts-name-error">{errors.name}</small>}</label>
-      <label className={styles.field}><span>Телефон</span><input name="phone" type="tel" required placeholder="+7 (___) ___-__-__" value={draft.phone} onChange={(event) => updateDraft('phone', event.target.value)} aria-invalid={Boolean(errors.phone)} aria-describedby={errors.phone ? 'contacts-phone-error' : undefined} />{errors.phone && <small id="contacts-phone-error">{errors.phone}</small>}</label>
-      <label className={styles.field}><span>Комментарий</span><textarea name="comment" rows="4" placeholder="Расскажите, что вас интересует" value={draft.comment} onChange={(event) => updateDraft('comment', event.target.value)} /></label>
+      <label className={styles.field}><span>Имя<i aria-hidden="true">*</i></span><input name="name" type="text" required placeholder="Ваше имя" value={draft.name} onChange={(event) => { updateDraft('name', event.target.value); if (errors.name) setErrors((current) => ({ ...current, name: '' })); }} onBlur={() => handleBlur('name')} aria-invalid={Boolean(errors.name)} aria-describedby={errors.name ? 'contacts-name-error' : undefined} />{errors.name && <small id="contacts-name-error">{errors.name}</small>}</label>
+      <label className={styles.field}><span>Телефон<i aria-hidden="true">*</i></span><input name="phone" type="tel" required placeholder="+7 (___) ___-__-__" value={draft.phone} onChange={(event) => { updateDraft('phone', event.target.value); if (errors.phone) setErrors((current) => ({ ...current, phone: '' })); }} onBlur={() => handleBlur('phone')} aria-invalid={Boolean(errors.phone)} aria-describedby={errors.phone ? 'contacts-phone-error' : undefined} />{errors.phone && <small id="contacts-phone-error">{errors.phone}</small>}</label>
+      <label className={styles.field}><span>Комментарий<em>необязательно</em></span><textarea name="comment" rows="4" placeholder="Расскажите, что вас интересует" value={draft.comment} onChange={(event) => updateDraft('comment', event.target.value)} /></label>
       <div className={styles.field} ref={servicePickerRef}>
         <span>Тип услуги</span>
         <input type="hidden" name="serviceType" value={draft.service} />
@@ -127,7 +133,7 @@ export default function ContactsPageForm({ phoneHref }) {
         )}
       </div>
       {requestError && <p className={styles.requestError}>Не удалось отправить заявку. Попробуйте <a href={phoneHref}>позвонить нам напрямую</a>.</p>}
-      <button className={styles.submit} type="submit" disabled={isSubmitting}>{isSubmitting ? 'Отправка...' : 'Записаться'}</button>
+      <button className={`${styles.submit} ${isReady ? '' : styles.submitIdle}`} type="submit" disabled={isSubmitting || !isReady}>{isSubmitting ? 'Отправка...' : 'Записаться'}</button>
     </form>
   );
 }

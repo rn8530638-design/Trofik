@@ -1,8 +1,8 @@
-.page { min-height: 100svh; background: var(--homepage-background-one, #1f2d43); }
+.page { min-height: 100svh; }
 .article { padding: 150px 0 120px; }
 .container { width: min(920px, calc(100% - 48px)); margin: 0 auto; }
 .backLink { display: inline-flex; margin-bottom: 40px; color: var(--color-gold); font: 600 .75rem var(--font-body), sans-serif; letter-spacing: .12em; text-decoration: none; text-transform: uppercase; }
-.meta { display: flex; gap: 10px; margin: 0 0 20px; color: var(--color-muted); font: .74rem var(--font-body), sans-serif; letter-spacing: .06em; }
+.meta { display: flex; gap: 10px; margin: 22px 0 0; color: var(--color-muted); font: .74rem var(--font-body), sans-serif; letter-spacing: .06em; }
 .meta span { color: var(--color-gold); font-weight: 600; text-transform: uppercase; }
 .article h1 { max-width: 14ch; margin: 0; color: var(--color-gold); font: 400 clamp(3rem, 6vw, 5.6rem)/.98 "Gloria Script", var(--font-script), cursive; }
 .excerpt { max-width: 62ch; margin: 28px 0 40px; color: var(--color-text-body); font: 1.08rem/1.7 var(--font-body), sans-serif; }
@@ -10,4 +10,15 @@
 .cover img { object-fit: cover; filter: saturate(.76) contrast(.96); }
 .content { max-width: 720px; margin: 52px auto 0; color: var(--color-text-body); font: 1.05rem/1.8 var(--font-body), sans-serif; }
 .content p { margin: 0 0 25px; }
-@media (max-width: 767px) { .article { padding: calc(var(--phone-page-top) + var(--phone-4)) 0 var(--phone-10); } .container { width: min(calc(100% - calc(var(--phone-gutter) * 2)), 600px); } .backLink { margin-bottom: 28px; } .article h1 { font-size: clamp(2.9rem, 14vw, 4.1rem); } .excerpt { margin: 22px 0 30px; font-size: .98rem; } .cover { border-radius: 18px; aspect-ratio: 4 / 3; } .content { margin-top: 32px; font-size: .98rem; line-height: 1.75; } }
+@media (max-width: 767px) {
+  .article { padding: calc(var(--phone-page-top) + var(--phone-4)) 0 var(--phone-10); }
+  .container { width: min(calc(100% - calc(var(--phone-gutter) * 2)), 600px); }
+  /* Шапка статьи держится в один экран: ссылка и мета в строку, заголовок
+     компактнее, вводный абзац снят — он повторяет начало текста. */
+  .backLink { margin-bottom: 16px; }
+  .meta { margin: 14px 0 0; }
+  .article h1 { max-width: none; font-size: clamp(2rem, 9vw, 2.6rem); line-height: 1.08; }
+  .excerpt { display: none; }
+  .cover { margin-top: 22px; border-radius: 18px; aspect-ratio: 4 / 3; }
+  .content { margin-top: 26px; font-size: .98rem; line-height: 1.75; }
+}

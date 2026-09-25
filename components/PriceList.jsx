@@ -1,5 +1,5 @@
-import Image from 'next/image';
 import PriceCard from './PriceCard';
+import PriceGroupPicker from './PriceGroupPicker';
 import styles from './PriceList.module.css';
 
 export default function PriceList({ groups, title, note, label, id }) {
@@ -14,19 +14,15 @@ export default function PriceList({ groups, title, note, label, id }) {
         </div>
       )}
 
-      {groups.map((group, groupIndex) => (
+      <PriceGroupPicker options={groups.map((group) => ({ slug: group.slug, title: group.title }))}>
+      {groups.map((group) => (
         <section className={styles.group} key={group.slug} aria-labelledby={`group-${group.slug}`}>
           <header className={styles.groupHead}>
-            {group.image && (
-              <div className={styles.groupPhoto}>
-                <Image src={group.image} alt={`${group.title} в студии ТрофиК`} fill sizes="84px" />
-              </div>
-            )}
             <h2 className={styles.groupTitle} id={`group-${group.slug}`}>{group.title}</h2>
           </header>
 
           <div className={styles.grid}>
-            {group.main.map((item, index) => <PriceCard key={item.id} item={item} priority={groupIndex === 0 && index < 3} />)}
+            {group.main.map((item) => <PriceCard key={item.id} item={item} />)}
           </div>
 
           {group.extras.length > 0 && (
@@ -48,6 +44,7 @@ export default function PriceList({ groups, title, note, label, id }) {
           )}
         </section>
       ))}
+      </PriceGroupPicker>
     </section>
   );
 }

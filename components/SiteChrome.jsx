@@ -11,7 +11,7 @@ export default function SiteChrome({ children }) {
   if (pathname.startsWith('/admin')) return children;
   const usesPremiumTheme = pathname === '/' || pathname.startsWith('/uslugi') || pathname.startsWith('/kontakty') || pathname.startsWith('/blog');
   return (
-    <div className={usesPremiumTheme ? `homepage-theme${pathname === '/' ? ' homepage-gradient' : ''}` : undefined}>
+    <div className={usesPremiumTheme ? `homepage-theme ${pathname === '/' ? 'homepage-gradient' : 'inner-gradient'}` : undefined}>
       {pathname === '/' && <div className="homepage-pinned-background" aria-hidden="true" />}
       <Header />
       {children}

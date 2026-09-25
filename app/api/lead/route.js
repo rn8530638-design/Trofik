@@ -4,6 +4,11 @@ import { NextResponse } from 'next/server';
 export async function POST(request) {
   try {
     const { name, phone, comment = '', service = '', serviceType = '' } = await request.json();
+    // Имя и телефон обязательны; комментарий и услуга — нет.
+    const digits = String(phone ?? '').replace(/\D/g, '');
+    if (!String(name ?? '').trim() || digits.length < 10) {
+      return NextResponse.json({ success: false, error: 'name and phone are required' }, { status: 400 });
+    }
     console.log('New lead:', { name, phone, comment, service, serviceType, timestamp: new Date().toISOString() });
     return NextResponse.json({ success: true }, { status: 200 });
   } catch {

@@ -107,13 +107,13 @@
   color: var(--color-navy);
   text-decoration: none;
   white-space: nowrap;
-  transition: background-color 0.2s ease, color 0.2s ease;
+  transition: border-color 0.2s ease, color 0.2s ease;
 }
 
 .cta:hover,
 .cta:focus-visible {
-  background: var(--color-navy);
-  color: var(--color-white);
+  border-color: var(--color-gold);
+  color: var(--color-gold);
 }
 
 .menuButton { display: none; }

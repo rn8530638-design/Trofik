@@ -1,13 +1,13 @@
-.price { margin-top: 8px; }
+.price { margin-top: 0; }
 .head { text-align: center; }
 .marker { display: block; width: 48px; height: 1px; margin: 0 auto 22px; background: var(--color-gold); }
 .title { margin: 0; color: var(--color-gold); font-family: "Gloria Script", var(--font-script), cursive; font-size: clamp(2.6rem, 3.6vw, 3.6rem); font-weight: 400; line-height: 1.1; }
 .note { max-width: 56ch; margin: 18px auto 0; color: var(--color-muted); font-family: var(--font-body), Arial, sans-serif; font-size: 0.875rem; line-height: 1.6; }
 
-.group { margin-top: 68px; }
-.groupHead { display: flex; align-items: center; gap: 20px; margin-bottom: 26px; padding-bottom: 18px; border-bottom: 1px solid rgba(var(--color-accent-gold-rgb), 0.3); }
-.groupPhoto { position: relative; width: 74px; height: 74px; flex-shrink: 0; overflow: hidden; border-radius: 50%; background: #17243a; }
-.groupPhoto img { object-fit: cover; filter: saturate(0.82) contrast(0.98); }
+.group { display: none; margin-top: 0; }
+.group[data-active='true'] { display: block; }
+.group[data-active='true'] ~ .group[data-active='true'] { margin-top: 52px; }
+.groupHead { margin-bottom: 26px; padding-bottom: 18px; border-bottom: 1px solid rgba(var(--color-accent-gold-rgb), 0.3); }
 .groupTitle { margin: 0; color: var(--color-heading); font-family: var(--font-heading), Georgia, serif; font-size: 1.75rem; font-weight: 600; }
 
 .grid { display: grid; gap: 26px; grid-template-columns: repeat(3, minmax(0, 1fr)); }
@@ -25,8 +25,8 @@
 .extrasText { min-width: 0; }
 .extrasName { margin: 0; color: var(--color-text-body); font-family: var(--font-body), Arial, sans-serif; font-size: 0.92rem; line-height: 1.4; overflow-wrap: anywhere; }
 .extrasDescription { margin: 5px 0 0; color: var(--color-muted); font-family: var(--font-body), Arial, sans-serif; font-size: 0.8rem; line-height: 1.5; }
-.extrasDuration { margin: 0; color: var(--color-muted); font-family: var(--font-body), Arial, sans-serif; font-size: 0.8125rem; font-variant-numeric: tabular-nums; text-align: right; white-space: nowrap; }
-.extrasPrice { margin: 0; color: var(--color-gold); font-family: var(--font-body), Arial, sans-serif; font-size: 1rem; font-weight: 600; font-variant-numeric: tabular-nums; text-align: right; white-space: nowrap; }
+.extrasDuration { margin: 0; color: var(--color-muted); font-family: var(--font-numeric), var(--font-body), sans-serif; font-size: 0.8125rem; font-variant-numeric: tabular-nums; text-align: right; white-space: nowrap; }
+.extrasPrice { margin: 0; color: var(--color-gold); font-family: var(--font-numeric), var(--font-body), sans-serif; font-size: 1rem; font-weight: 600; font-variant-numeric: tabular-nums; text-align: right; white-space: nowrap; }
 
 @media (prefers-reduced-motion: reduce) { .extrasSummary::after { transition-duration: 0.01ms; } }
 
@@ -39,7 +39,6 @@
 @media (max-width: 767px) {
   .group { margin-top: var(--phone-8); }
   .groupHead { gap: var(--phone-4); margin-bottom: var(--phone-5); }
-  .groupPhoto { width: 54px; height: 54px; }
   .groupTitle { font-size: 1.3rem; }
   .grid { gap: var(--phone-4); grid-template-columns: minmax(0, 1fr); }
   .extras { padding: 0 var(--phone-4) var(--phone-2); border-radius: 14px; }

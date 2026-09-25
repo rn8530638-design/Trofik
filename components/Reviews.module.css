@@ -81,7 +81,9 @@
 /* Every slide occupies one cell; active and outgoing slides animate independently. */
 .slide {
   grid-area: 1 / 1;
-  display: none;
+  /* Все слайды остаются в потоке грида: высота панели равна самому длинному
+     отзыву и не прыгает при переключении. Скрывает их visibility, а не display. */
+  display: flex;
   min-height: 370px;
   align-items: center;
   opacity: 0;

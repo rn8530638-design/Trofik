@@ -1,22 +1,20 @@
 .card { display: flex; overflow: hidden; flex-direction: column; border: 1px solid rgba(var(--color-accent-gold-rgb), 0.26); border-radius: 18px; background: linear-gradient(150deg, rgba(77, 96, 125, 0.35), rgba(18, 30, 49, 0.58)); box-shadow: 0 14px 34px rgba(0, 0, 0, 0.2); transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease; }
-.card:hover, .card:focus-within { border-color: rgba(var(--color-accent-gold-rgb), 0.62); box-shadow: 0 20px 44px rgba(0, 0, 0, 0.28); transform: translateY(-4px); }
-
 .photoWrap { position: relative; aspect-ratio: 5 / 4; overflow: hidden; background: #17243a; }
 .photoWrap::after { position: absolute; inset: 0; background: linear-gradient(to top, rgba(7, 15, 27, 0.32), transparent 55%); content: ''; }
-
 /* Карточка без фотографии: фирменная монограмма вместо чужого или пустого снимка. */
 .photoEmpty { display: flex; align-items: center; justify-content: center; background: radial-gradient(circle at 50% 42%, rgba(var(--color-accent-gold-rgb), 0.2), transparent 62%), linear-gradient(150deg, #22314a, #16233a); }
 .photoEmpty::after { background: none; }
 .monogram { color: rgba(var(--color-accent-gold-rgb), 0.5); font-family: "Gloria Script", var(--font-script), cursive; font-size: 4.6rem; line-height: 1; }
 .photo { object-fit: cover; filter: saturate(0.8) contrast(0.97); transition: transform 0.45s ease, filter 0.45s ease; }
 .card:hover .photo, .card:focus-within .photo { filter: saturate(0.92) contrast(1); transform: scale(1.04); }
+.card:hover, .card:focus-within { border-color: rgba(var(--color-accent-gold-rgb), 0.62); box-shadow: 0 20px 44px rgba(0, 0, 0, 0.28); transform: translateY(-4px); }
 
 .content { display: flex; flex: 1; flex-direction: column; padding: 22px 24px 20px; }
 .name { margin: 0; color: var(--color-heading); font-family: var(--font-heading), Georgia, serif; font-size: 1.12rem; font-weight: 600; line-height: 1.26; }
 .description { margin: 10px 0 0; color: var(--color-muted); font-family: var(--font-body), Arial, sans-serif; font-size: 0.8125rem; line-height: 1.5; }
 .meta { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; margin-top: 16px; padding-top: 14px; border-top: 1px solid rgba(88, 100, 122, 0.34); }
-.price { margin: 0; color: var(--color-gold); font-family: var(--font-body), Arial, sans-serif; font-size: 1.08rem; font-weight: 600; font-variant-numeric: tabular-nums; white-space: nowrap; }
-.duration { margin: 0; color: var(--color-muted); font-family: var(--font-body), Arial, sans-serif; font-size: 0.78rem; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.price { margin: 0; color: var(--color-gold); font-family: var(--font-numeric), var(--font-body), sans-serif; font-size: 1.08rem; font-weight: 600; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.duration { margin: 0; color: var(--color-muted); font-family: var(--font-numeric), var(--font-body), sans-serif; font-size: 0.78rem; font-variant-numeric: tabular-nums; white-space: nowrap; }
 
 .bookingLink { display: inline-flex; min-height: 40px; align-items: center; align-self: flex-start; gap: 9px; margin-top: auto; padding-top: 14px; border-bottom: 1px solid rgba(var(--color-accent-gold-rgb), 0.68); color: var(--color-gold); font-family: var(--font-body), Arial, sans-serif; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.11em; text-decoration: none; text-transform: uppercase; }
 .bookingLink::after { content: '→'; font-size: 1.3em; line-height: 1; transition: transform 0.2s ease; }

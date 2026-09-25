@@ -91,16 +91,29 @@ body {
   --homepage-hero-background: transparent;
   --homepage-hero-decoration: none;
   --homepage-footer-background: transparent;
-  --homepage-footer-border: transparent;
+  --homepage-footer-border: rgba(201, 173, 120, 0.28);
   /* A seamless blue / charcoal / blue cycle, independent of section heights. */
   --homepage-gradient-cycle: clamp(1400px, 150vw, 2000px);
+  /* Микро-шум поверх градиента разбивает ступени (banding) в тёмных тонах. */
   background:
-    radial-gradient(ellipse 70% 18% at 82% 17%, rgba(69, 104, 169, .18), transparent 100%),
-    radial-gradient(ellipse 82% 22% at 10% 78%, rgba(43, 82, 153, .16), transparent 100%),
-    radial-gradient(ellipse 75% 20% at 74% 60%, rgba(10, 12, 17, .1), transparent 100%),
-    linear-gradient(180deg, #1b2d4e 0%, #223b67 13%, #303d53 27%, #303743 36%, #2b3039 44%, #252a32 52%, #1f232b 60%, #191c23 67%, #171a20 72%, #1d2531 79%, #243653 88%, #25406a 94%, #1b2d4e 100%);
-  background-size: 100% var(--homepage-gradient-cycle);
-  background-repeat: repeat-y;
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/></filter><rect width='180' height='180' filter='url(%23n)' opacity='.11'/></svg>"),
+    linear-gradient(180deg, #1b2d4e 0%, #20355c 8%, #263c5f 16%, #2b3d54 24%, #2c3a4a 32%, #2a3441 40%, #262e39 48%, #222932 56%, #1e242d 64%, #1e2733 72%, #21303f 80%, #243851 87%, #243d5e 93%, #20355a 97%, #1b2d4e 100%);
+  background-size: 180px 180px, 100% var(--homepage-gradient-cycle);
+  background-repeat: repeat, repeat-y;
+}
+
+/* Внутренние страницы: один градиент на всю обёртку, подвал его продолжает. */
+.inner-gradient {
+  --homepage-background-one: transparent;
+  --homepage-footer-background: transparent;
+  --homepage-footer-border: rgba(201, 173, 120, 0.28);
+  --homepage-gradient-cycle: clamp(1400px, 150vw, 2000px);
+  /* Микро-шум поверх градиента разбивает ступени (banding) в тёмных тонах. */
+  background:
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/></filter><rect width='180' height='180' filter='url(%23n)' opacity='.11'/></svg>"),
+    linear-gradient(180deg, #1b2d4e 0%, #20355c 8%, #263c5f 16%, #2b3d54 24%, #2c3a4a 32%, #2a3441 40%, #262e39 48%, #222932 56%, #1e242d 64%, #1e2733 72%, #21303f 80%, #243851 87%, #243d5e 93%, #20355a 97%, #1b2d4e 100%);
+  background-size: 180px 180px, 100% var(--homepage-gradient-cycle);
+  background-repeat: repeat, repeat-y;
 }
 
 /* This fixed layer fades over scroll distance around the pinned services gallery.
@@ -110,8 +123,7 @@ body {
   z-index: 0;
   inset: 0;
   background:
-    radial-gradient(ellipse 82% 75% at 74% 8%, rgba(58, 87, 141, .28), transparent 75%),
-    linear-gradient(180deg, #24395e 0%, #273852 52%, #1c3159 100%);
+    linear-gradient(180deg, #223550 0%, #253a55 22%, #27394d 44%, #243343 66%, #21304a 84%, #1f3157 100%);
   opacity: 0;
   pointer-events: none;
   will-change: opacity;
@@ -120,14 +132,19 @@ body {
 .homepage-gradient > main,
 .homepage-gradient > footer { position: relative; z-index: 1; }
 
+/* Десктоп: фон закреплён за окном, а не за документом. Длинный прокручиваемый
+   градиент выдавал ступени (banding), которые «плыли» при скролле — неподвижный
+   слой высотой в один экран их не показывает. */
 @media (min-width: 768px) {
-  .homepage-gradient {
-    --homepage-gradient-cycle: 2600px;
+  .homepage-gradient,
+  .inner-gradient {
     background-image:
-      radial-gradient(ellipse 70% 18% at 82% 17%, rgba(69, 104, 169, .15), transparent 100%),
-      radial-gradient(ellipse 82% 22% at 10% 78%, rgba(43, 82, 153, .12), transparent 100%),
-      radial-gradient(ellipse 75% 20% at 74% 60%, rgba(10, 12, 17, .1), transparent 100%),
-      linear-gradient(180deg, #1b2d4e 0%, #213864 12%, #283e63 22%, #303a4d 31%, #303743 38%, #2b3039 45%, #252a32 52%, #1f232b 59%, #191c23 66%, #171a20 72%, #1b222d 78%, #21324c 85%, #253e68 93%, #1b2d4e 100%);
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/></filter><rect width='180' height='180' filter='url(%23n)' opacity='.11'/></svg>"),
+      linear-gradient(180deg, #1e3357 0%, #24395c 18%, #2a3d55 36%, #2b3a4a 54%, #27323f 74%, #223049 90%, #1e3357 100%);
+    background-size: 180px 180px, 100% 100vh;
+    background-repeat: repeat, no-repeat;
+    background-attachment: scroll, fixed;
+    background-position: 0 0, center top;
   }
 }
 
@@ -181,4 +198,9 @@ h3 {
 img {
   max-width: 100%;
   display: block;
+}
+
+/* Десктоп крупнее на 10%: одна корневая база вместо правки каждого блока. */
+@media (min-width: 1024px) {
+  html { font-size: 110%; }
 }

@@ -1,11 +1,8 @@
 .page {
   min-height: 100svh;
-  background:
-    radial-gradient(ellipse 58% 62% at 90% 2%, rgba(74, 108, 153, 0.2), transparent 70%),
-    linear-gradient(135deg, #142238 0%, #1f2d43 55%, #16243a 100%);
 }
 
-.catalog { padding: 158px 0 104px; }
+.catalog { padding: 120px 0 104px; }
 .container { width: min(1380px, calc(100% - 96px)); margin: 0 auto; }
 .marker { display: block; width: 48px; height: 1px; margin: 0 auto 22px; background: var(--color-gold); }
 .title { margin: 0; color: var(--color-gold); font-family: "Gloria Script", var(--font-script), cursive; font-size: clamp(3.5rem, 5.3vw, 5.3rem); font-weight: 400; line-height: 1.06; text-align: center; }

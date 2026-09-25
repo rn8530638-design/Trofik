@@ -91,8 +91,8 @@
 
 .name { margin: 0 0 12px; color: var(--color-heading); font-family: var(--font-heading), Georgia, serif; font-size: clamp(2rem, 2.5vw, 2.45rem); font-weight: 600; line-height: 1.08; text-shadow: 0 2px 14px rgba(0, 0, 0, 0.35); }
 .description { margin: 0 0 24px; color: rgba(255, 247, 248, 0.9); font-family: var(--font-body), sans-serif; font-size: 15px; line-height: 1.6; text-shadow: 0 1px 10px rgba(0, 0, 0, 0.38); }
-.duration { margin: 0 0 7px; padding-top: 16px; border-top: 1px solid rgba(255, 247, 248, 0.4); color: rgba(255, 247, 248, 0.78); font-family: var(--font-body), sans-serif; font-size: 14px; }
-.price { margin: 0; color: var(--color-gold); font-family: var(--font-body), sans-serif; font-size: 22px; font-weight: 600; }
+.duration { margin: 0 0 7px; padding-top: 16px; border-top: 1px solid rgba(255, 247, 248, 0.4); color: rgba(255, 247, 248, 0.78); font-family: var(--font-numeric), var(--font-body), sans-serif; font-size: 14px; font-variant-numeric: tabular-nums; }
+.price { margin: 0; color: var(--color-gold); font-family: var(--font-numeric), var(--font-body), sans-serif; font-size: 22px; font-weight: 600; font-variant-numeric: tabular-nums; }
 
 .allButton {
   --carousel-edge: clamp(32px, 4.5vw, 64px);

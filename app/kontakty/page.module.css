@@ -1,4 +1,4 @@
-.page { min-height: 100svh; background: radial-gradient(ellipse 56% 60% at 90% 2%, rgba(74, 108, 153, 0.2), transparent 70%), linear-gradient(135deg, #142238 0%, #1f2d43 55%, #16243a 100%); }
+.page { min-height: 100svh; }
 .contacts { padding: 158px 0 120px; }
 .container { width: min(1280px, calc(100% - 96px)); margin: 0 auto; }
 .marker { display: block; width: 48px; height: 1px; margin: 0 auto 22px; background: var(--color-gold); }

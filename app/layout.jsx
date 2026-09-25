@@ -1,4 +1,4 @@
-import { Playfair_Display, Montserrat, Great_Vibes } from 'next/font/google';
+import { Playfair_Display, Montserrat, Great_Vibes, Manrope } from 'next/font/google';
 import SiteChrome from '@/components/SiteChrome';
 import { siteUrl } from '@/lib/siteUrl';
 import './globals.css';
@@ -26,6 +26,15 @@ const script = Great_Vibes({
   display: 'swap',
 });
 
+// Цифры (цены, длительность, статистика) набираются отдельным гротеском:
+// у него ровные табличные знаки, поэтому суммы читаются лучше основного шрифта.
+const numeric = Manrope({
+  subsets: ['latin', 'cyrillic'],
+  weight: ['500', '600', '700'],
+  variable: '--font-numeric',
+  display: 'swap',
+});
+
 export const metadata = {
   metadataBase: new URL(siteUrl),
   title: {
@@ -41,7 +50,7 @@ export const viewport = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="ru" className={`${heading.variable} ${body.variable} ${script.variable}`}>
+    <html lang="ru" className={`${heading.variable} ${body.variable} ${script.variable} ${numeric.variable}`}>
       <body>
         <SiteChrome>{children}</SiteChrome>
       </body>

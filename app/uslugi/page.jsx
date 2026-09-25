@@ -52,7 +52,7 @@ export default function ServicesPage() {
             <p>Для нас важны не только профессионализм и аккуратность, но и то, как вы чувствуете себя у нас. Внимательно слушаем ваши пожелания, бережно относимся к вам и делаем всё, чтобы вы могли расслабиться и довериться результату.</p>
           </div>
           <CatalogTabs
-            servicesPrice={<PriceList groups={servicePrice} label="Услуги и цены" note="Актуальные цены студии. Точную стоимость мастер подтвердит на консультации." />}
+            servicesPrice={<PriceList groups={servicePrice} label="Услуги и цены" />}
             eventsPrice={<PriceList groups={eventPrice} label="Мероприятия и цены" note="Мастер-классы для компаний бронируются заранее через администратора студии." />}
           />
         </div>

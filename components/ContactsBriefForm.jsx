@@ -39,11 +39,6 @@ export default function ContactsBriefForm({ copy, phoneHref }) {
         fillPromotionComment(JSON.parse(savedPromotion));
         window.sessionStorage.removeItem('selected-promotion');
       }
-      const savedService = window.sessionStorage.getItem('selected-service');
-      if (savedService) {
-        fillSelectedService(savedService);
-        window.sessionStorage.removeItem('selected-service');
-      }
     } catch {
       // If session storage is unavailable, the event below still fills the field.
     }
@@ -85,6 +80,20 @@ export default function ContactsBriefForm({ copy, phoneHref }) {
       document.removeEventListener('keydown', closeOnEscape);
     };
   }, []);
+
+  // Ошибку показываем, когда поле уже трогали и ушли из него.
+  function validateField(field, value) {
+    const trimmed = value.trim();
+    if (field === 'name') return trimmed ? '' : copy.nameError;
+    if (!trimmed) return copy.phoneRequiredError;
+    return trimmed.replace(/\D/g, '').length < 10 ? copy.phoneFormatError : '';
+  }
+
+  function handleBlur(field) {
+    setErrors((current) => ({ ...current, [field]: validateField(field, draft[field]) }));
+  }
+
+  const isReady = Boolean(draft.name.trim()) && draft.phone.replace(/\D/g, '').length >= 10;
 
   async function handleSubmit(event) {
     event.preventDefault();
@@ -129,17 +138,17 @@ export default function ContactsBriefForm({ copy, phoneHref }) {
     <form className={styles.formCard} onSubmit={handleSubmit} noValidate>
       <h3 className={styles.formHeading}>{copy.heading}</h3>
       <label className={styles.field}>
-        <span>{copy.nameLabel}</span>
-        <input name="name" type="text" required placeholder={copy.namePlaceholder} value={draft.name} onChange={(event) => updateDraft('name', event.target.value)} aria-invalid={Boolean(errors.name)} aria-describedby={errors.name ? 'name-error' : undefined} />
+        <span>{copy.nameLabel}<i aria-hidden="true">*</i></span>
+        <input name="name" type="text" required placeholder={copy.namePlaceholder} value={draft.name} onChange={(event) => { updateDraft('name', event.target.value); if (errors.name) setErrors((current) => ({ ...current, name: '' })); }} onBlur={() => handleBlur('name')} aria-invalid={Boolean(errors.name)} aria-describedby={errors.name ? 'name-error' : undefined} />
         {errors.name && <small id="name-error" className={styles.fieldError}>{errors.name}</small>}
       </label>
       <label className={styles.field}>
-        <span>{copy.phoneLabel}</span>
-        <input name="phone" type="tel" required placeholder={copy.phonePlaceholder} value={draft.phone} onChange={(event) => updateDraft('phone', event.target.value)} aria-invalid={Boolean(errors.phone)} aria-describedby={errors.phone ? 'phone-error' : undefined} />
+        <span>{copy.phoneLabel}<i aria-hidden="true">*</i></span>
+        <input name="phone" type="tel" required placeholder={copy.phonePlaceholder} value={draft.phone} onChange={(event) => { updateDraft('phone', event.target.value); if (errors.phone) setErrors((current) => ({ ...current, phone: '' })); }} onBlur={() => handleBlur('phone')} aria-invalid={Boolean(errors.phone)} aria-describedby={errors.phone ? 'phone-error' : undefined} />
         {errors.phone && <small id="phone-error" className={styles.fieldError}>{errors.phone}</small>}
       </label>
       <label className={styles.field}>
-        <span>{copy.commentLabel}</span>
+        <span>{copy.commentLabel}<em>необязательно</em></span>
         <textarea name="comment" rows="4" placeholder={copy.commentPlaceholder} value={draft.comment} onChange={(event) => updateDraft('comment', event.target.value)} />
       </label>
       <div className={styles.field} ref={servicePickerRef}>
@@ -179,7 +188,7 @@ export default function ContactsBriefForm({ copy, phoneHref }) {
         )}
       </div>
       {requestError && <p className={styles.requestError}>{copy.requestError} <a href={phoneHref}>+7 (902) 229-89-93</a></p>}
-      <button className={styles.submit} type="submit" disabled={isSubmitting}>{isSubmitting ? copy.submitting : copy.submit}</button>
+      <button className={`${styles.submit} ${isReady ? '' : styles.submitIdle}`} type="submit" disabled={isSubmitting || !isReady}>{isSubmitting ? copy.submitting : copy.submit}</button>
     </form>
   );
 }

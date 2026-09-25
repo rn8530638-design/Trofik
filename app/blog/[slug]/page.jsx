@@ -28,8 +28,8 @@ export default async function BlogArticlePage({ params }) {
       <article className={styles.article}>
         <div className={styles.container}>
           <Link className={styles.backLink} href="/blog">← Все статьи</Link>
-          <p className={styles.meta}><span>{article.category}</span>{article.read_time}</p>
           <h1>{article.title}</h1>
+          <p className={styles.meta}><span>{article.category}</span>{article.read_time}</p>
           <p className={styles.excerpt}>{article.excerpt}</p>
           <div className={styles.cover}>
             <Image src={article.image_path || '/images/catalog-makeup.jpg'} alt="" fill priority sizes="(max-width: 900px) calc(100vw - 40px), 920px" />
