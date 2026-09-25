@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
+import { DIKIDI_BOOKING_URL } from '@/lib/dikidi';
 import styles from './Header.module.css';
 
 // Section links return to the appropriate point on the homepage; catalog and contacts have dedicated pages.
@@ -80,7 +81,7 @@ export default function Header() {
           </ul>
         </nav>
 
-        <a href="/#contacts" className={styles.cta}>
+        <a href={DIKIDI_BOOKING_URL} className={styles.cta} target="_blank" rel="noopener noreferrer">
           Записаться
         </a>
         <button

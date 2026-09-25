@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import { db, normalizeRow } from '@/lib/db';
 import { requireAdmin } from '@/lib/auth';
 import { priceGroupSlugs } from '@/lib/priceGroups';
+import { normalizeDikidiLink } from '@/lib/dikidi';
 
 const tables = {
   services: {
@@ -9,7 +10,7 @@ const tables = {
     required: ['name', 'description', 'price', 'category'],
   },
   price_items: {
-    fields: ['group_slug', 'name', 'description', 'duration', 'price', 'is_extra', 'sort_order', 'image_path'],
+    fields: ['group_slug', 'name', 'description', 'duration', 'price', 'is_extra', 'sort_order', 'image_path', 'dikidi_link'],
     required: ['group_slug', 'name', 'price'],
   },
   reviews: {
@@ -73,8 +74,9 @@ function cleanPayload(table, input) {
     payload.category = payload.category === 'events' ? 'events' : 'services';
     payload.slug = payload.slug || `${payload.name.toLowerCase().replace(/[^a-zа-яё0-9]+/gi, '-').replace(/^-|-$/g, '')}-${Date.now()}`;
   }
-  if (table === 'price_items' && !priceGroupSlugs.includes(payload.group_slug)) {
-    throw new Error('Выберите группу прайса.');
+  if (table === 'price_items') {
+    if (!priceGroupSlugs.includes(payload.group_slug)) throw new Error('Выберите группу прайса.');
+    payload.dikidi_link = normalizeDikidiLink(payload.dikidi_link);
   }
   if (table === 'blog_posts') {
     payload.slug = uniquePostSlug(input.slug, payload.title, input.id);

@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import { DIKIDI_BOOKING_URL } from '@/lib/dikidi';
 import styles from './Hero.module.css';
 
 function HeroStats() {
@@ -47,7 +48,7 @@ export default function Hero() {
             Создаём красоту. Возвращаем уверенность. Вдохновляем жить.
           </p>
           <div className={styles.actions}>
-            <a href="#contacts" className={styles.ctaButton}>
+            <a href={DIKIDI_BOOKING_URL} className={styles.ctaButton} target="_blank" rel="noopener noreferrer">
               <span className={styles.ctaIcon}><CalendarIcon /></span>
               <span>Записаться</span>
               <span className={styles.ctaArrow} aria-hidden="true"><span className={styles.arrowGlyph}>→</span></span>
