@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import { DIKIDI_BOOKING_URL } from '@/lib/dikidi';
 import styles from './Hero.module.css';
 
@@ -53,10 +54,10 @@ export default function Hero() {
               <span>Записаться</span>
               <span className={styles.ctaArrow} aria-hidden="true"><span className={styles.arrowGlyph}>→</span></span>
             </a>
-            <a href="#services" className={styles.secondaryLink}>
+            <Link href="/uslugi" className={styles.secondaryLink}>
               <span>Наши услуги</span>
               <span className={styles.secondaryArrow} aria-hidden="true"><span className={styles.arrowGlyph}>→</span></span>
-            </a>
+            </Link>
           </div>
           <HeroStats />
         </div>
