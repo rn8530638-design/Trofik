@@ -89,8 +89,8 @@
   background: linear-gradient(to bottom, rgba(7, 14, 26, 0.02) 18%, rgba(7, 14, 26, 0.28) 49%, rgba(10, 20, 34, 0.94) 100%);
 }
 
-.name { margin: 0 0 12px; color: var(--color-heading); font-family: var(--font-heading), Georgia, serif; font-size: clamp(2rem, 2.5vw, 2.45rem); font-weight: 600; line-height: 1.08; text-shadow: 0 2px 14px rgba(0, 0, 0, 0.35); }
-.description { margin: 0 0 24px; color: rgba(255, 247, 248, 0.9); font-family: var(--font-body), sans-serif; font-size: 15px; line-height: 1.6; text-shadow: 0 1px 10px rgba(0, 0, 0, 0.38); }
+.name { display: flex; min-height: 2.2em; align-items: flex-end; margin: 0 0 12px; color: var(--color-heading); font-family: var(--font-heading), Georgia, serif; font-size: clamp(1.65rem, 2vw, 2rem); font-weight: 600; line-height: 1.1; text-shadow: 0 2px 14px rgba(0, 0, 0, 0.35); text-wrap: balance; }
+.description { display: -webkit-box; min-height: 6.4em; margin: 0 0 24px; overflow: hidden; color: rgba(255, 247, 248, 0.9); font-family: var(--font-body), sans-serif; font-size: 15px; line-height: 1.6; text-shadow: 0 1px 10px rgba(0, 0, 0, 0.38); -webkit-box-orient: vertical; -webkit-line-clamp: 4; }
 .duration { margin: 0 0 7px; padding-top: 16px; border-top: 1px solid rgba(255, 247, 248, 0.4); color: rgba(255, 247, 248, 0.78); font-family: var(--font-numeric), var(--font-body), sans-serif; font-size: 14px; font-variant-numeric: tabular-nums; }
 .price { margin: 0; color: var(--color-gold); font-family: var(--font-numeric), var(--font-body), sans-serif; font-size: 22px; font-weight: 600; font-variant-numeric: tabular-nums; }
 
@@ -137,8 +137,8 @@
   .grid { width: 100%; gap: var(--phone-4); padding: 0 12px var(--phone-3); overflow: visible; scroll-snap-type: none; touch-action: auto; cursor: default; }
   .card { min-height: clamp(360px, 102vw, 420px); flex-basis: min(72vw, 292px); border-radius: clamp(16.94px, 5.31vw, 22px); }
   .content { min-height: clamp(360px, 102vw, 420px); padding: 62px var(--phone-4-5) var(--phone-4-5); }
-  .name { font-size: clamp(1.4rem, 6vw, 1.68rem); }
-  .description { margin-bottom: clamp(11.55px, 3.62vw, 15px); font-size: clamp(9.24px, 2.9vw, 12px); line-height: 1.5; }
+  .name { font-size: clamp(1.25rem, 5.4vw, 1.5rem); }
+  .description { margin-bottom: clamp(11.55px, 3.62vw, 15px); font-size: clamp(9.24px, 2.9vw, 12px); line-height: 1.5; min-height: 6em; }
   .duration { padding-top: clamp(10.01px, 3.14vw, 13px); font-size: clamp(10.01px, 3.14vw, 13px); }
   .price { font-size: clamp(13.86px, 4.35vw, 18px); }
   .scrollStage { padding-bottom: calc(var(--phone-10) + var(--phone-4)); }
