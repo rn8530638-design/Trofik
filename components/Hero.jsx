@@ -40,6 +40,7 @@ export default function Hero() {
     <section className={styles.hero}>
       <div className={styles.container}>
         <div className={styles.content}>
+          <span className={styles.eyebrow} aria-hidden="true" />
           <h1 className={styles.title}>
             <span className={styles.titleLine}><span className={styles.brandName}>ТрофиК</span> — студия</span>
             <span className={styles.titleLine}>красоты, где можно</span>
