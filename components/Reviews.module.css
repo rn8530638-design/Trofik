@@ -364,6 +364,8 @@
 }
 
 @media (max-width: 767px) {
+  /* Отзывы свёрнуты до нескольких строк — запас высоты под длинный отзыв с ПК здесь не нужен. */
+  .card, .slide { min-height: 0; }
   .container { padding: var(--phone-section) var(--phone-gutter); }
   .panel { min-height: 0; padding: clamp(33.88px, 10.63vw, 44px) clamp(15.4px, 4.83vw, 20px) clamp(29.26px, 9.18vw, 38px); border-radius: clamp(16.94px, 5.31vw, 22px); }
   .title { margin-bottom: clamp(23.1px, 7.25vw, 30px); font-size: clamp(2.5rem, 12vw, 3.2rem); }
