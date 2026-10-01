@@ -86,7 +86,7 @@
 .dot::after { position: absolute; top: 50%; left: 50%; width: 7px; height: 7px; border-radius: 50%; background: rgba(255, 247, 248, .5); content: ''; transform: translate(-50%, -50%); transition: background-color .25s ease, width .25s ease, border-radius .25s ease; }
 .dotActive::after { width: 20px; border-radius: 4px; background: var(--color-gold); }
 .dot:focus-visible { outline: 2px solid var(--color-gold); outline-offset: 1px; }
-@media (min-width: 1024px) { .container { grid-template-columns: minmax(0, 1fr) auto; gap: 48px; }.media { align-self: center; width: clamp(480px, 46.5vw, 690px); margin: 0 16px 0 0; } }
+@media (min-width: 1024px) { .container { grid-template-columns: minmax(0, 1fr) auto; gap: 48px; }.media { align-self: center; width: clamp(400px, 36vw, 580px); margin: 0 16px 0 0; } }
 @media (prefers-reduced-motion: reduce) { .slide { transition-duration: .01ms; } }
 @media (min-width: 1024px) and (max-width: 1599px) {
   .actions { gap: 14px; }
