@@ -75,3 +75,16 @@
   .media { order: 1; }
 }
 @media (prefers-reduced-motion: reduce) { .ctaButton,.ctaButton::before,.ctaArrow,.secondaryLink,.secondaryArrow { transition-duration: .01ms; } }
+
+.goldFrame { position: absolute; inset: 0; z-index: -1; border: 1px solid var(--color-gold); border-radius: 22px; opacity: .62; transform: translate(16px, 16px); }
+.slides { position: relative; aspect-ratio: 3 / 4; width: 100%; overflow: hidden; border-radius: 22px; background: #111b2a; box-shadow: 0 24px 58px rgba(0, 0, 0, .38); }
+.slide { object-fit: cover; opacity: 0; transition: opacity 900ms ease; }
+.slideActive { opacity: 1; }
+.slideShade { position: absolute; inset: auto 0 0; height: 24%; background: linear-gradient(to top, rgba(8, 17, 31, .5), rgba(8, 17, 31, 0)); pointer-events: none; }
+.dots { position: absolute; right: 0; bottom: 14px; left: 0; display: flex; justify-content: center; gap: 4px; }
+.dot { width: 22px; height: 22px; padding: 0; border: 0; background: transparent; cursor: pointer; position: relative; }
+.dot::after { position: absolute; top: 50%; left: 50%; width: 7px; height: 7px; border-radius: 50%; background: rgba(255, 247, 248, .5); content: ''; transform: translate(-50%, -50%); transition: background-color .25s ease, width .25s ease, border-radius .25s ease; }
+.dotActive::after { width: 20px; border-radius: 4px; background: var(--color-gold); }
+.dot:focus-visible { outline: 2px solid var(--color-gold); outline-offset: 1px; }
+@media (min-width: 1024px) { .media { align-self: center; width: clamp(320px, 31vw, 460px); margin: 0; } }
+@media (prefers-reduced-motion: reduce) { .slide { transition-duration: .01ms; } }

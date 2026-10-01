@@ -1,5 +1,5 @@
-import Image from 'next/image';
 import Link from 'next/link';
+import HeroSlider from './HeroSlider';
 import { DIKIDI_BOOKING_URL } from '@/lib/dikidi';
 import styles from './Hero.module.css';
 
@@ -62,23 +62,7 @@ export default function Hero() {
           <HeroStats />
         </div>
 
-        <figure className={styles.media}>
-          <div className={styles.goldOutline} aria-hidden="true" />
-          <div className={styles.marble} aria-hidden="true" />
-          <Image
-            src="/images/ekaterina-hero.png"
-            alt="Екатерина Трофимова, основатель и руководитель студии «ТрофиК»"
-            width={1221}
-            height={1400}
-            priority
-            sizes="(max-width: 767px) 80vw, 640px"
-            className={styles.photo}
-          />
-          <figcaption className={styles.caption}>
-            <span className={styles.captionName}>Екатерина Трофимова</span>
-            <span className={styles.captionRole}>основатель и руководитель студии «ТрофиК»</span>
-          </figcaption>
-        </figure>
+        <HeroSlider />
       </div>
     </section>
   );
