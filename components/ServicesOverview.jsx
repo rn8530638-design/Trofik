@@ -33,7 +33,7 @@ export default function ServicesOverview() {
               <div className={styles.photoWrap}>
                 {!service.cover ? (
                   <div className={styles.trainingPlaceholder} aria-hidden="true">
-                    <span className={styles.trainingMonogram}>Т</span>
+                    <span className={styles.trainingMonogram} />
                     {service.slug === 'training' && <span className={styles.trainingCaption}>Академия красоты</span>}
                   </div>
                 ) : <Image

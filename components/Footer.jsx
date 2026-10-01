@@ -9,8 +9,11 @@ export default function Footer() {
       <div className={styles.container}>
         <div className={styles.topRow}>
           <div className={styles.brandBlock}>
-            <a className={styles.logo} href="/" aria-label="ТрофиК — на главную">ТрофиК</a>
-            <p>Студия красоты в Дубне</p>
+            <span className={styles.mark} aria-hidden="true" />
+            <div>
+              <a className={styles.logo} href="/" aria-label="ТрофиК — на главную">ТрофиК</a>
+              <p>Студия красоты в Дубне</p>
+            </div>
           </div>
           <nav aria-label="Меню в подвале">
             <ul className={styles.nav}>
