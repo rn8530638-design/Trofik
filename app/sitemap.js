@@ -10,6 +10,7 @@ const PAGES = [
   { path: '/uslugi', changeFrequency: 'weekly', priority: 0.9 },
   { path: '/blog', changeFrequency: 'weekly', priority: 0.7 },
   { path: '/kontakty', changeFrequency: 'monthly', priority: 0.6 },
+  { path: '/privacy-policy', changeFrequency: 'yearly', priority: 0.2 },
 ];
 
 export default function sitemap() {

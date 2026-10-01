@@ -24,7 +24,6 @@ export default function CookieBanner() {
 
   return (
     <aside className={`${styles.banner} ${isLeaving ? styles.isLeaving : ''}`} aria-label="Уведомление об использовании cookie">
-      {/* TODO: создать отдельную страницу политики конфиденциальности по ТЗ, раздел 3.7 */}
       <p>Мы используем файлы cookie, чтобы сайт работал корректно и был удобным для вас. <a href="/privacy-policy">Подробнее</a></p>
       <div className={styles.actions}>
         <button className={styles.essential} type="button" onClick={() => acceptCookies('essential')}>Принять обязательные</button>
