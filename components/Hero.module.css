@@ -121,3 +121,8 @@
 }
 @media (min-width: 1024px) and (prefers-reduced-motion: reduce) { .slideZoom { transform: scale(1); transition: opacity .01ms; } }
 @media (min-width: 1600px) { .stat { padding: 0 12px; } .stat:first-child { padding-left: 0; } .stat:last-child { padding-right: 0; } .statLabel { font-size: .8rem; } }
+/* Текст — по центру левой части экрана, чтобы не заходить на фото. */
+@media (min-width: 1024px) {
+  .container { width: 48vw; max-width: none; margin: 0; padding-right: 24px; padding-left: 24px; justify-items: center; }
+  .content { width: fit-content; max-width: 100%; }
+}
