@@ -173,8 +173,9 @@
   .content [data-about-reveal] { opacity: 1; transform: none; }
 }
 
-/* ПК: две равные половины, портрет крупнее и по центру левой. */
+/* ПК: экран делится пополам — портрет по центру левой половины окна, текст в правой. */
 @media (min-width: 1024px) {
-  .container { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
-  .photoWrap { width: calc(100% - 22px); max-width: 600px; margin: 0 auto; }
+  .container { max-width: none; grid-template-columns: 50% 50%; gap: 0; padding-right: 0; padding-left: 0; }
+  .photoWrap { width: min(calc(100% - 120px), 600px); max-width: none; margin: 0 auto; }
+  .content { padding-right: clamp(40px, 5vw, 96px); padding-left: clamp(32px, 3vw, 56px); }
 }
