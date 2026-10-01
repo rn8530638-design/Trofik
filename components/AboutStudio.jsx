@@ -61,15 +61,21 @@ export default function AboutStudio() {
   return (
     <section id="about" className={styles.about} aria-labelledby="about-title">
       <div className={styles.container}>
-        <div className={styles.photoFrame}>
-          <Image
-            className={styles.photo}
-            src="/images/ekaterina.jpg"
-            alt="Временное изображение студии красоты ТрофиК"
-            fill
-            sizes="(max-width: 767px) calc(100vw - 48px), (max-width: 1023px) 42vw, 520px"
-          />
-        </div>
+        <figure className={styles.photoWrap}>
+          <div className={styles.photoFrame}>
+            <Image
+              className={styles.photo}
+              src="/images/ekaterina-portrait.jpg"
+              alt="Екатерина Трофимова, основательница студии красоты ТрофиК"
+              fill
+              sizes="(max-width: 767px) calc(100vw - 48px), (max-width: 1023px) 42vw, 520px"
+            />
+          </div>
+          <figcaption className={styles.caption}>
+            <span className={styles.captionName}>Екатерина Трофимова</span>
+            <span className={styles.captionRole}>основательница студии</span>
+          </figcaption>
+        </figure>
 
         <div ref={contentRef} className={styles.content}>
           <span className={styles.marker} aria-hidden="true" data-about-reveal />

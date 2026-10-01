@@ -14,22 +14,75 @@
   padding: clamp(72px, 8vw, 112px) 40px;
 }
 
-.photoFrame {
+/* Портрет: вертикальный кадр, смещённая золотая рамка позади и подпись поверх фото. */
+.photoWrap {
   position: relative;
   width: 100%;
-  transform: none;
-  aspect-ratio: 1;
+  max-width: 520px;
+  margin: 0 0 0 auto;
+}
+
+.photoWrap::before {
+  position: absolute;
+  z-index: 0;
+  inset: 22px -22px -22px 22px;
+  border: 1px solid rgba(var(--color-accent-gold-rgb), 0.45);
+  border-radius: 24px;
+  pointer-events: none;
+  content: '';
+}
+
+.photoFrame {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  aspect-ratio: 4 / 5;
   overflow: hidden;
   border: 1px solid rgba(var(--color-accent-gold-rgb), 0.32);
   border-radius: 22px;
   background: var(--color-surface);
-  box-shadow: 0 28px 60px rgba(0, 0, 0, 0.28);
+  box-shadow: 0 28px 60px rgba(0, 0, 0, 0.32);
+}
+
+/* Затемнение снизу — чтобы подпись читалась на светлом платье. */
+.photoFrame::after {
+  position: absolute;
+  inset: 55% 0 0;
+  background: linear-gradient(to top, rgba(12, 20, 34, 0.82), rgba(12, 20, 34, 0));
+  pointer-events: none;
+  content: '';
 }
 
 .photo {
   object-fit: cover;
-  object-position: center;
-  filter: saturate(0.82) contrast(0.98);
+  object-position: 50% 22%;
+  filter: saturate(0.86) contrast(1.02);
+}
+
+.caption {
+  position: absolute;
+  z-index: 2;
+  right: 30px;
+  bottom: 28px;
+  left: 30px;
+  display: grid;
+  gap: 4px;
+}
+
+.captionName {
+  color: var(--color-gold);
+  font-family: "Gloria Script", var(--font-script), cursive;
+  font-size: 2.1rem;
+  line-height: 1.1;
+}
+
+.captionRole {
+  color: rgba(243, 232, 234, 0.85);
+  font-family: var(--font-body), sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
 }
 
 .content {
@@ -88,7 +141,7 @@
     padding-right: 32px;
     padding-left: 32px;
   }
-  .photoFrame { width: 100%; }
+  .photoWrap { max-width: none; }
   .title { font-size: clamp(2.75rem, 5vw, 3.7rem); }
 }
 
@@ -99,11 +152,17 @@
     padding: var(--phone-section) var(--phone-gutter);
   }
 
-  .photoFrame {
-    width: min(100%, 480px);
-    justify-self: center;
-    transform: none;
+  .photoWrap {
+    width: calc(100% - var(--phone-3));
+    max-width: 440px;
+    justify-self: start;
+    margin: 0;
   }
+  .photoWrap::before { inset: var(--phone-3) calc(var(--phone-3) * -1) calc(var(--phone-3) * -1) var(--phone-3); border-radius: var(--phone-card-radius); }
+  .photoFrame { border-radius: var(--phone-card-radius); }
+  .caption { right: var(--phone-5); bottom: var(--phone-5); left: var(--phone-5); gap: var(--phone-1); }
+  .captionName { font-size: var(--phone-7-5); }
+  .captionRole { font-size: var(--phone-2-75); }
   .content { max-width: none; }
   .title { margin-bottom: clamp(16.94px, 5.31vw, 22px); font-size: clamp(2.35rem, 10vw, 3rem); }
   .titleLine { white-space: nowrap; }
