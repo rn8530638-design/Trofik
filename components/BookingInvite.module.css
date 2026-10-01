@@ -24,9 +24,9 @@
 }
 
 @media (max-width: 767px) {
-  .card { right: 12px; bottom: 12px; left: 12px; width: auto; padding: 22px 20px 20px; border-radius: 18px; }
-  .title { padding-right: 28px; font-size: 1.3rem; }
-  .text { margin-bottom: 18px; }
+  .card { right: clamp(9.24px, 2.9vw, 12px); bottom: clamp(9.24px, 2.9vw, 12px); left: clamp(9.24px, 2.9vw, 12px); width: auto; padding: clamp(16.94px, 5.31vw, 22px) clamp(15.4px, 4.83vw, 20px) clamp(15.4px, 4.83vw, 20px); border-radius: clamp(13.86px, 4.35vw, 18px); }
+  .title { padding-right: clamp(21.56px, 6.76vw, 28px); font-size: clamp(16.02px, 5.02vw, 20.8px); }
+  .text { margin-bottom: clamp(13.86px, 4.35vw, 18px); }
 }
 
 /* Сенсорные экраны: после касания «наведение» залипает — подъёмы и увеличения отключаем. */

@@ -247,7 +247,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 5px;
+    gap: clamp(3.85px, 1.21vw, 5px);
     padding: 0;
     border: 1px solid rgba(var(--color-accent-gold-rgb), 0.5);
     border-radius: 50%;
@@ -259,7 +259,7 @@
     -webkit-tap-highlight-color: transparent;
   }
 
-  .menuButton span { display: block; width: 18px; height: 1.5px; border-radius: 99px; background: currentColor; transition: transform 0.3s ease, opacity 0.2s ease; }
+  .menuButton span { display: block; width: clamp(13.86px, 4.35vw, 18px); height: 1.5px; border-radius: clamp(76.23px, 23.91vw, 99px); background: currentColor; transition: transform 0.3s ease, opacity 0.2s ease; }
   /* Бургер превращается в крестик. */
   .menuButton[aria-expanded='true'] span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
   .menuButton[aria-expanded='true'] span:nth-child(2) { opacity: 0; }

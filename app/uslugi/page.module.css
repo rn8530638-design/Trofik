@@ -14,6 +14,6 @@
   .catalog { padding: calc(var(--phone-page-top) + var(--phone-4)) 0 var(--phone-10); }
   .container { width: min(calc(100% - 24px), 600px); min-width: 0; }
   .title { font-size: clamp(2.8rem, 13vw, 3.75rem); }
-  .intro { margin-top: 20px; font-size: 0.9375rem; line-height: 1.65; }
-  .intro p + p { margin-top: 14px; }
+  .intro { margin-top: clamp(15.4px, 4.83vw, 20px); font-size: clamp(11.55px, 3.62vw, 15px); line-height: 1.65; }
+  .intro p + p { margin-top: clamp(10.78px, 3.38vw, 14px); }
 }

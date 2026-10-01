@@ -27,14 +27,14 @@
 }
 
 @media (max-width: 767px) {
-  .inner { width: calc(100% - 40px); grid-template-columns: 1fr; justify-items: center; gap: 44px; padding: 140px 0 72px; text-align: center; }
-  .mirror { width: 210px; padding: 10px; border-radius: 105px 105px 14px 14px; }
-  .glass { border-radius: 95px 95px 8px 8px; }
-  .code { font-size: 4.2rem; }
-  .bulb { width: 11px; height: 11px; margin: -5.5px 0 0 -5.5px; }
+  .inner { width: calc(100% - 40px); grid-template-columns: 1fr; justify-items: center; gap: clamp(33.88px, 10.63vw, 44px); padding: clamp(107.8px, 33.82vw, 140px) 0 clamp(55.44px, 17.39vw, 72px); text-align: center; }
+  .mirror { width: clamp(161.7px, 50.72vw, 210px); padding: clamp(7.7px, 2.42vw, 10px); border-radius: clamp(80.85px, 25.36vw, 105px) clamp(80.85px, 25.36vw, 105px) clamp(10.78px, 3.38vw, 14px) clamp(10.78px, 3.38vw, 14px); }
+  .glass { border-radius: clamp(73.15px, 22.95vw, 95px) clamp(73.15px, 22.95vw, 95px) clamp(6.16px, 1.93vw, 8px) clamp(6.16px, 1.93vw, 8px); }
+  .code { font-size: clamp(51.74px, 16.23vw, 67.2px); }
+  .bulb { width: clamp(8.47px, 2.66vw, 11px); height: clamp(8.47px, 2.66vw, 11px); margin: calc(-1 * clamp(4.24px, 1.33vw, 5.5px)) 0 0 calc(-1 * clamp(4.24px, 1.33vw, 5.5px)); }
   .title { font-size: clamp(2.3rem, 10vw, 2.8rem); }
-  .lead { font-size: 1.1rem; }
-  .actions { flex-direction: column; margin-top: 30px; }
+  .lead { font-size: clamp(13.55px, 4.25vw, 17.6px); }
+  .actions { flex-direction: column; margin-top: clamp(23.1px, 7.25vw, 30px); }
   .primary, .secondary { width: 100%; }
 }
 

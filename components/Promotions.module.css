@@ -39,19 +39,22 @@
 @media (max-width: 767px) {
   .container { padding: var(--phone-section) 0; }
   .marker, .title { margin-right: var(--phone-gutter); margin-left: var(--phone-gutter); }
-  .title { margin-bottom: 38px; font-size: clamp(2.65rem, 12vw, 3.4rem); }
+  .title { margin-bottom: clamp(29.26px, 9.18vw, 38px); font-size: clamp(2.65rem, 12vw, 3.4rem); }
   .carousel { padding-bottom: calc(var(--phone-10) + 34px); }
   /* scroll-padding задаёт, где карточка останавливается: без него снап
      прижимал её вплотную к краю экрана. */
   .track { width: 100%; gap: var(--phone-4-5); margin: 0; padding: 0 20px var(--phone-3); overflow-x: auto; scroll-padding-inline: 20px; scroll-snap-type: x mandatory; touch-action: pan-x; cursor: grab; }
   /* Без тени: overflow-x у трека обрезал её и оставлял полосу-шов под карточками. */
-  .promoCard { flex-basis: min(84vw, 360px); border-radius: 20px; box-shadow: none; }
+  .promoCard { flex-basis: min(84vw, 360px); border-radius: clamp(15.4px, 4.83vw, 20px); box-shadow: none; }
   .promoCard:first-child { scroll-margin-left: 0; }
-  .cardContent { padding: 22px 20px; }
+  .cardContent { padding: clamp(16.94px, 5.31vw, 22px) clamp(15.4px, 4.83vw, 20px); }
   .cardContent h3 { font-size: clamp(1.65rem, 7vw, 2rem); }
-  .cardDescription { margin-bottom: 20px; font-size: 0.9rem; }
-  .carouselArrow { top: auto; bottom: var(--phone-3); width: 44px; height: 44px; transform: none; }
+  .cardDescription { margin-bottom: clamp(15.4px, 4.83vw, 20px); font-size: clamp(11.09px, 3.48vw, 14.4px); }
+  .carouselArrow { top: auto; bottom: var(--phone-3); width: clamp(33.88px, 10.63vw, 44px); height: clamp(33.88px, 10.63vw, 44px); transform: none; }
   .carouselArrowPrevious { left: calc(50% - 50px); }
   .carouselArrowNext { right: calc(50% - 50px); }
-  .note { right: var(--phone-gutter); font-size: 14px; }
+  /* Подсказка и «Скидки не суммируются» — по центру друг под другом, стрелки ниже. */
+  .carousel { display: flex; flex-direction: column; }
+  .hint { position: static; order: 1; margin: var(--phone-3) var(--phone-gutter) 0; font-size: var(--phone-3-5); line-height: 1.45; text-align: center; }
+  .note { position: static; order: 2; margin-top: var(--phone-1-5); font-size: var(--phone-3-25); text-align: center; }
 }

@@ -11,6 +11,6 @@
 .banner button:focus-visible { outline: 2px solid var(--color-white); outline-offset: 3px; }
 
 @media (max-width: 767px) {
-  .banner { align-items: flex-start; flex-direction: column; gap: 12px; padding: 16px 20px; }
+  .banner { align-items: flex-start; flex-direction: column; gap: clamp(9.24px, 2.9vw, 12px); padding: clamp(12.32px, 3.86vw, 16px) clamp(15.4px, 4.83vw, 20px); }
   .actions { width: 100%; justify-content: flex-start; }
 }

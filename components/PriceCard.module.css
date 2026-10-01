@@ -24,11 +24,11 @@
 @media (prefers-reduced-motion: reduce) { .card, .photo, .bookingLink { transition-duration: 0.01ms; } }
 
 @media (max-width: 767px) {
-  .card { border-radius: 14px; }
+  .card { border-radius: clamp(10.78px, 3.38vw, 14px); }
   .content { padding: var(--phone-4) var(--phone-4) var(--phone-3); }
-  .name { font-size: 1rem; }
-  .description { display: -webkit-box; overflow: hidden; font-size: 0.76rem; -webkit-box-orient: vertical; -webkit-line-clamp: 3; }
-  .price { font-size: 0.98rem; }
+  .name { font-size: clamp(12.32px, 3.86vw, 16px); }
+  .description { display: -webkit-box; overflow: hidden; font-size: clamp(9.36px, 2.94vw, 12.16px); -webkit-box-orient: vertical; -webkit-line-clamp: 3; }
+  .price { font-size: clamp(12.07px, 3.79vw, 15.68px); }
 }
 
 /* Сенсорные экраны: после касания «наведение» залипает — подъёмы и увеличения отключаем. */

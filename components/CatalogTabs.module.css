@@ -11,6 +11,6 @@
 @media (max-width: 767px) {
   .catalogTabs { margin-top: var(--phone-9); }
   .tabList { gap: var(--phone-2); }
-  .tab { min-width: 0; min-height: 44px; flex: 1 1 0; padding: var(--phone-3) var(--phone-2); font-size: clamp(0.65rem, 2.9vw, 0.75rem); }
+  .tab { min-width: 0; min-height: clamp(33.88px, 10.63vw, 44px); flex: 1 1 0; padding: var(--phone-3) var(--phone-2); font-size: clamp(0.65rem, 2.9vw, 0.75rem); }
   .panels { width: 100%; margin-top: var(--phone-8); margin-right: 0; margin-left: 0; }
 }

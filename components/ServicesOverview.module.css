@@ -135,16 +135,16 @@
   }
   .scrollStage { width: 100%; margin: 0; }
   .grid { width: 100%; gap: var(--phone-4); padding: 0 12px var(--phone-3); overflow: visible; scroll-snap-type: none; touch-action: auto; cursor: default; }
-  .card { min-height: clamp(360px, 102vw, 420px); flex-basis: min(72vw, 292px); border-radius: 22px; }
+  .card { min-height: clamp(360px, 102vw, 420px); flex-basis: min(72vw, 292px); border-radius: clamp(16.94px, 5.31vw, 22px); }
   .content { min-height: clamp(360px, 102vw, 420px); padding: 62px var(--phone-4-5) var(--phone-4-5); }
   .name { font-size: clamp(1.4rem, 6vw, 1.68rem); }
-  .description { margin-bottom: 15px; font-size: 12px; line-height: 1.5; }
-  .duration { padding-top: 13px; font-size: 13px; }
-  .price { font-size: 18px; }
+  .description { margin-bottom: clamp(11.55px, 3.62vw, 15px); font-size: clamp(9.24px, 2.9vw, 12px); line-height: 1.5; }
+  .duration { padding-top: clamp(10.01px, 3.14vw, 13px); font-size: clamp(10.01px, 3.14vw, 13px); }
+  .price { font-size: clamp(13.86px, 4.35vw, 18px); }
   .scrollStage { padding-bottom: calc(var(--phone-10) + var(--phone-4)); }
-  .allButton { right: var(--phone-gutter); bottom: 0; display: inline-flex; min-height: 44px; align-items: center; font-size: 14px; }
-  .allButton .arrow { margin-left: 8px; }
-  .progress { position: absolute; bottom: 0; left: 12px; display: flex; align-items: center; gap: 5px; min-height: 44px; color: var(--color-muted); font-size: 12px; font-variant-numeric: tabular-nums; }
+  .allButton { right: var(--phone-gutter); bottom: 0; display: inline-flex; min-height: clamp(33.88px, 10.63vw, 44px); align-items: center; font-size: clamp(10.78px, 3.38vw, 14px); }
+  .allButton .arrow { margin-left: clamp(6.16px, 1.93vw, 8px); }
+  .progress { position: absolute; bottom: 0; left: clamp(9.24px, 2.9vw, 12px); display: flex; align-items: center; gap: clamp(3.85px, 1.21vw, 5px); min-height: clamp(33.88px, 10.63vw, 44px); color: var(--color-muted); font-size: clamp(9.24px, 2.9vw, 12px); font-variant-numeric: tabular-nums; }
   .progress > span { color: var(--color-gold); }
 }
 

@@ -39,10 +39,10 @@
 @media (max-width: 767px) {
   .group { margin-top: var(--phone-8); }
   .groupHead { gap: var(--phone-4); margin-bottom: var(--phone-5); }
-  .groupTitle { font-size: 1.3rem; }
+  .groupTitle { font-size: clamp(16.02px, 5.02vw, 20.8px); }
   .grid { gap: var(--phone-4); grid-template-columns: minmax(0, 1fr); }
-  .extras { padding: 0 var(--phone-4) var(--phone-2); border-radius: 14px; }
-  .extrasRow { column-gap: 12px; grid-template-columns: minmax(0, 1fr) auto; }
+  .extras { padding: 0 var(--phone-4) var(--phone-2); border-radius: clamp(10.78px, 3.38vw, 14px); }
+  .extrasRow { column-gap: clamp(9.24px, 2.9vw, 12px); grid-template-columns: minmax(0, 1fr) auto; }
   .extrasText { grid-column: 1 / -1; }
   .extrasDuration { text-align: left; }
   .extrasDuration, .extrasPrice { margin-top: var(--phone-2); }

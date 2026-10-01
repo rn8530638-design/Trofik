@@ -364,22 +364,22 @@
 
 @media (max-width: 767px) {
   .container { padding: var(--phone-section) var(--phone-gutter); }
-  .panel { min-height: 0; padding: 44px 20px 38px; border-radius: 22px; }
-  .title { margin-bottom: 30px; font-size: clamp(2.5rem, 12vw, 3.2rem); }
-  .text p { font-size: 1.1rem; line-height: 1.65; }
+  .panel { min-height: 0; padding: clamp(33.88px, 10.63vw, 44px) clamp(15.4px, 4.83vw, 20px) clamp(29.26px, 9.18vw, 38px); border-radius: clamp(16.94px, 5.31vw, 22px); }
+  .title { margin-bottom: clamp(23.1px, 7.25vw, 30px); font-size: clamp(2.5rem, 12vw, 3.2rem); }
+  .text p { font-size: clamp(13.55px, 4.25vw, 17.6px); line-height: 1.65; }
   .textCollapsed { -webkit-line-clamp: 5; }
-  .readMore { min-height: 34px; margin-top: 11px; font-size: 0.67rem; }
-  .caption { display: grid; grid-template-columns: 46px minmax(0, 1fr); gap: 8px 12px; margin-bottom: 20px; }
-  .avatar { width: 46px; height: 46px; font-size: 0.75rem; }
-  .stars { grid-column: 2; margin-left: 0; font-size: 15px; letter-spacing: 2px; }
-  .author { font-size: 1rem; }
-  .date, .source { font-size: 0.9375rem; }
+  .readMore { min-height: clamp(26.18px, 8.21vw, 34px); margin-top: clamp(8.47px, 2.66vw, 11px); font-size: clamp(8.25px, 2.59vw, 10.72px); }
+  .caption { display: grid; grid-template-columns: 46px minmax(0, 1fr); gap: clamp(6.16px, 1.93vw, 8px) clamp(9.24px, 2.9vw, 12px); margin-bottom: clamp(15.4px, 4.83vw, 20px); }
+  .avatar { width: clamp(35.42px, 11.11vw, 46px); height: clamp(35.42px, 11.11vw, 46px); font-size: clamp(9.24px, 2.9vw, 12px); }
+  .stars { grid-column: 2; margin-left: 0; font-size: clamp(11.55px, 3.62vw, 15px); letter-spacing: 2px; }
+  .author { font-size: clamp(12.32px, 3.86vw, 16px); }
+  .date, .source { font-size: clamp(11.55px, 3.62vw, 15px); }
   .stageArrow { display: none; }
-  .controls { width: 100%; gap: 10px; margin-top: 24px; flex-wrap: wrap; }
-  .dots { flex: 1; justify-content: center; flex-wrap: wrap; gap: 10px; }
+  .controls { width: 100%; gap: clamp(7.7px, 2.42vw, 10px); margin-top: clamp(18.48px, 5.8vw, 24px); flex-wrap: wrap; }
+  .dots { flex: 1; justify-content: center; flex-wrap: wrap; gap: clamp(7.7px, 2.42vw, 10px); }
   .mobileArrow { flex-shrink: 0; }
-  .source { text-align: center; line-height: 1.6; margin-top: 24px; }
-  .mobileArrow { display: flex; width: 44px; height: 44px; align-items: center; justify-content: center; padding: 0; border: 1px solid rgba(var(--color-accent-gold-rgb), 0.5); border-radius: 50%; background: var(--color-background-alt); color: var(--color-gold); cursor: pointer; }
+  .source { text-align: center; line-height: 1.6; margin-top: clamp(18.48px, 5.8vw, 24px); }
+  .mobileArrow { display: flex; width: clamp(33.88px, 10.63vw, 44px); height: clamp(33.88px, 10.63vw, 44px); align-items: center; justify-content: center; padding: 0; border: 1px solid rgba(var(--color-accent-gold-rgb), 0.5); border-radius: 50%; background: var(--color-background-alt); color: var(--color-gold); cursor: pointer; }
   .mobileArrow:hover, .mobileArrow:focus-visible { border-color: var(--color-gold); background: rgba(var(--color-accent-gold-rgb), 0.12); color: var(--color-gold-dark); outline: none; }
 }
 

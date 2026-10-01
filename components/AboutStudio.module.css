@@ -95,7 +95,7 @@
 @media (max-width: 767px) {
   .container {
     grid-template-columns: 1fr;
-    gap: 42px;
+    gap: clamp(32.34px, 10.14vw, 42px);
     padding: var(--phone-section) var(--phone-gutter);
   }
 
@@ -105,9 +105,9 @@
     transform: none;
   }
   .content { max-width: none; }
-  .title { margin-bottom: 22px; font-size: clamp(2.35rem, 10vw, 3rem); }
+  .title { margin-bottom: clamp(16.94px, 5.31vw, 22px); font-size: clamp(2.35rem, 10vw, 3rem); }
   .titleLine { white-space: nowrap; }
-  .copy p { font-size: 1.05rem; }
+  .copy p { font-size: clamp(12.94px, 4.06vw, 16.8px); }
 }
 
 @media (prefers-reduced-motion: reduce) {

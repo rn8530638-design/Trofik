@@ -15,10 +15,10 @@
   .container { width: min(calc(100% - calc(var(--phone-gutter) * 2)), 600px); }
   /* Шапка статьи держится в один экран: ссылка и мета в строку, заголовок
      компактнее, вводный абзац снят — он повторяет начало текста. */
-  .backLink { margin-bottom: 16px; }
-  .meta { margin: 14px 0 0; }
+  .backLink { margin-bottom: clamp(12.32px, 3.86vw, 16px); }
+  .meta { margin: clamp(10.78px, 3.38vw, 14px) 0 0; }
   .article h1 { max-width: none; font-size: clamp(2rem, 9vw, 2.6rem); line-height: 1.08; }
   .excerpt { display: none; }
-  .cover { margin-top: 22px; border-radius: 18px; aspect-ratio: 4 / 3; }
-  .content { margin-top: 26px; font-size: .98rem; line-height: 1.75; }
+  .cover { margin-top: clamp(16.94px, 5.31vw, 22px); border-radius: clamp(13.86px, 4.35vw, 18px); aspect-ratio: 4 / 3; }
+  .content { margin-top: clamp(20.02px, 6.28vw, 26px); font-size: clamp(12.07px, 3.79vw, 15.68px); line-height: 1.75; }
 }

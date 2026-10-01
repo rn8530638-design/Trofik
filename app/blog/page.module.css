@@ -66,19 +66,19 @@
 @media (max-width: 767px) {
   .blog { padding: calc(var(--phone-page-top) + 20px) 0 var(--phone-section); }
   .container { width: calc(100% - 24px); }
-  .heading { margin-bottom: 30px; padding: 0 10px; }
-  .eyebrow { font-size: .7rem; margin-bottom: 16px; }
+  .heading { margin-bottom: clamp(23.1px, 7.25vw, 30px); padding: 0 clamp(7.7px, 2.42vw, 10px); }
+  .eyebrow { font-size: clamp(8.62px, 2.71vw, 11.2px); margin-bottom: clamp(12.32px, 3.86vw, 16px); }
   .title { font-size: clamp(2.8rem, 12vw, 3.8rem); }
-  .lead { margin-top: 20px; font-size: .9375rem; line-height: 1.65; }
+  .lead { margin-top: clamp(15.4px, 4.83vw, 20px); font-size: clamp(11.55px, 3.62vw, 15px); line-height: 1.65; }
   .featuredCard { grid-template-columns: 1fr; }
-  .featuredCard, .card { border-radius: 18px; }
+  .featuredCard, .card { border-radius: clamp(13.86px, 4.35vw, 18px); }
   .featuredPhoto { min-height: 0; aspect-ratio: 4 / 3; }
   .featuredContent, .cardContent { padding: clamp(18px, 5vw, 24px); }
   .featuredContent h2 { font-size: clamp(1.8rem, 7.5vw, 2.1rem); }
   .cardContent h2 { font-size: clamp(1.6rem, 6.5vw, 1.9rem); }
-  .meta { margin-bottom: 16px; font-size: .75rem; }
-  .featuredContent > p:not(.meta), .cardContent > p:not(.meta) { font-size: .9375rem; line-height: 1.65; }
-  .grid { grid-template-columns: 1fr; gap: 16px; margin-top: 16px; }
-  .readLink { margin-top: 18px; }
-  .cardContent .readLink { padding-top: 12px; }
+  .meta { margin-bottom: clamp(12.32px, 3.86vw, 16px); font-size: clamp(9.24px, 2.9vw, 12px); }
+  .featuredContent > p:not(.meta), .cardContent > p:not(.meta) { font-size: clamp(11.55px, 3.62vw, 15px); line-height: 1.65; }
+  .grid { grid-template-columns: 1fr; gap: clamp(12.32px, 3.86vw, 16px); margin-top: clamp(12.32px, 3.86vw, 16px); }
+  .readLink { margin-top: clamp(13.86px, 4.35vw, 18px); }
+  .cardContent .readLink { padding-top: clamp(9.24px, 2.9vw, 12px); }
 }

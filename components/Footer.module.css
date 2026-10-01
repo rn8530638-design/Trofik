@@ -25,11 +25,11 @@
 @media (max-width: 1023px) { .topRow { grid-template-columns: 1fr auto; } .nav { grid-column: 1 / -1; grid-row: 2; justify-content: flex-start; } }
 @media (max-width: 767px) {
   .container { padding: var(--phone-section) var(--phone-gutter) var(--phone-7); }
-  .topRow { grid-template-columns: 1fr; gap: 28px; justify-items: center; text-align: center; }
-  .nav { grid-column: auto; grid-row: auto; justify-content: center; gap: 13px 20px; }
-  .nav a { font-size: 0.7rem; }
+  .topRow { grid-template-columns: 1fr; gap: clamp(21.56px, 6.76vw, 28px); justify-items: center; text-align: center; }
+  .nav { grid-column: auto; grid-row: auto; justify-content: center; gap: clamp(10.01px, 3.14vw, 13px) clamp(15.4px, 4.83vw, 20px); }
+  .nav a { font-size: clamp(8.62px, 2.71vw, 11.2px); }
   .socials { justify-content: center; }
-  .legal { flex-direction: column; align-items: center; gap: 9px; margin-top: 38px; padding-top: 20px; text-align: center; }
+  .legal { flex-direction: column; align-items: center; gap: clamp(6.93px, 2.17vw, 9px); margin-top: clamp(29.26px, 9.18vw, 38px); padding-top: clamp(15.4px, 4.83vw, 20px); text-align: center; }
 }
 
 /* Сенсорные экраны: после касания «наведение» залипает — подъёмы и увеличения отключаем. */
