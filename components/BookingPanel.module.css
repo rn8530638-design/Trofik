@@ -15,7 +15,7 @@
 .note { max-width: 44ch; margin: 14px 0 0; color: var(--color-muted); font-family: var(--font-body), Arial, sans-serif; font-size: 14px; line-height: 1.55; }
 .or { display: flex; align-items: center; gap: 16px; margin: 30px 0 20px; color: var(--color-muted); font-family: var(--font-body), Arial, sans-serif; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; }
 .or::before, .or::after { height: 1px; flex: 1; background: rgba(var(--color-accent-gold-rgb), 0.25); content: ''; }
-.phone { color: var(--color-heading); font-family: var(--font-heading), Georgia, serif; font-size: 2rem; font-weight: 600; text-decoration: none; transition: color 0.2s ease; }
+.phone { color: var(--color-heading); font-family: var(--font-body), Arial, sans-serif; font-size: 1.75rem; font-weight: 600; letter-spacing: 0.01em; text-decoration: none; transition: color 0.2s ease; }
 .phone:hover, .phone:focus-visible { color: var(--color-gold); outline: none; }
 .hours { margin: 6px 0 0; color: var(--color-text-body); font-family: var(--font-body), Arial, sans-serif; font-size: 15px; }
 
