@@ -15,6 +15,7 @@ export default function CookieBanner() {
 
   function acceptCookies(consent) {
     window.localStorage.setItem('cookie-consent', consent);
+    window.dispatchEvent(new Event('cookie-consent-given'));
     setIsLeaving(true);
     dismissTimer.current = window.setTimeout(() => setIsVisible(false), 250);
   }

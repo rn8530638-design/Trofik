@@ -1,4 +1,4 @@
-.card { position: fixed; z-index: 110; right: 28px; bottom: calc(var(--cookie-offset, 0px) + 28px); overflow: hidden; width: 360px; box-sizing: border-box; padding: 26px 28px 28px; border: 1px solid rgba(245, 230, 220, 0.14); border-radius: 20px; background: linear-gradient(150deg, rgba(48, 64, 92, 0.94), rgba(24, 36, 56, 0.96)); box-shadow: 0 24px 56px rgba(0, 0, 0, 0.45); backdrop-filter: blur(16px); color: var(--color-text-body); animation: rise 380ms cubic-bezier(.22, .81, .35, 1); }
+.card { position: fixed; z-index: 110; right: 28px; bottom: 28px; overflow: hidden; width: 360px; box-sizing: border-box; padding: 26px 28px 28px; border: 1px solid rgba(245, 230, 220, 0.14); border-radius: 20px; background: linear-gradient(150deg, rgba(48, 64, 92, 0.94), rgba(24, 36, 56, 0.96)); box-shadow: 0 24px 56px rgba(0, 0, 0, 0.45); backdrop-filter: blur(16px); color: var(--color-text-body); animation: rise 380ms cubic-bezier(.22, .81, .35, 1); }
 /* Тонкая золотая линия сверху, гаснущая к краям, — как у карточек на сайте. */
 .card::before { position: absolute; top: 0; right: 0; left: 0; height: 2px; background: linear-gradient(to right, transparent, var(--color-gold) 25%, var(--color-gold) 75%, transparent); content: ''; }
 .card.isLeaving { opacity: 0; transform: translateY(12px); transition: opacity 250ms ease, transform 250ms ease; }
@@ -24,7 +24,7 @@
 }
 
 @media (max-width: 767px) {
-  .card { right: 12px; bottom: calc(var(--cookie-offset, 0px) + 12px); left: 12px; width: auto; padding: 22px 20px 20px; border-radius: 18px; }
+  .card { right: 12px; bottom: 12px; left: 12px; width: auto; padding: 22px 20px 20px; border-radius: 18px; }
   .title { padding-right: 28px; font-size: 1.3rem; }
   .text { margin-bottom: 18px; }
 }

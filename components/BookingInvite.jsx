@@ -10,27 +10,30 @@ const STORAGE_KEY = 'booking-invite-closed';
 export default function BookingInvite() {
   const [isVisible, setIsVisible] = useState(false);
   const [isLeaving, setIsLeaving] = useState(false);
-  // Плашка cookie занимает низ экрана — пока она видна, поднимаем баннер над ней.
-  // Высота плашки зависит от ширины экрана (на телефоне она в несколько строк), поэтому меряем её.
-  const [cookieOffset, setCookieOffset] = useState(0);
   const leaveTimer = useRef();
 
+  // Показываем, когда выполнены оба условия: человек провёл на сайте 10 секунд
+  // и уже ответил на плашку cookie — чтобы два окна не лезли одновременно.
   useEffect(() => {
     let closed = false;
+    let hasConsent = false;
     try {
       closed = Boolean(window.sessionStorage.getItem(STORAGE_KEY));
+      hasConsent = Boolean(window.localStorage.getItem('cookie-consent'));
     } catch {
-      // Без sessionStorage баннер просто покажется один раз за загрузку страницы.
+      // Без хранилища баннер просто покажется один раз за загрузку страницы.
     }
     if (closed) return undefined;
-    const timer = window.setTimeout(() => {
-      const cookieBanner = document.querySelector('aside[aria-label="Уведомление об использовании cookie"]');
-      if (cookieBanner) setCookieOffset(window.innerHeight - cookieBanner.getBoundingClientRect().top);
-      setIsVisible(true);
-    }, DELAY);
+
+    let isTimeUp = false;
+    const showIfReady = () => { if (isTimeUp && hasConsent) setIsVisible(true); };
+    const handleConsent = () => { hasConsent = true; showIfReady(); };
+    const timer = window.setTimeout(() => { isTimeUp = true; showIfReady(); }, DELAY);
+    window.addEventListener('cookie-consent-given', handleConsent);
     return () => {
       window.clearTimeout(timer);
       window.clearTimeout(leaveTimer.current);
+      window.removeEventListener('cookie-consent-given', handleConsent);
     };
   }, []);
 
@@ -55,9 +58,7 @@ export default function BookingInvite() {
 
   return (
     <aside
-      className={`${styles.card} ${isLeaving ? styles.isLeaving : ''}`}
-      style={cookieOffset ? { '--cookie-offset': `${cookieOffset}px` } : undefined}
-      aria-label="Приглашение записаться"
+      className={`${styles.card} ${isLeaving ? styles.isLeaving : ''}`}      aria-label="Приглашение записаться"
     >
       <button className={styles.close} type="button" onClick={close} aria-label="Закрыть">×</button>
       <p className={styles.eyebrow}>Онлайн-запись</p>
