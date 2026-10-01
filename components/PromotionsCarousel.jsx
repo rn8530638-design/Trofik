@@ -56,6 +56,7 @@ export default function PromotionsCarousel({ promotions }) {
         <Arrow direction="next" />
       </button>
       <p className={styles.scrollHint}>Листайте, чтобы посмотреть все предложения</p>
+      <p className={styles.note}>Скидки не суммируются</p>
     </div>
   );
 }

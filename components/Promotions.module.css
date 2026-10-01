@@ -25,6 +25,7 @@
 .carouselArrowPrevious { left: clamp(14px, 2.8vw, 42px); }
 .carouselArrowNext { right: clamp(14px, 2.8vw, 42px); }
 .scrollHint { margin: 0; color: var(--color-muted); font-family: var(--font-body), sans-serif; font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; text-align: center; }
+.note { position: absolute; right: clamp(32px, 4.5vw, 64px); bottom: 0; margin: 0; color: var(--color-gold); font-family: var(--font-body), sans-serif; font-size: 17px; font-weight: 600; letter-spacing: 0.02em; }
 .emptyState { margin: 0; padding: 48px; border: 1px solid rgba(245, 230, 220, 0.16); border-radius: 22px; color: var(--color-text-body); font-family: var(--font-body), sans-serif; text-align: center; }
 
 @media (min-width: 768px) {
@@ -52,5 +53,6 @@
   .carouselArrow { top: auto; bottom: var(--phone-3); width: 44px; height: 44px; transform: none; }
   .carouselArrowPrevious { left: calc(50% - 50px); }
   .carouselArrowNext { right: calc(50% - 50px); }
+  .note { right: var(--phone-gutter); font-size: 14px; }
   .scrollHint { margin-top: 20px; font-size: 0.68rem; }
 }
