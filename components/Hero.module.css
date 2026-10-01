@@ -126,3 +126,10 @@
   .container { width: 48vw; max-width: none; margin: 0; padding-right: 24px; padding-left: 24px; justify-items: center; }
   .content { width: fit-content; max-width: 100%; }
 }
+/* Фото целиком помещается в экран по высоте: под шапкой, с отступом снизу, пропорция 3:4. */
+@media (min-width: 1024px) {
+  .hero { --media-h: calc(100svh - var(--header-h) - 40px); --media-w: calc(var(--media-h) * .75); }
+  .media { top: var(--header-h); right: 40px; bottom: auto; width: var(--media-w); height: var(--media-h); }
+  .slides { border-radius: 24px; }
+  .container { width: calc(100vw - var(--media-w) - 40px); }
+}
