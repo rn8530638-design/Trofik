@@ -29,14 +29,28 @@
 }
 
 .brand {
+  position: relative;
   flex: 0 0 auto;
-  color: var(--color-gold);
-  font-family: "Gloria Script", var(--font-script), cursive;
-  font-size: clamp(2.15rem, 3vw, 2.75rem);
-  line-height: 1;
-  text-decoration: none;
-  text-shadow: 0 5px 24px rgba(var(--color-accent-gold-rgb), 0.16);
+  display: block;
+  width: 64px;
+  height: 64px;
+  box-sizing: border-box;
+  border: 1px solid rgba(var(--color-accent-gold-rgb), 0.5);
+  transition: border-color 0.25s ease;
 }
+
+/* Монограмма из логотипа студии в тонкой золотой рамке, как в футере. */
+.brand::after {
+  position: absolute;
+  inset: 11px 7px;
+  background: var(--color-gold);
+  -webkit-mask: url('/images/brand/logo-mono.svg') center / contain no-repeat;
+  mask: url('/images/brand/logo-mono.svg') center / contain no-repeat;
+  content: '';
+}
+
+.brand:hover,
+.brand:focus-visible { border-color: var(--color-gold); outline: none; }
 
 .nav {
   display: flex;
@@ -155,7 +169,8 @@
     gap: var(--phone-3);
   }
 
-  .brand { font-size: var(--phone-10); }
+  .brand { width: var(--phone-12); height: var(--phone-12); }
+  .brand::after { inset: var(--phone-2-75) var(--phone-2); }
 
   /* The hero keeps the booking CTA prominent; the header reserves its narrow
      layout for a readable logo and a 44px menu target. */
