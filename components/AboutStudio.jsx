@@ -68,7 +68,7 @@ export default function AboutStudio() {
               src="/images/ekaterina-portrait.jpg"
               alt="Екатерина Трофимова, основательница студии красоты ТрофиК"
               fill
-              sizes="(max-width: 767px) calc(100vw - 48px), (max-width: 1023px) 42vw, 520px"
+              sizes="(max-width: 767px) calc(100vw - 48px), (max-width: 1023px) 42vw, 600px"
             />
           </div>
           <figcaption className={styles.caption}>
