@@ -27,7 +27,14 @@ export default function HeroSlider() {
     setCycle((value) => value + 1);
   };
 
-  useEffect(() => setMounted(true), []);
+  useEffect(() => {
+    setMounted(true);
+    const root = document.documentElement;
+    const setHeight = () => root.style.setProperty('--hero-h', `${window.innerHeight}px`);
+    setHeight();
+    window.addEventListener('resize', setHeight);
+    return () => window.removeEventListener('resize', setHeight);
+  }, []);
 
   useEffect(() => {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return undefined;

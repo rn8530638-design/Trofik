@@ -126,9 +126,8 @@
   .container { width: 48vw; max-width: none; margin: 0; padding-right: 24px; padding-left: 24px; justify-items: center; }
   .content { width: fit-content; max-width: 100%; }
 }
-/* Фото начинается под шапкой, поэтому по высоте целиком помещается в первый экран. */
+/* Высота первого экрана — по реальному окну (--hero-h задаёт HeroSlider): иначе
+   панели браузера сверху делают экран выше видимой области и срезают низ. */
 @media (min-width: 1024px) {
-  .media { top: var(--header-h); }
-  .slides { -webkit-mask-image: linear-gradient(to right, transparent 0, #000 16%), linear-gradient(to bottom, transparent 0, #000 7%); -webkit-mask-composite: source-in; mask-image: linear-gradient(to right, transparent 0, #000 16%), linear-gradient(to bottom, transparent 0, #000 7%); mask-composite: intersect; }
-  .slides::after { display: none; }
+  .hero, .container { min-height: var(--hero-h, 100svh); }
 }
