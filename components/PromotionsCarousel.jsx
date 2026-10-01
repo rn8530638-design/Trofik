@@ -55,7 +55,6 @@ export default function PromotionsCarousel({ promotions }) {
       <button type="button" className={`${styles.carouselArrow} ${styles.carouselArrowNext}`} onClick={() => move(1)} aria-label="Следующее предложение">
         <Arrow direction="next" />
       </button>
-      <p className={styles.scrollHint}>Листайте, чтобы посмотреть все предложения</p>
       <p className={styles.note}>Скидки не суммируются</p>
     </div>
   );
