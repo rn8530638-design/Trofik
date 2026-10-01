@@ -61,3 +61,8 @@
 @media (hover: none) {
   .callButton:hover { transform: none; }
 }
+
+/* ПК: карта выше, ширина прежняя. */
+@media (min-width: 1024px) {
+  .mapWrap iframe { height: 520px; }
+}
