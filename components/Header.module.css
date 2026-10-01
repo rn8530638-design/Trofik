@@ -29,28 +29,19 @@
 }
 
 .brand {
-  position: relative;
   flex: 0 0 auto;
   display: block;
   width: 64px;
   height: 64px;
-  box-sizing: border-box;
-  border: 1px solid rgba(var(--color-accent-gold-rgb), 0.5);
-  transition: border-color 0.25s ease;
+  border-radius: 4px;
+  /* Фирменный синий логотип студии — по просьбе заказчика, в исходном виде. */
+  background: url('/images/brand/logo-blue.svg') center / cover no-repeat;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.28);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
-/* Монограмма из логотипа студии в тонкой золотой рамке, как в футере. */
-.brand::after {
-  position: absolute;
-  inset: 11px 7px;
-  background: var(--color-gold);
-  -webkit-mask: url('/images/brand/logo-mono.svg') center / contain no-repeat;
-  mask: url('/images/brand/logo-mono.svg') center / contain no-repeat;
-  content: '';
-}
-
-.brand:hover,
-.brand:focus-visible { border-color: var(--color-gold); outline: none; }
+.brand:hover { box-shadow: 0 8px 22px rgba(0, 0, 0, 0.36); transform: translateY(-1px); }
+.brand:focus-visible { outline: 2px solid var(--color-gold); outline-offset: 3px; }
 
 .nav {
   display: flex;
@@ -170,7 +161,6 @@
   }
 
   .brand { width: var(--phone-12); height: var(--phone-12); }
-  .brand::after { inset: var(--phone-2-75) var(--phone-2); }
 
   /* The hero keeps the booking CTA prominent; the header reserves its narrow
      layout for a readable logo and a 44px menu target. */
