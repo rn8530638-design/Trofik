@@ -149,38 +149,92 @@
   .inner {
     width: 100%;
     max-width: 100%;
+    height: var(--phone-19);
     padding-right: var(--phone-gutter);
     padding-left: var(--phone-gutter);
-    gap: 12px;
+    gap: var(--phone-3);
   }
 
-  .brand { font-size: clamp(2.2rem, 10vw, 2.6rem); }
+  .brand { font-size: var(--phone-10); }
 
   /* The hero keeps the booking CTA prominent; the header reserves its narrow
      layout for a readable logo and a 44px menu target. */
   .cta { display: none; }
 
+  /* Меню всегда в разметке, но скрыто: так его можно плавно показать и спрятать. */
   .nav {
     position: fixed;
-    top: clamp(68px, 19.32vw, 80px);
-    right: var(--phone-4);
-    left: var(--phone-4);
-    display: none;
+    top: calc(var(--phone-19) - var(--phone-1));
+    right: var(--phone-gutter);
+    left: var(--phone-gutter);
+    display: flex;
     flex-direction: column;
     gap: 0;
-    padding: 12px;
-    border: 1px solid rgba(var(--color-accent-gold-rgb), 0.42);
-    border-radius: 16px;
-    background: rgba(var(--color-background-rgb), 0.98);
-    box-shadow: 0 18px 38px rgba(var(--color-heading-rgb), 0.18);
+    padding: var(--phone-2) var(--phone-5);
+    border: 1px solid rgba(var(--color-accent-gold-rgb), 0.35);
+    border-radius: var(--phone-card-radius);
+    background: rgba(24, 36, 56, 0.97);
+    box-shadow: 0 var(--phone-5) var(--phone-12) rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(18px);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateY(calc(var(--phone-3) * -1));
+    transform-origin: top center;
+    transition: opacity 0.22s ease, transform 0.3s cubic-bezier(0.22, 0.81, 0.35, 1), visibility 0s linear 0.3s;
   }
 
-  .navOpen { display: flex; }
+  .navOpen {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: none;
+    transition: opacity 0.22s ease, transform 0.3s cubic-bezier(0.22, 0.81, 0.35, 1), visibility 0s;
+  }
 
-  .link { width: 100%; height: auto; margin: 0; padding: 14px 12px; font-size: 13px; }
+  /* Пункты появляются по очереди сверху вниз. */
+  .nav li { opacity: 0; transform: translateY(calc(var(--phone-2) * -1)); transition: opacity 0.25s ease, transform 0.3s ease; }
+  .navOpen li { opacity: 1; transform: none; }
+  .navOpen li:nth-child(2) { transition-delay: 0.03s; }
+  .navOpen li:nth-child(3) { transition-delay: 0.06s; }
+  .navOpen li:nth-child(4) { transition-delay: 0.09s; }
+  .navOpen li:nth-child(5) { transition-delay: 0.12s; }
+  .navOpen li:nth-child(6) { transition-delay: 0.15s; }
+  .nav li + li { border-top: 1px solid rgba(var(--color-accent-gold-rgb), 0.14); }
+
+  .link {
+    display: flex;
+    width: 100%;
+    height: auto;
+    box-sizing: border-box;
+    align-items: center;
+    margin: 0;
+    padding: var(--phone-3-5) var(--phone-1);
+    overflow: visible;
+    color: rgba(243, 232, 234, 0.88);
+    font-family: var(--font-heading), Georgia, serif;
+    font-size: var(--phone-5);
+    font-style: italic;
+    font-weight: 400;
+    letter-spacing: 0.01em;
+    text-transform: lowercase;
+    -webkit-tap-highlight-color: transparent;
+    transition: color 0.2s ease, background-color 0.2s ease;
+  }
+
+  /* Никакого переворота текста на телефоне: после касания «наведение» залипает. */
+  .linkFlip,
+  .link:hover .linkFlip,
+  .link:focus-visible .linkFlip { transform: none; transition: none; }
   .linkFaceBack { display: none; }
 
-  .cta { flex: 0 0 auto; margin-left: auto; }
+  .link:hover { color: rgba(243, 232, 234, 0.88); }
+  .link:active { color: var(--color-gold); }
+  .link:focus-visible { outline: 2px solid var(--color-gold); outline-offset: -2px; border-radius: var(--phone-2); }
+
+  /* Текущий раздел — золотом и с точкой слева. */
+  .link[aria-current='page'] { color: var(--color-gold); }
+  .link[aria-current='page']::before { width: var(--phone-1-5); height: var(--phone-1-5); margin-right: var(--phone-3); border-radius: 50%; background: var(--color-gold); content: ''; }
 
   .menuButton {
     display: inline-flex !important;
@@ -202,10 +256,19 @@
     box-shadow: 0 8px 20px rgba(4, 9, 18, 0.2), inset 0 1px 0 rgba(255, 247, 248, 0.08);
     backdrop-filter: blur(12px);
     cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
   }
 
-  .menuButton span { display: block; width: 18px; height: 1.5px; border-radius: 99px; background: currentColor; }
+  .menuButton span { display: block; width: 18px; height: 1.5px; border-radius: 99px; background: currentColor; transition: transform 0.3s ease, opacity 0.2s ease; }
+  /* Бургер превращается в крестик. */
+  .menuButton[aria-expanded='true'] span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+  .menuButton[aria-expanded='true'] span:nth-child(2) { opacity: 0; }
+  .menuButton[aria-expanded='true'] span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
   .menuButton:focus-visible { outline: 2px solid var(--color-gold); outline-offset: 3px; }
+}
+
+@media (max-width: 767px) and (prefers-reduced-motion: reduce) {
+  .nav, .nav li, .menuButton span { transition-duration: 0.01ms; transition-delay: 0s; }
 }
 
 /* Десктоп: меню в духе журнальных подписей — курсив, золотые точки, росчерк пером. */

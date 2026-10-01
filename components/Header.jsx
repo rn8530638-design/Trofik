@@ -46,6 +46,22 @@ export default function Header() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [isMenuOpen]);
 
+  // Открытое меню закрывается касанием вне шапки и клавишей Esc.
+  const headerRef = useRef(null);
+  useEffect(() => {
+    if (!isMenuOpen) return undefined;
+    const handlePointerDown = (event) => {
+      if (!headerRef.current?.contains(event.target)) setIsMenuOpen(false);
+    };
+    const handleKeyDown = (event) => { if (event.key === 'Escape') setIsMenuOpen(false); };
+    document.addEventListener('pointerdown', handlePointerDown);
+    document.addEventListener('keydown', handleKeyDown);
+    return () => {
+      document.removeEventListener('pointerdown', handlePointerDown);
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [isMenuOpen]);
+
   const handleSectionNavigation = (event, href) => {
     setIsMenuOpen(false);
 
@@ -61,7 +77,7 @@ export default function Header() {
   };
 
   return (
-    <header className={`${styles.header} ${isHeaderVisible ? '' : styles.headerHidden} ${isScrolled ? styles.headerScrolled : ''}`}>
+    <header ref={headerRef} className={`${styles.header} ${isHeaderVisible ? '' : styles.headerHidden} ${isScrolled ? styles.headerScrolled : ''}`}>
       <div className={styles.inner}>
         <Link href="/" className={styles.brand} aria-label="ТрофиК — на главную">
           ТрофиК
