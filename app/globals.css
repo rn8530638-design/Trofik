@@ -156,9 +156,14 @@ body {
  */
 @media (max-width: 767px) {
   :root {
+    --phone-1: clamp(3.08px, 0.966vw, 4px);
+    --phone-1-5: clamp(4.62px, 1.449vw, 6px);
     --phone-2: clamp(6.16px, 1.932vw, 8px);
+    --phone-2-75: clamp(8.47px, 2.657vw, 11px);
     --phone-3: clamp(9.24px, 2.898vw, 12px);
+    --phone-3-25: clamp(10.01px, 3.14vw, 13px);
     --phone-3-5: clamp(10.78px, 3.381vw, 14px);
+    --phone-3-75: clamp(11.55px, 3.623vw, 15px);
     --phone-4: clamp(12.32px, 3.864vw, 16px);
     --phone-4-25: clamp(13.09px, 4.106vw, 17px);
     --phone-4-5: clamp(13.86px, 4.347vw, 18px);
@@ -179,6 +184,7 @@ body {
     --phone-19: clamp(58.52px, 18.354vw, 76px);
     --phone-22: clamp(67.76px, 21.252vw, 88px);
     --phone-28: clamp(86.24px, 27.048vw, 112px);
+    --phone-65: clamp(200.2px, 62.802vw, 260px);
     --phone-gutter: clamp(18px, 5.8vw, 26px);
     --phone-section: clamp(60px, 18.4vw, 82px);
     --phone-page-top: clamp(88px, 27vw, 120px);

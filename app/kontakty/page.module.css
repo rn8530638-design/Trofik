@@ -39,12 +39,20 @@
 @media (max-width: 767px) {
   .contacts { padding: calc(var(--phone-page-top) + var(--phone-4)) 0 var(--phone-10); }
   .container { width: min(calc(100% - calc(var(--phone-gutter) * 2)), 600px); min-width: 0; }
-  .title { margin-bottom: 38px; font-size: clamp(2.8rem, 13vw, 3.75rem); }
-  .formWrap { width: 100%; margin-bottom: 42px; }
-  .mapWrap { min-width: 0; border-radius: 18px; }
-  .mapWrap iframe { width: 100%; height: 280px; }
-  .zones { width: 100%; min-width: 0; margin-top: 32px; }
-  .companyCard { padding: 28px 22px; }
-  .detail { padding: 17px 0; }
-  .callButton { width: 100%; justify-content: center; box-sizing: border-box; }
+  .marker { margin-bottom: var(--phone-4); }
+  .title { margin-bottom: var(--phone-8); font-size: var(--phone-13-5); }
+  .formWrap { width: 100%; margin-bottom: var(--phone-8); }
+  .mapWrap { min-width: 0; border-radius: var(--phone-card-radius); }
+  .mapWrap iframe { width: 100%; height: var(--phone-65); }
+  .mapLink { min-height: var(--phone-control); margin-top: var(--phone-3); font-size: var(--phone-3); }
+  .zones { width: 100%; min-width: 0; margin-top: var(--phone-7); }
+  .companyCard { padding: var(--phone-6) var(--phone-card-pad); border-radius: var(--phone-card-radius); }
+  .zoneLabel { margin-bottom: var(--phone-5); font-size: var(--phone-2-75); }
+  .detail { grid-template-columns: var(--phone-8) minmax(0, 1fr); gap: var(--phone-3); padding: var(--phone-4) 0; }
+  .icon { width: var(--phone-7); height: var(--phone-7); }
+  .icon svg { width: var(--phone-4); height: var(--phone-4); margin-top: var(--phone-1-5); }
+  .detail h2 { margin-bottom: var(--phone-1); font-size: var(--phone-2-75); }
+  .detail p, .detail > div > a { font-size: var(--phone-3-75); overflow-wrap: anywhere; }
+  .socials { gap: var(--phone-4); }
+  .socials a { font-size: var(--phone-3-5); }
 }

@@ -16,3 +16,22 @@
 .phone { color: var(--color-heading); font-family: var(--font-heading), Georgia, serif; font-size: 2rem; font-weight: 600; text-decoration: none; transition: color 0.2s ease; }
 .phone:hover, .phone:focus-visible { color: var(--color-gold); outline: none; }
 .hours { margin: 6px 0 0; color: var(--color-text-body); font-family: var(--font-body), Arial, sans-serif; font-size: 15px; }
+
+/* Телефон: все размеры от шкалы --phone-*, растут вместе с шириной экрана (SE → Pro Max). */
+@media (max-width: 767px) {
+  .panel { padding: var(--phone-6) var(--phone-card-pad) var(--phone-6); border-radius: var(--phone-card-radius); }
+  .panel::before { top: calc(var(--phone-12) * -1); right: calc(var(--phone-10) * -1); width: var(--phone-28); height: var(--phone-28); }
+  .eyebrow { margin-bottom: var(--phone-2); font-size: var(--phone-2-75); }
+  .heading { margin-bottom: var(--phone-5); font-size: var(--phone-6); }
+  .steps { gap: var(--phone-4); margin-bottom: var(--phone-6); }
+  .steps li { padding-left: var(--phone-10); }
+  .steps li::before { width: var(--phone-7); height: var(--phone-7); font-size: var(--phone-3-5); }
+  .steps li + li::after { bottom: calc(100% - 2px); left: calc(var(--phone-7) / 2); height: var(--phone-4); }
+  .stepTitle { font-size: var(--phone-4); }
+  .stepText { font-size: var(--phone-3-5); }
+  .cta { align-self: stretch; justify-content: center; min-height: var(--phone-control); box-sizing: border-box; padding: 0 var(--phone-5); font-size: var(--phone-3-25); }
+  .note { margin-top: var(--phone-3); font-size: var(--phone-3-25); }
+  .or { margin: var(--phone-5) 0 var(--phone-3); font-size: var(--phone-2-75); }
+  .phone { font-size: var(--phone-6); }
+  .hours { margin-top: var(--phone-1); font-size: var(--phone-3-5); }
+}
