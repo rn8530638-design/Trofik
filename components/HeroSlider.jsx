@@ -18,8 +18,7 @@ const pad = (number) => String(number).padStart(2, '0');
 
 export default function HeroSlider() {
   const [active, setActive] = useState(0);
-  const [paused, setPaused] = useState(false);
-  // cycle перезапускает и таймер, и полоску прогресса при любой смене кадра или снятии паузы.
+  // cycle перезапускает таймер при ручной смене кадра.
   const [cycle, setCycle] = useState(0);
   const [mounted, setMounted] = useState(false);
 
@@ -31,10 +30,10 @@ export default function HeroSlider() {
   useEffect(() => setMounted(true), []);
 
   useEffect(() => {
-    if (paused || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return undefined;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return undefined;
     const timer = window.setTimeout(() => go(active + 1), INTERVAL);
     return () => window.clearTimeout(timer);
-  }, [paused, cycle, active]);
+  }, [cycle, active]);
 
   return (
     <figure
@@ -42,8 +41,6 @@ export default function HeroSlider() {
       style={{ '--slide-ms': `${INTERVAL}ms` }}
       aria-roledescription="carousel"
       aria-label="Фотографии студии"
-      onMouseEnter={() => setPaused(true)}
-      onMouseLeave={() => { setPaused(false); setCycle((value) => value + 1); }}
     >
       <div className={styles.goldFrame} aria-hidden="true" />
       <div className={styles.slides}>
@@ -74,17 +71,8 @@ export default function HeroSlider() {
         </div>
       </div>
       <div className={styles.deskCaption} aria-hidden="true">{SLIDES[active].caption}</div>
-      <div className={styles.deskControls}>
-        <span className={styles.counter} aria-hidden="true"><b>{pad(active + 1)}</b> / {pad(SLIDES.length)}</span>
-        <span className={styles.progress} aria-hidden="true">
-          <span key={cycle} className={styles.progressFill} style={{ animationPlayState: paused ? 'paused' : 'running' }} />
-        </span>
-        <button type="button" className={styles.arrow} onClick={() => go(active - 1)} aria-label="Предыдущее фото">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m14.5 5-7 7 7 7" /></svg>
-        </button>
-        <button type="button" className={styles.arrow} onClick={() => go(active + 1)} aria-label="Следующее фото">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9.5 5 7 7-7 7" /></svg>
-        </button>
+      <div className={styles.deskControls} aria-hidden="true">
+        <span className={styles.counter}><b>{pad(active + 1)}</b> / {pad(SLIDES.length)}</span>
       </div>
     </figure>
   );

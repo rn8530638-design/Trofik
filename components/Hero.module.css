@@ -101,10 +101,10 @@
 @media (min-width: 1024px) {
   /* Слайдер — на всю правую часть экрана, до краёв, и растворяется в фоне слева. */
   .container { position: static; grid-template-columns: minmax(0, 1fr); }
-  .content { position: relative; z-index: 1; width: min(100%, calc(50vw - 100px)); }
-  .media { position: absolute; z-index: 0; top: 0; right: 0; bottom: 0; align-self: auto; width: 47vw; margin: 0; }
+  .content { position: relative; z-index: 1; width: min(100%, calc(47vw - 80px)); }
+  .media { position: absolute; z-index: 0; top: 0; right: 0; bottom: 0; align-self: auto; width: 52vw; margin: 0; }
   .goldFrame, .dots { display: none; }
-  .slides { height: 100%; aspect-ratio: auto; border-radius: 0; box-shadow: none; background: transparent; -webkit-mask-image: linear-gradient(to right, transparent 0, #000 30%); mask-image: linear-gradient(to right, transparent 0, #000 30%); }
+  .slides { height: 100%; aspect-ratio: auto; border-radius: 0; box-shadow: none; background: transparent; -webkit-mask-image: linear-gradient(to right, transparent 0, #000 16%); mask-image: linear-gradient(to right, transparent 0, #000 16%); }
   .slideShade { height: 42%; background: linear-gradient(to top, rgba(8, 17, 31, .72), rgba(8, 17, 31, 0)); }
   .slides::after { position: absolute; inset: 0 0 auto; height: 190px; background: linear-gradient(to bottom, rgba(8, 17, 31, .78), rgba(8, 17, 31, 0)); content: ''; pointer-events: none; }
   .slide { transform: scale(1); transition: opacity 1000ms ease, transform 0s linear 1000ms; }
@@ -114,15 +114,10 @@
   .eyebrow { display: block; width: 56px; height: 1px; margin-bottom: 28px; background: var(--color-gold); }
   .statValue { font-weight: 500; }
 
-  .deskCaption { position: absolute; z-index: 2; left: 24%; bottom: 112px; display: block; color: var(--color-heading); font-size: .8rem; font-weight: 500; letter-spacing: .24em; text-transform: uppercase; text-shadow: 0 1px 12px rgba(0, 0, 0, .5); }
-  .deskControls { position: absolute; z-index: 2; right: 48px; bottom: 44px; left: 24%; display: flex; align-items: center; gap: 24px; }
-  .counter { color: rgba(255, 247, 248, .72); font-family: var(--font-heading), Georgia, serif; font-size: 1.05rem; letter-spacing: .08em; }
-  .counter b { color: var(--color-gold); font-size: 1.6rem; font-weight: 400; }
-  .progress { position: relative; flex: 1; height: 1px; overflow: hidden; background: rgba(255, 247, 248, .28); }
-  .progressFill { position: absolute; inset: 0; background: var(--color-gold); transform: scaleX(0); transform-origin: left; animation: heroProgress var(--slide-ms) linear forwards; }
-  .arrow { display: inline-flex; width: 48px; height: 48px; align-items: center; justify-content: center; padding: 0; border: 1px solid rgba(245, 230, 220, .36); border-radius: 50%; background: rgba(10, 20, 36, .5); color: var(--color-heading); cursor: pointer; backdrop-filter: blur(10px); transition: color .2s ease, border-color .2s ease, background-color .2s ease; }
-  .arrow svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-linecap: round; stroke-linejoin: round; stroke-width: 1.7; }
-  .arrow:hover, .arrow:focus-visible { border-color: var(--color-gold); background: rgba(10, 20, 36, .8); color: var(--color-gold); outline: none; }
+  .deskCaption { position: absolute; z-index: 2; left: 14%; bottom: 96px; display: block; color: var(--color-heading); font-size: .8rem; font-weight: 500; letter-spacing: .24em; text-transform: uppercase; text-shadow: 0 1px 12px rgba(0, 0, 0, .5); }
+  .deskControls { position: absolute; z-index: 2; bottom: 44px; left: 14%; display: flex; align-items: center; }
+  .counter { color: rgba(255, 247, 248, .72); font-family: var(--font-numeric), var(--font-body), sans-serif; font-size: 1rem; font-variant-numeric: tabular-nums; letter-spacing: .1em; }
+  .counter b { color: var(--color-gold); font-size: 1.5rem; font-weight: 500; }
 }
-@keyframes heroProgress { to { transform: scaleX(1); } }
-@media (min-width: 1024px) and (prefers-reduced-motion: reduce) { .slideZoom { transform: scale(1); transition: opacity .01ms; } .progressFill { animation: none; transform: scaleX(1); } }
+@media (min-width: 1024px) and (prefers-reduced-motion: reduce) { .slideZoom { transform: scale(1); transition: opacity .01ms; } }
+@media (min-width: 1600px) { .stat { padding: 0 12px; } .stat:first-child { padding-left: 0; } .stat:last-child { padding-right: 0; } .statLabel { font-size: .8rem; } }
