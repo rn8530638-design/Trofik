@@ -45,14 +45,10 @@ export default function PromotionsCarousel({ promotions }) {
       <ul ref={trackRef} className={styles.track}>
         {promotions.map((promotion) => (
           <li key={promotion.title} className={styles.promoCard}>
-            <div className={styles.posterFrame}>
+            <button type="button" className={styles.posterButton} onClick={() => choosePromotion(promotion)} aria-label={`Выбрать предложение: ${promotion.title}`}>
               <Image className={styles.cardImage} src={promotion.image} alt={promotion.alt} fill quality={90} sizes="(max-width: 767px) 84vw, 440px" />
-            </div>
-            <div className={styles.cardFooter}>
-              <button type="button" className={styles.cardButton} onClick={() => choosePromotion(promotion)}>
-                Выбрать предложение <span aria-hidden="true">→</span>
-              </button>
-            </div>
+              <span className={styles.cardShade} aria-hidden="true" />
+            </button>
           </li>
         ))}
       </ul>
