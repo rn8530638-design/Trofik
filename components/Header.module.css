@@ -31,8 +31,9 @@
 .brand {
   flex: 0 0 auto;
   display: block;
-  width: 64px;
-  height: 64px;
+  width: 76px;
+  height: 76px;
+  margin-left: -24px;
   border-radius: 4px;
   /* Фирменный синий логотип студии — по просьбе заказчика, в исходном виде. */
   background: url('/images/brand/logo-blue.svg') center / cover no-repeat;
@@ -160,7 +161,7 @@
     gap: var(--phone-3);
   }
 
-  .brand { width: var(--phone-12); height: var(--phone-12); }
+  .brand { width: clamp(43.12px, 13.527vw, 56px); height: clamp(43.12px, 13.527vw, 56px); margin-left: calc(var(--phone-2) * -1); }
 
   /* The hero keeps the booking CTA prominent; the header reserves its narrow
      layout for a readable logo and a 44px menu target. */
