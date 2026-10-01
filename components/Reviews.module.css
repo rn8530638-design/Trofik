@@ -382,3 +382,8 @@
   .mobileArrow { display: flex; width: 44px; height: 44px; align-items: center; justify-content: center; padding: 0; border: 1px solid rgba(var(--color-accent-gold-rgb), 0.5); border-radius: 50%; background: var(--color-background-alt); color: var(--color-gold); cursor: pointer; }
   .mobileArrow:hover, .mobileArrow:focus-visible { border-color: var(--color-gold); background: rgba(var(--color-accent-gold-rgb), 0.12); color: var(--color-gold-dark); outline: none; }
 }
+
+/* Сенсорные экраны: после касания «наведение» залипает — подъёмы и увеличения отключаем. */
+@media (hover: none) {
+  .arrow:hover { transform: translateY(-50%); }
+}

@@ -30,3 +30,9 @@
   .description { display: -webkit-box; overflow: hidden; font-size: 0.76rem; -webkit-box-orient: vertical; -webkit-line-clamp: 3; }
   .price { font-size: 0.98rem; }
 }
+
+/* Сенсорные экраны: после касания «наведение» залипает — подъёмы и увеличения отключаем. */
+@media (hover: none) {
+  .card:hover, .card:focus-within { transform: none; }
+  .card:hover .photo, .card:focus-within .photo { transform: none; }
+}

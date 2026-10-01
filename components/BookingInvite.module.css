@@ -28,3 +28,9 @@
   .title { padding-right: 28px; font-size: 1.3rem; }
   .text { margin-bottom: 18px; }
 }
+
+/* Сенсорные экраны: после касания «наведение» залипает — подъёмы и увеличения отключаем. */
+@media (hover: none) {
+  .cta:hover { transform: none; }
+  .cta:hover::before { transform: rotate(22deg); }
+}

@@ -152,3 +152,9 @@
   .grid { overflow-x: auto; scroll-snap-type: x mandatory; touch-action: auto; }
   .progress { display: none; }
 }
+
+/* Сенсорные экраны: после касания «наведение» залипает — подъёмы и увеличения отключаем. */
+@media (hover: none) {
+  .card:hover { transform: none; }
+  .card:hover .photo { transform: none; }
+}

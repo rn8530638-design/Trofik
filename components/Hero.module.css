@@ -131,3 +131,9 @@
 @media (min-width: 1024px) {
   .hero, .container { min-height: var(--hero-h, 100svh); }
 }
+
+/* Сенсорные экраны: после касания «наведение» залипает — подъёмы и увеличения отключаем. */
+@media (hover: none) {
+  .ctaButton:hover { transform: none; }
+  .ctaButton:hover::before { transform: rotate(22deg); }
+}

@@ -56,3 +56,8 @@
   .socials { gap: var(--phone-4); }
   .socials a { font-size: var(--phone-3-5); }
 }
+
+/* Сенсорные экраны: после касания «наведение» залипает — подъёмы и увеличения отключаем. */
+@media (hover: none) {
+  .callButton:hover { transform: none; }
+}

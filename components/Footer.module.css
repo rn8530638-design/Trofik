@@ -31,3 +31,8 @@
   .socials { justify-content: center; }
   .legal { flex-direction: column; align-items: center; gap: 9px; margin-top: 38px; padding-top: 20px; text-align: center; }
 }
+
+/* Сенсорные экраны: после касания «наведение» залипает — подъёмы и увеличения отключаем. */
+@media (hover: none) {
+  .socials a:hover { transform: none; }
+}

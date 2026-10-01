@@ -37,3 +37,8 @@
   .actions { flex-direction: column; margin-top: 30px; }
   .primary, .secondary { width: 100%; }
 }
+
+/* Сенсорные экраны: после касания «наведение» залипает — подъёмы и увеличения отключаем. */
+@media (hover: none) {
+  .primary:hover { transform: none; }
+}
