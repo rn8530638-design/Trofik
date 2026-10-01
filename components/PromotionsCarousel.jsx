@@ -44,18 +44,11 @@ export default function PromotionsCarousel({ promotions }) {
       </button>
       <ul ref={trackRef} className={styles.track}>
         {promotions.map((promotion) => (
-          <li key={promotion.title} className={`${styles.promoCard} ${promotion.image ? '' : styles.promoCardPlain}`}>
-            {promotion.image && (
-              <>
-                <Image className={styles.cardImage} src={promotion.image} alt="" fill sizes="(max-width: 767px) 84vw, 600px" />
-                <div className={styles.cardShade} aria-hidden="true" />
-              </>
-            )}
-            <div className={styles.cardContent}>
-              <span className={styles.cardLabel}>Предложение студии</span>
-              <h3>{promotion.title}</h3>
-              <p className={styles.cardDiscount}>{promotion.discount}</p>
-              <p className={styles.cardDescription}>{promotion.description}</p>
+          <li key={promotion.title} className={styles.promoCard}>
+            <div className={styles.posterFrame}>
+              <Image className={styles.cardImage} src={promotion.image} alt={promotion.alt} fill quality={90} sizes="(max-width: 767px) 84vw, 440px" />
+            </div>
+            <div className={styles.cardFooter}>
               <button type="button" className={styles.cardButton} onClick={() => choosePromotion(promotion)}>
                 Выбрать предложение <span aria-hidden="true">→</span>
               </button>
