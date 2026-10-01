@@ -11,7 +11,8 @@ export default function BookingInvite() {
   const [isVisible, setIsVisible] = useState(false);
   const [isLeaving, setIsLeaving] = useState(false);
   // Плашка cookie занимает низ экрана — пока она видна, поднимаем баннер над ней.
-  const [isAboveCookies, setIsAboveCookies] = useState(false);
+  // Высота плашки зависит от ширины экрана (на телефоне она в несколько строк), поэтому меряем её.
+  const [cookieOffset, setCookieOffset] = useState(0);
   const leaveTimer = useRef();
 
   useEffect(() => {
@@ -23,11 +24,8 @@ export default function BookingInvite() {
     }
     if (closed) return undefined;
     const timer = window.setTimeout(() => {
-      try {
-        setIsAboveCookies(!window.localStorage.getItem('cookie-consent'));
-      } catch {
-        setIsAboveCookies(true);
-      }
+      const cookieBanner = document.querySelector('aside[aria-label="Уведомление об использовании cookie"]');
+      if (cookieBanner) setCookieOffset(window.innerHeight - cookieBanner.getBoundingClientRect().top);
       setIsVisible(true);
     }, DELAY);
     return () => {
@@ -57,11 +55,14 @@ export default function BookingInvite() {
 
   return (
     <aside
-      className={`${styles.card} ${isAboveCookies ? styles.aboveCookies : ''} ${isLeaving ? styles.isLeaving : ''}`}
+      className={`${styles.card} ${isLeaving ? styles.isLeaving : ''}`}
+      style={cookieOffset ? { '--cookie-offset': `${cookieOffset}px` } : undefined}
       aria-label="Приглашение записаться"
     >
       <button className={styles.close} type="button" onClick={close} aria-label="Закрыть">×</button>
-      <p className={styles.title}>Мастера высшего класса</p>
+      <p className={styles.eyebrow}>Онлайн-запись</p>
+      <p className={styles.title}>Мастера <em>высшего класса</em></p>
+      <p className={styles.text}>Выберите услугу и удобное время — это займёт пару минут.</p>
       <a className={styles.cta} href={DIKIDI_BOOKING_URL} target="_blank" rel="noopener noreferrer" onClick={close}>
         Записаться
         <span className={styles.arrow} aria-hidden="true">→</span>
