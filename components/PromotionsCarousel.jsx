@@ -2,6 +2,7 @@
 
 import Image from 'next/image';
 import { useRef } from 'react';
+import { DIKIDI_BOOKING_URL } from '@/lib/dikidi';
 import styles from './Promotions.module.css';
 
 function Arrow({ direction }) {
@@ -26,17 +27,6 @@ export default function PromotionsCarousel({ promotions }) {
     track.scrollBy({ left: direction * distance, behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth' });
   };
 
-  const choosePromotion = (promotion) => {
-    const details = { title: promotion.title, description: promotion.description };
-    try {
-      window.sessionStorage.setItem('selected-promotion', JSON.stringify(details));
-    } catch {
-      // The live event also fills the form when storage is blocked.
-    }
-    window.dispatchEvent(new CustomEvent('promotion-selected', { detail: details }));
-    document.getElementById('contacts')?.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth', block: 'start' });
-  };
-
   return (
     <div className={styles.carousel} aria-roledescription="carousel" aria-label="Акции студии">
       <button type="button" className={`${styles.carouselArrow} ${styles.carouselArrowPrevious}`} onClick={() => move(-1)} aria-label="Предыдущее предложение">
@@ -45,10 +35,10 @@ export default function PromotionsCarousel({ promotions }) {
       <ul ref={trackRef} className={styles.track}>
         {promotions.map((promotion) => (
           <li key={promotion.title} className={styles.promoCard}>
-            <button type="button" className={styles.posterButton} onClick={() => choosePromotion(promotion)} aria-label={`Выбрать предложение: ${promotion.title}`}>
+            <a className={styles.posterButton} href={DIKIDI_BOOKING_URL} target="_blank" rel="noopener noreferrer" aria-label={`${promotion.title} — записаться онлайн`}>
               <Image className={styles.cardImage} src={promotion.image} alt={promotion.alt} fill quality={90} sizes="(max-width: 767px) 84vw, 440px" />
               <span className={styles.cardShade} aria-hidden="true" />
-            </button>
+            </a>
           </li>
         ))}
       </ul>
@@ -56,6 +46,7 @@ export default function PromotionsCarousel({ promotions }) {
         <Arrow direction="next" />
       </button>
       <p className={styles.note}>Скидки не суммируются</p>
+      <p className={styles.hint}>Нажмите на акцию, чтобы записаться, и назовите её администратору</p>
     </div>
   );
 }

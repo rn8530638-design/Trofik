@@ -1,27 +1,6 @@
-import ContactsBriefForm from './ContactsBriefForm';
-import { contactDetails, serviceOptions } from '@/lib/contactData';
+import BookingPanel from './BookingPanel';
+import { contactDetails } from '@/lib/contactData';
 import styles from './ContactsBrief.module.css';
-
-const formCopy = {
-  nameLabel: 'Имя',
-  namePlaceholder: 'Ваше имя',
-  phoneLabel: 'Телефон',
-  phonePlaceholder: '+7 (___) ___-__-__',
-  commentLabel: 'Комментарий',
-  commentPlaceholder: 'Расскажите, что вас интересует',
-  promotionCommentPrefix: 'Интересует акция',
-  serviceLabel: 'Тип услуги',
-  servicePlaceholder: 'Выберите услугу',
-  services: serviceOptions,
-  submit: 'Записаться',
-  submitting: 'Отправка...',
-  nameError: 'Укажите, пожалуйста, имя.',
-  phoneRequiredError: 'Укажите, пожалуйста, телефон.',
-  phoneFormatError: 'Введите номер телефона не менее чем из 10 цифр.',
-  success: 'Спасибо! Мы свяжемся с вами в ближайшее время.',
-  requestError: 'Не удалось отправить заявку. Попробуйте позвонить нам напрямую.',
-  heading: 'Оставьте заявку',
-};
 
 function MapPinIcon() {
   return <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z" /><circle cx="12" cy="10" r="2.5" /></svg>;
@@ -50,7 +29,7 @@ export default function ContactsBrief() {
         <span className={styles.marker} aria-hidden="true" />
         <h2 id="contacts-title" className={styles.title}>Ждём вас в гости</h2>
         <div className={styles.grid}>
-          <ContactsBriefForm copy={formCopy} phoneHref={contactDetails.phoneHref} />
+          <BookingPanel />
           <div className={styles.info}>
             <div className={styles.item}>
               <span className={styles.infoIcon}><MapPinIcon /></span>
@@ -74,7 +53,6 @@ export default function ContactsBrief() {
               <span className={styles.infoIcon}><ClockIcon /></span>
               <div className={styles.itemContent}><h3>Часы работы</h3><p>{contactDetails.hours.map((hour) => <span key={hour}>{hour}</span>)}</p></div>
             </div>
-            <a className={styles.callButton} href={contactDetails.phoneHref}><PhoneIcon />Позвонить</a>
           </div>
         </div>
       </div>

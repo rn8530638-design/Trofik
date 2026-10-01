@@ -1,4 +1,4 @@
-import ContactsPageForm from '@/components/ContactsPageForm';
+import BookingPanel from '@/components/BookingPanel';
 import { contactDetails } from '@/lib/contactData';
 import styles from './page.module.css';
 
@@ -25,7 +25,7 @@ export default function ContactsPage() {
           <h1 id="contacts-title" className={styles.title}>Контакты</h1>
 
           <div className={styles.formWrap}>
-            <ContactsPageForm phoneHref={contactDetails.phoneHref} />
+            <BookingPanel />
           </div>
 
           <div className={styles.mapWrap}>
@@ -43,7 +43,6 @@ export default function ContactsPage() {
               <div className={styles.detail}><span className={styles.icon}><PhoneIcon /></span><div><h2>Телефон</h2><a href={contactDetails.phoneHref}>{contactDetails.phone}</a></div></div>
               <div className={styles.detail}><span className={styles.icon}><ShareIcon /></span><div><h2>Соцсети</h2><div className={styles.socials}><a href="https://vk.ru/studio_trofik" target="_blank" rel="noopener noreferrer">VK</a><a href="https://t.me/studiokr_trofik" target="_blank" rel="noopener noreferrer"><TelegramIcon />Telegram</a></div></div></div>
               <div className={styles.detail}><span className={styles.icon}><ClockIcon /></span><div><h2>Часы работы</h2><p>{contactDetails.hours.map((hour) => <span key={hour}>{hour}</span>)}</p></div></div>
-              <a className={styles.callButton} href={contactDetails.phoneHref}><PhoneIcon />Позвонить</a>
             </section>
           </div>
         </div>
