@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
 import { DIKIDI_BOOKING_URL } from '@/lib/dikidi';
 import styles from './Header.module.css';
@@ -20,6 +21,7 @@ export default function Header() {
   const [isHeaderVisible, setIsHeaderVisible] = useState(true);
   const [isScrolled, setIsScrolled] = useState(false);
   const lastScrollY = useRef(0);
+  const pathname = usePathname();
 
   useEffect(() => {
     lastScrollY.current = window.scrollY;
@@ -68,13 +70,21 @@ export default function Header() {
           <ul id="main-navigation" className={`${styles.nav} ${isMenuOpen ? styles.navOpen : ''}`}>
             {NAV.map((item) => (
               <li key={item.href}>
-                <Link href={item.href} className={styles.link} onClick={(event) => handleSectionNavigation(event, item.href)}>
+                <Link
+                  href={item.href}
+                  className={styles.link}
+                  aria-current={!item.href.startsWith('/#') && pathname.startsWith(item.href) ? 'page' : undefined}
+                  onClick={(event) => handleSectionNavigation(event, item.href)}
+                >
                   <span className={styles.linkFlip}>
                     <span className={styles.linkFace}>{item.label}</span>
                     <span className={styles.linkFaceBack} aria-hidden="true">
                       {item.label}
                     </span>
                   </span>
+                  <svg className={styles.flourish} viewBox="0 0 100 12" preserveAspectRatio="none" aria-hidden="true">
+                    <path d="M2 8.5C18 3 30 10.5 46 6.5S78 2.5 98 7" />
+                  </svg>
                 </Link>
               </li>
             ))}
@@ -83,6 +93,7 @@ export default function Header() {
 
         <a href={DIKIDI_BOOKING_URL} className={styles.cta} target="_blank" rel="noopener noreferrer">
           Записаться
+          <span className={styles.ctaArrow} aria-hidden="true">→</span>
         </a>
         <button
           className={styles.menuButton}
