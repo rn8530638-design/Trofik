@@ -79,7 +79,9 @@ export default function Header() {
   return (
     <header ref={headerRef} className={`${styles.header} ${isHeaderVisible ? '' : styles.headerHidden} ${isScrolled ? styles.headerScrolled : ''}`}>
       <div className={styles.inner}>
-        <Link href="/" className={styles.brand} aria-label="ТрофиК — на главную" />
+        <Link href="/" className={styles.brand} aria-label="ТрофиК — на главную">
+          ТрофиК
+        </Link>
         <nav aria-label="Основное меню">
           <ul id="main-navigation" className={`${styles.nav} ${isMenuOpen ? styles.navOpen : ''}`}>
             {NAV.map((item) => (

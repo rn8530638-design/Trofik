@@ -30,19 +30,13 @@
 
 .brand {
   flex: 0 0 auto;
-  display: block;
-  width: 76px;
-  height: 76px;
-  margin-left: -24px;
-  border-radius: 4px;
-  /* Фирменный синий логотип студии — по просьбе заказчика, в исходном виде. */
-  background: url('/images/brand/logo-blue.svg') center / cover no-repeat;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.28);
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  color: var(--color-gold);
+  font-family: "Gloria Script", var(--font-script), cursive;
+  font-size: clamp(2.15rem, 3vw, 2.75rem);
+  line-height: 1;
+  text-decoration: none;
+  text-shadow: 0 5px 24px rgba(var(--color-accent-gold-rgb), 0.16);
 }
-
-.brand:hover { box-shadow: 0 8px 22px rgba(0, 0, 0, 0.36); transform: translateY(-1px); }
-.brand:focus-visible { outline: 2px solid var(--color-gold); outline-offset: 3px; }
 
 .nav {
   display: flex;
@@ -161,7 +155,7 @@
     gap: var(--phone-3);
   }
 
-  .brand { width: clamp(43.12px, 13.527vw, 56px); height: clamp(43.12px, 13.527vw, 56px); margin-left: calc(var(--phone-2) * -1); }
+  .brand { font-size: var(--phone-10); }
 
   /* The hero keeps the booking CTA prominent; the header reserves its narrow
      layout for a readable logo and a 44px menu target. */
