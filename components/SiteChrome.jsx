@@ -9,9 +9,9 @@ import BookingInvite from './BookingInvite';
 export default function SiteChrome({ children }) {
   const pathname = usePathname();
   if (pathname.startsWith('/admin')) return children;
-  const usesPremiumTheme = pathname === '/' || pathname.startsWith('/uslugi') || pathname.startsWith('/kontakty') || pathname.startsWith('/blog');
+  // Тёмная тема на всех публичных страницах, включая 404 и будущие.
   return (
-    <div className={usesPremiumTheme ? `homepage-theme ${pathname === '/' ? 'homepage-gradient' : 'inner-gradient'}` : undefined}>
+    <div className={`homepage-theme ${pathname === '/' ? 'homepage-gradient' : 'inner-gradient'}`}>
       {pathname === '/' && <div className="homepage-pinned-background" aria-hidden="true" />}
       <Header />
       {children}

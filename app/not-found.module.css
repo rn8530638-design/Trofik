@@ -1,0 +1,39 @@
+.page { display: flex; min-height: 100svh; align-items: center; background: var(--homepage-background-one, var(--color-background)); }
+.inner { display: grid; width: min(1120px, calc(100% - 96px)); grid-template-columns: auto minmax(0, 1fr); align-items: center; gap: 96px; margin: 0 auto; padding: 150px 0 110px; }
+
+/* Зеркало: золотая рамка, мерцающие лампочки, по стеклу пробегает блик. */
+.mirror { position: relative; width: 300px; aspect-ratio: 3 / 4; padding: 14px; border: 2px solid var(--color-gold); border-radius: 150px 150px 18px 18px; background: linear-gradient(160deg, rgba(var(--color-accent-gold-rgb), 0.22), rgba(var(--color-accent-gold-rgb), 0.06)); box-shadow: 0 30px 70px rgba(0, 0, 0, 0.4), 0 0 60px rgba(var(--color-accent-gold-rgb), 0.12); }
+.glass { position: relative; display: flex; height: 100%; align-items: center; justify-content: center; overflow: hidden; border: 1px solid rgba(var(--color-accent-gold-rgb), 0.4); border-radius: 136px 136px 10px 10px; background: radial-gradient(ellipse at 50% 35%, rgba(185, 197, 217, 0.22), transparent 65%), linear-gradient(170deg, #34476a, #18263c); }
+.glass::after { position: absolute; top: -20%; left: -60%; width: 40%; height: 140%; background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.14), transparent); content: ''; transform: rotate(18deg); animation: shine 5s ease-in-out 1s infinite; }
+.code { color: var(--color-gold); font-family: "Gloria Script", var(--font-script), cursive; font-size: 6rem; line-height: 1; text-shadow: 0 6px 30px rgba(var(--color-accent-gold-rgb), 0.35); }
+.bulb { position: absolute; width: 14px; height: 14px; margin: -7px 0 0 -7px; border-radius: 50%; background: radial-gradient(circle at 40% 35%, #fffaf0, #f3dfb5 55%, #c9ad78); box-shadow: 0 0 12px 3px rgba(255, 228, 170, 0.55); animation: glow 2.4s ease-in-out var(--delay) infinite; }
+
+.eyebrow { margin: 0 0 16px; color: var(--color-gold); font-family: var(--font-body), Arial, sans-serif; font-size: 12px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; }
+.title { margin: 0 0 22px; color: var(--color-gold); font-family: "Gloria Script", var(--font-script), cursive; font-size: clamp(2.8rem, 4.4vw, 4.2rem); font-weight: 400; line-height: 1.1; }
+.lead { margin: 0 0 6px; color: var(--color-text-body); font-family: var(--font-heading), Georgia, serif; font-size: 1.3rem; line-height: 1.5; }
+.lead:first-of-type { font-style: italic; }
+.actions { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 38px; }
+.primary, .secondary { display: inline-flex; min-height: 52px; box-sizing: border-box; align-items: center; justify-content: center; gap: 12px; padding: 0 32px; border-radius: 999px; font-family: var(--font-body), Arial, sans-serif; font-size: 14px; font-weight: 600; letter-spacing: 0.14em; text-decoration: none; text-transform: uppercase; transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease; }
+.primary { border: 1px solid rgba(255, 248, 232, 0.22); background: linear-gradient(135deg, #b79561 0%, var(--color-gold) 46%, #d4bd8c 100%); color: #151927; box-shadow: 0 10px 24px rgba(0, 0, 0, 0.28); }
+.primary:hover, .primary:focus-visible { box-shadow: 0 14px 30px rgba(0, 0, 0, 0.36); outline: none; transform: translateY(-1px); }
+.secondary { border: 1px solid rgba(var(--color-accent-gold-rgb), 0.55); color: var(--color-heading); }
+.secondary:hover, .secondary:focus-visible { border-color: var(--color-gold); color: var(--color-gold); outline: none; }
+
+@keyframes glow { 0%, 100% { opacity: 1; } 50% { opacity: 0.55; box-shadow: 0 0 6px 1px rgba(255, 228, 170, 0.3); } }
+@keyframes shine { 0%, 60% { transform: translateX(0) rotate(18deg); } 100% { transform: translateX(420%) rotate(18deg); } }
+
+@media (prefers-reduced-motion: reduce) {
+  .bulb, .glass::after { animation: none; }
+}
+
+@media (max-width: 767px) {
+  .inner { width: calc(100% - 40px); grid-template-columns: 1fr; justify-items: center; gap: 44px; padding: 140px 0 72px; text-align: center; }
+  .mirror { width: 210px; padding: 10px; border-radius: 105px 105px 14px 14px; }
+  .glass { border-radius: 95px 95px 8px 8px; }
+  .code { font-size: 4.2rem; }
+  .bulb { width: 11px; height: 11px; margin: -5.5px 0 0 -5.5px; }
+  .title { font-size: clamp(2.3rem, 10vw, 2.8rem); }
+  .lead { font-size: 1.1rem; }
+  .actions { flex-direction: column; margin-top: 30px; }
+  .primary, .secondary { width: 100%; }
+}
