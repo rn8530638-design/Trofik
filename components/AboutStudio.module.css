@@ -123,8 +123,13 @@
 
 .copy {
   display: grid;
-  gap: 14px;
+  gap: 1.4em;
 }
+
+.copy strong { font-weight: 700; }
+
+/* Отбивка перед итоговой мыслью, как в авторском тексте. */
+.copy .break { margin-top: 0.8em; }
 
 .copy p {
   margin: 0;
