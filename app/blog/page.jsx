@@ -21,7 +21,7 @@ export default function BlogPage() {
           <span className={styles.marker} aria-hidden="true" />
           <p className={styles.eyebrow}>Блог студии</p>
           <h1 id="blog-title" className={styles.title}>Красота в деталях</h1>
-          <p className={styles.lead}>Заметки о заботе о себе, подготовке к важным событиям и вдохновении, которое хочется сохранить.</p>
+          <p className={styles.lead}>Здесь мы делимся всем, что помогает чувствовать себя красивой и уверенной: от секретов макияжа и ухода до маникюра, причёсок и маленьких бьюти-хитростей.</p>
           </header>
           <div className={styles.articles}>
           {featured ? <article className={styles.featuredCard}>
