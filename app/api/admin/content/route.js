@@ -18,8 +18,8 @@ const tables = {
     required: ['text', 'author'],
   },
   promotions: {
-    fields: ['title', 'discount', 'description', 'expiry', 'is_visible', 'sort_order'],
-    required: ['title', 'discount', 'description', 'expiry'],
+    fields: ['title', 'discount', 'description', 'expiry', 'image_path', 'is_visible', 'sort_order'],
+    required: ['title', 'image_path'],
   },
   blog_posts: {
     fields: ['slug', 'title', 'excerpt', 'content', 'category', 'read_time', 'image_path', 'is_published', 'sort_order'],
