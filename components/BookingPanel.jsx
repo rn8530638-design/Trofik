@@ -25,7 +25,7 @@ export default function BookingPanel() {
         Записаться онлайн
         <span aria-hidden="true">→</span>
       </a>
-      <p className={styles.note}>Откроется страница записи в сервисе DIKIDI. Если у вас есть акция — назовите её администратору.</p>
+      <p className={styles.note}>Откроется страница записи в сервисе DIKIDI. Если у вас есть акция — укажите её в комментарии к записи.</p>
       <div className={styles.or}><span>или</span></div>
       <a className={styles.phone} href={contactDetails.phoneHref}>{contactDetails.phone}</a>
       <p className={styles.hours}>{contactDetails.hours.join(' · ')}</p>

@@ -46,7 +46,7 @@ export default function PromotionsCarousel({ promotions }) {
         <Arrow direction="next" />
       </button>
       <p className={styles.note}>Скидки не суммируются</p>
-      <p className={styles.hint}>Нажмите на акцию, чтобы записаться, и назовите её администратору</p>
+      <p className={styles.hint}>Нажмите на акцию, чтобы записаться, и укажите её в комментарии к записи</p>
     </div>
   );
 }
