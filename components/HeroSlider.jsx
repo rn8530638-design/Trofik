@@ -12,9 +12,13 @@ export default function HeroSlider({ slides: SLIDES }) {
   // cycle перезапускает таймер при ручной смене кадра.
   const [cycle, setCycle] = useState(0);
   const [mounted, setMounted] = useState(false);
+  // Сначала грузится только первый кадр (LCP на телефоне), остальные — по одному, перед показом.
+  const [loadedUpTo, setLoadedUpTo] = useState(0);
 
   const go = (index) => {
-    setActive((index + SLIDES.length) % SLIDES.length);
+    const next = (index + SLIDES.length) % SLIDES.length;
+    setActive(next);
+    setLoadedUpTo((value) => Math.max(value, next));
     setCycle((value) => value + 1);
   };
 
@@ -29,8 +33,10 @@ export default function HeroSlider({ slides: SLIDES }) {
 
   useEffect(() => {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return undefined;
+    // Следующий кадр подгружается заранее, после первой отрисовки, чтобы смена не мигала пустотой.
+    const preload = window.setTimeout(() => setLoadedUpTo((value) => Math.max(value, (active + 1) % SLIDES.length)), 2500);
     const timer = window.setTimeout(() => go(active + 1), INTERVAL);
-    return () => window.clearTimeout(timer);
+    return () => { window.clearTimeout(preload); window.clearTimeout(timer); };
   }, [cycle, active]);
 
   return (
@@ -42,14 +48,15 @@ export default function HeroSlider({ slides: SLIDES }) {
     >
       <div className={styles.goldFrame} aria-hidden="true" />
       <div className={styles.slides}>
-        {SLIDES.map((slide, index) => (
+        {SLIDES.map((slide, index) => index <= loadedUpTo && (
           <Image
             key={slide.src}
             src={slide.src}
             alt={slide.alt}
             fill
-            priority={index === 0}
-            sizes="(max-width: 767px) 80vw, 50vw"
+            loading={index === 0 ? "eager" : undefined}
+            fetchPriority={index === 0 ? "high" : undefined}
+            sizes="(max-width: 767px) min(80vw, 360px), (max-width: 1023px) 44vw, 52vw"
             aria-hidden={index !== active}
             className={`${styles.slide} ${index === active ? styles.slideActive : ''} ${index === active && mounted ? styles.slideZoom : ''}`}
           />

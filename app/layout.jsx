@@ -5,14 +5,12 @@ import './globals.css';
 
 const heading = Playfair_Display({
   subsets: ['latin', 'cyrillic'],
-  weight: ['400', '700'],
   variable: '--font-heading',
   display: 'swap',
 });
 
 const body = Montserrat({
   subsets: ['latin', 'cyrillic'],
-  weight: ['400', '500', '600'],
   variable: '--font-body',
   display: 'swap',
 });
@@ -24,15 +22,18 @@ const script = Great_Vibes({
   weight: '400',
   variable: '--font-script',
   display: 'swap',
+  // Не на пути первой отрисовки — не отнимает канал у главного фото на телефоне.
+  preload: false,
 });
 
 // Цифры (цены, длительность, статистика) набираются отдельным гротеском:
 // у него ровные табличные знаки, поэтому суммы читаются лучше основного шрифта.
 const numeric = Manrope({
   subsets: ['latin', 'cyrillic'],
-  weight: ['500', '600', '700'],
   variable: '--font-numeric',
   display: 'swap',
+  // Не на пути первой отрисовки — не отнимает канал у главного фото на телефоне.
+  preload: false,
 });
 
 export const metadata = {
