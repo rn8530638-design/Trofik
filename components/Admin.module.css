@@ -106,3 +106,6 @@
 @media (max-width: 767px) {
   .openLink { min-height: 44px; padding: 9px 12px; font-size: 13px; }
 }
+
+.photoSpec { margin-top: 12px; padding: 14px 16px; border-left: 3px solid var(--color-gold); border-radius: 8px; background: #f7f4ec; color: var(--color-navy); font: 13px/1.5 var(--font-body), sans-serif; }
+.photoSpec ul { margin: 6px 0 0; padding-left: 18px; }

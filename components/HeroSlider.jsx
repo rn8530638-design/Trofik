@@ -4,19 +4,10 @@ import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import styles from './Hero.module.css';
 
-const SLIDES = [
-  { src: '/images/studio/studio-1.jpg', caption: 'Вход в студию', alt: 'Вход в студию красоты «ТрофиК», украшенный подсолнухами и гирляндами' },
-  { src: '/images/studio/studio-2.jpg', caption: 'Ресепшен', alt: 'Ресепшен студии «ТрофиК» с зеркальной стеной' },
-  { src: '/images/studio/studio-3.jpg', caption: 'Зона визажа', alt: 'Рабочее место визажиста с зеркалом с лампами на фоне мраморной стены' },
-  { src: '/images/studio/studio-4.jpg', caption: 'Рабочее место мастера', alt: 'Гримёрный столик с зеркалом и синим бархатным креслом в студии «ТрофиК»' },
-  { src: '/images/studio/studio-5.jpg', caption: 'Кабинет маникюра', alt: 'Маникюрный кабинет студии «ТрофиК»' },
-  { src: '/images/studio/studio-6.jpg', caption: 'Кабинет ресниц', alt: 'Кабинет для наращивания ресниц с синей кушеткой' },
-  { src: '/images/studio/studio-7.jpg', caption: 'Атмосфера студии', alt: 'Золотые детали интерьера и визитки студии «ТрофиК»' },
-];
 const INTERVAL = 6000;
 const pad = (number) => String(number).padStart(2, '0');
 
-export default function HeroSlider() {
+export default function HeroSlider({ slides: SLIDES }) {
   const [active, setActive] = useState(0);
   // cycle перезапускает таймер при ручной смене кадра.
   const [cycle, setCycle] = useState(0);

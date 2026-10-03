@@ -5,6 +5,10 @@ import { priceGroupSlugs } from '@/lib/priceGroups';
 import { normalizeDikidiLink } from '@/lib/dikidi';
 
 const tables = {
+  hero_slides: {
+    fields: ['image_path', 'caption', 'alt', 'is_visible', 'sort_order'],
+    required: ['image_path'],
+  },
   services: {
     fields: ['slug', 'name', 'description', 'duration', 'price', 'category', 'show_home', 'sort_order', 'image_path'],
     required: ['name', 'description', 'price', 'category'],

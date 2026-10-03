@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import HeroSlider from './HeroSlider';
 import { DIKIDI_BOOKING_URL } from '@/lib/dikidi';
+import { getHeroSlides } from '@/lib/content';
 import styles from './Hero.module.css';
 
 function HeroStats() {
@@ -36,6 +37,7 @@ function CalendarIcon() {
 }
 
 export default function Hero() {
+  const slides = getHeroSlides().map((slide) => ({ src: slide.image_path, caption: slide.caption, alt: slide.alt || slide.caption || 'Интерьер студии красоты «ТрофиК»' }));
   return (
     <section className={styles.hero}>
       <div className={styles.container}>
@@ -63,7 +65,7 @@ export default function Hero() {
           <HeroStats />
         </div>
 
-        <HeroSlider />
+        {slides.length > 0 && <HeroSlider slides={slides} />}
       </div>
     </section>
   );
