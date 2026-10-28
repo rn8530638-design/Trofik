@@ -38,7 +38,6 @@ export default function ContactsPage() {
               <p id="company-title" className={styles.zoneLabel}>О компании</p>
               <div className={styles.detail}><span className={styles.icon}><MapPinIcon /></span><div><h2>Адрес студии</h2><p>{contactDetails.address}</p></div></div>
               <div className={styles.detail}><span className={styles.icon}><DocumentIcon /></span><div><h2>ОГРНИП</h2><p>324690000056447</p></div></div>
-              <div className={styles.detail}><span className={styles.icon}><DocumentIcon /></span><div><h2>ИНН</h2><p>691008521875</p></div></div>
               <div className={styles.detail}><span className={styles.icon}><BuildingIcon /></span><div><h2>Индивидуальный предприниматель</h2><p>Трофимова Екатерина Андреевна</p></div></div>
               <div className={styles.detail}><span className={styles.icon}><PhoneIcon /></span><div><h2>Телефон</h2><a href={contactDetails.phoneHref}>{contactDetails.phone}</a></div></div>
               <div className={styles.detail}><span className={styles.icon}><ShareIcon /></span><div><h2>Соцсети</h2><div className={styles.socials}><a href="https://vk.ru/studio_trofik" target="_blank" rel="noopener noreferrer">VK</a><a href="https://t.me/studiokr_trofik" target="_blank" rel="noopener noreferrer"><TelegramIcon />Telegram</a></div></div></div>
