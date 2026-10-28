@@ -6,10 +6,11 @@ import styles from './Works.module.css';
 
 const TILE_CLASS = { wide: styles.tileWide, large: styles.tileLarge };
 // Обычная плитка — четверть сетки на ПК и половина на телефоне; широкая и крупная — вдвое больше.
+// На телефоне вычитаем поля страницы и зазор, иначе браузер берёт кадр на ступень крупнее.
 const TILE_SIZES = {
-  normal: '(max-width: 767px) 50vw, 320px',
-  wide: '(max-width: 767px) 100vw, 640px',
-  large: '(max-width: 767px) 100vw, 640px',
+  normal: '(max-width: 767px) calc(50vw - 30px), 320px',
+  wide: '(max-width: 767px) calc(100vw - 48px), 640px',
+  large: '(max-width: 767px) calc(100vw - 48px), 640px',
 };
 const SWIPE_DISTANCE = 50;
 
