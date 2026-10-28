@@ -4,9 +4,15 @@ import { requireAdmin } from '@/lib/auth';
 import { priceGroupSlugs } from '@/lib/priceGroups';
 import { normalizeDikidiLink } from '@/lib/dikidi';
 
+const WORK_TILES = ['normal', 'wide', 'large'];
+
 const tables = {
   hero_slides: {
     fields: ['image_path', 'caption', 'alt', 'is_visible', 'sort_order'],
+    required: ['image_path'],
+  },
+  works: {
+    fields: ['image_path', 'caption', 'alt', 'tile', 'is_visible', 'sort_order'],
     required: ['image_path'],
   },
   services: {
@@ -82,6 +88,7 @@ function cleanPayload(table, input) {
     if (!priceGroupSlugs.includes(payload.group_slug)) throw new Error('Выберите группу прайса.');
     payload.dikidi_link = normalizeDikidiLink(payload.dikidi_link);
   }
+  if (table === 'works' && !WORK_TILES.includes(payload.tile)) payload.tile = 'normal';
   if (table === 'blog_posts') {
     payload.slug = uniquePostSlug(input.slug, payload.title, input.id);
   }

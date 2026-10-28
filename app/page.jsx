@@ -1,6 +1,7 @@
 import Hero from '@/components/Hero';
 import AboutStudio from '@/components/AboutStudio';
 import ServicesOverview from '@/components/ServicesOverview';
+import Works from '@/components/Works';
 import Reviews from '@/components/Reviews';
 import Promotions from '@/components/Promotions';
 import ContactsBrief from '@/components/ContactsBrief';
@@ -26,6 +27,7 @@ export default function HomePage() {
       <AboutStudio />
       <ServicesOverview />
       <SectionTransitions>
+        <Works />
         <Reviews />
         <Promotions />
         <ContactsBrief />
