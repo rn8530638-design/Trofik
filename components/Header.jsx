@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
 import { DIKIDI_BOOKING_URL } from '@/lib/dikidi';
 import styles from './Header.module.css';
@@ -17,6 +17,7 @@ const NAV = [
 ];
 
 export default function Header() {
+  const router = useRouter();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isHeaderVisible, setIsHeaderVisible] = useState(true);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -88,6 +89,11 @@ export default function Header() {
               <li key={item.href}>
                 <Link
                   href={item.href}
+                  // Страницы меню не качаются вместе с главной (отнимали канал у первого экрана) —
+                  // подгружаются при наведении или касании, за мгновение до перехода.
+                  prefetch={false}
+                  onPointerEnter={() => router.prefetch(item.href)}
+                  onTouchStart={() => router.prefetch(item.href)}
                   className={styles.link}
                   aria-current={!item.href.startsWith('/#') && pathname.startsWith(item.href) ? 'page' : undefined}
                   onClick={(event) => handleSectionNavigation(event, item.href)}
