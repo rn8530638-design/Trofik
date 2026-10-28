@@ -1,14 +1,9 @@
 'use client';
 
 import Image from 'next/image';
-import { useLayoutEffect, useRef } from 'react';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useEffect, useRef } from 'react';
+import { loadGsap } from '@/lib/loadGsap';
 import styles from './AboutStudio.module.css';
-
-if (typeof window !== 'undefined') {
-  gsap.registerPlugin(ScrollTrigger);
-}
 
 const PARAGRAPHS = [
   <strong>Я создала «ТрофиК» как место, куда девушка приходит за красотой, а уходит с ощущением, что о ней позаботились.</strong>,
@@ -22,43 +17,51 @@ const PARAGRAPHS = [
 export default function AboutStudio() {
   const contentRef = useRef(null);
 
-  useLayoutEffect(() => {
-    const ctx = gsap.context(() => {
-      const items = contentRef.current.querySelectorAll('[data-about-reveal]');
-      const media = gsap.matchMedia();
+  useEffect(() => {
+    let ctx;
+    let cancelled = false;
+    loadGsap().then(({ gsap }) => {
+      if (cancelled) return;
+      ctx = gsap.context(() => {
+        const items = contentRef.current.querySelectorAll('[data-about-reveal]');
+        const media = gsap.matchMedia();
 
-      media.add('(min-width: 768px) and (prefers-reduced-motion: no-preference)', () => {
-        gsap.from(items, {
-          autoAlpha: 0,
-          y: 14,
-          duration: 0.72,
-          stagger: 0.18,
-          ease: 'power2.out',
-          scrollTrigger: {
-            trigger: contentRef.current,
-            start: 'top 82%',
-            toggleActions: 'play none none reverse',
-          },
+        media.add('(min-width: 768px) and (prefers-reduced-motion: no-preference)', () => {
+          gsap.from(items, {
+            autoAlpha: 0,
+            y: 14,
+            duration: 0.72,
+            stagger: 0.18,
+            ease: 'power2.out',
+            scrollTrigger: {
+              trigger: contentRef.current,
+              start: 'top 82%',
+              toggleActions: 'play none none reverse',
+            },
+          });
         });
-      });
 
-      media.add('(max-width: 767px) and (prefers-reduced-motion: no-preference)', () => {
-        gsap.from(items, {
-          autoAlpha: 0,
-          y: 10,
-          duration: 0.42,
-          stagger: 0.1,
-          ease: 'power2.out',
-          scrollTrigger: {
-            trigger: contentRef.current,
-            start: 'top 88%',
-            toggleActions: 'play none none reverse',
-          },
+        media.add('(max-width: 767px) and (prefers-reduced-motion: no-preference)', () => {
+          gsap.from(items, {
+            autoAlpha: 0,
+            y: 10,
+            duration: 0.42,
+            stagger: 0.1,
+            ease: 'power2.out',
+            scrollTrigger: {
+              trigger: contentRef.current,
+              start: 'top 88%',
+              toggleActions: 'play none none reverse',
+            },
+          });
         });
-      });
-    }, contentRef);
+      }, contentRef);
+    });
 
-    return () => ctx.revert();
+    return () => {
+      cancelled = true;
+      ctx?.revert();
+    };
   }, []);
 
   return (

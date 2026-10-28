@@ -54,6 +54,7 @@ export default function HeroSlider({ slides: SLIDES }) {
             src={slide.src}
             alt={slide.alt}
             fill
+            quality={60}
             loading={index === 0 ? "eager" : undefined}
             fetchPriority={index === 0 ? "high" : undefined}
             sizes="(max-width: 767px) min(80vw, 360px), (max-width: 1023px) 44vw, 52vw"
