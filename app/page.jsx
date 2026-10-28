@@ -16,7 +16,8 @@ export const metadata = {
   openGraph: {
     url: '/',
     title: 'ТрофиК — студия красоты',
-    images: ['/images/ekaterina.jpg'],
+    // Превью ссылки в мессенджерах: вход в студию + логотип, 1200×630.
+    images: [{ url: '/images/og-home.jpg', width: 1200, height: 630, alt: 'Студия красоты ТрофиК в Дубне — вход в студию и логотип' }],
   },
 };
 
